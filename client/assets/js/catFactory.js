@@ -196,35 +196,40 @@ function animationVariation(num) {
     switch (num) {
         case 1:
             animationReset()
-            $('#animationName').html('Jump Head')
-            animationVar1()
+            $('#animationName').html('No Animation')
             break
         case 2:
+            animationReset()
+            $('#animationName').html('Jumping Head')
+            animationVar1()
+            break
+        case 3:
             animationReset()
             $('#animationName').html('Move Ears')
             animationVar2()
             break
-        case 3:
+        case 4:
             animationReset()
             $('#animationName').html('Move Tail')
             animationVar3()
             break
-        case 4:
+        case 5:
             animationReset()
             $('#animationName').html('Grow claws')
             animationVar4()
             break
-        case 5:
+        case 6:
             animationReset()
             $('#animationName').html('Twinkling Eyes')
             animationVar5()
             break
-        case 6:
+        case 7:
             animationReset()
-            $('#animationName').html('Gangnam Style')
+            $('animationNAme').html('GangnamStyle')
             animationVar6()
             break
     }
+    
 }
 function animationReset(){
     $("#head").removeClass("jumpingHead")
