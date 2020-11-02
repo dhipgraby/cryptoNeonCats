@@ -1,0 +1,247 @@
+.jumpingHead{
+    animation: jumpHead 3s infinite;
+}
+
+@keyframes jumpHead {
+    0% {
+        transform: scale(1.1);
+    }
+    0.5% {
+        transform: scale(1);
+    }
+    1% {
+        transform: scale(1.1);
+    }
+    1.5% {
+        transform: scale(1);
+    }
+    2% {
+        transform: scale(1.1);
+    }
+    2.5% {
+        transform: scale(1);
+    }
+    3% {
+        transform: scale(1.1);
+    }
+    3.5% {
+        transform: scale(1);
+    }
+    4% {
+        transform: scale(1.1);
+    }
+    4.5% {
+        transform: scale(1);
+    }
+    5% {
+        transform: scale(1.1);
+    }
+    5.5% {
+        transform: scale(1);
+    }
+    6% {
+        transform: scale(1.1);
+    }
+    6.5% {
+        transform: scale(1);
+    }
+    7% {
+        transform: scale(1.1);
+    }
+    7.5% {
+        transform: scale(1);
+    }
+    18% {
+        transform: scale(1);
+        }
+    22% {
+        transform: scale(2.8);
+    }
+    26% {
+        transform: scale(1);
+    }
+}
+
+.movingLeftEar{
+    animation: moveLeftEar 4s infinite;
+}
+@keyframes moveLeftEar {
+    5%{
+        transform: rotate(130deg);
+    }
+    100% {
+        transform: rotate(65deg);
+    
+    }
+}
+.movingRightEar{
+    animation: moveRightEar 4s infinite;
+}
+@keyframes moveRightEar {
+    5%{
+        transform: rotate(140deg);
+    }
+    100% {
+        transform: rotate(205deg);
+    }
+}
+
+.movingTail {
+    animation: moveTail 0.1s infinite;
+}
+
+@keyframes moveTail{
+    0% {
+        transform: rotate(-40deg);
+    }
+    33% {
+        transform: rotate(-43deg);
+    }
+    66% {
+        transform: rotate(-40deg);
+    }
+    100% {
+        transform: rotate(-43deg);
+    }
+}
+
+.growingClaws {
+    animation: growCLaws 3s infinite;
+}
+
+@keyframes growClaws {
+    0% {
+        border-top: 12px solid black;
+    }
+    10% {
+        border-top: 14px solid black;
+    }
+    20% {
+        border-top: 18px solid black;
+    }
+    30% {
+        border-top: 20px solid black;
+    }
+    40% {
+        border-top: 22px solid black;
+    }
+    50% {
+        border-top: 24px solid black;
+    }
+    60% {
+        border-top: 26px solid black;
+    }
+    70% {
+        border-top: 28px solid black;
+    }
+    80% {
+        border-top: 30px solid black;
+    }
+    90% {
+        border-top: 32px solid black;
+    }
+    100% {
+        border-top: 34px solid black;
+    }
+}
+
+
+.twinklingEyes{
+    animation: eyeTwinkles 1s infinite;
+}
+
+@keyframes eyeTwinkles {
+    0% {
+        border: 1px;
+    }  
+    1% {
+        border: 8px;
+    }
+    2% {
+        border: 1px;
+    }
+    60% {
+        border: 1px;
+    }
+    61% {
+        border: 8px;
+    }
+    62% {
+        border:1px;
+    }
+}
+
+.gangnamHeadMove {
+    animation: gangnamHead 0.9s infinite;
+}
+@keyframes gangnamHead {
+    25% {
+        transform: translateY(15px);
+    }
+    70% {
+        transform: translateY(0px);
+    }
+}
+.gangnamEarsMove{
+    animation: gangnamEars 0.9s infinite;
+    }
+@keyframes gangnamEars {
+    25% {
+        transform: translateY(15px);
+    }
+    70% {
+        transform: translateY(0px);
+    }
+}
+.gangnamStyleL{
+    animation: gangnamL 0.9s infinite;
+}
+@keyframes gangnamL {
+    25% {
+        transform: rotate(-65deg);
+    }  
+    70% {
+        transform: rotate(0deg);
+    }
+}
+.gangnamStyleR{
+    animation: gangnamR 0.9s infinite;
+}
+@keyframes gangnamR {
+    25% {
+        transform: rotate(65deg);
+    }  
+    70% {
+        transform: rotate(0deg);
+    }
+}
+.gangnamStompL{
+    animation: gangStompL 1.8s infinite;
+}
+
+@keyframes gangStompL {
+    15% { 
+        transform: translateY(-15px);
+    }  
+    28% {
+        transform: translateY(0px);
+    }
+}
+.gangnamStompR{
+    animation: gangStompR 1.8s infinite;
+}
+@keyframes gangStompR {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    65% {
+        transform: translateY(-15px);
+    }  
+    80% {
+        transform: translateY(0px);
+    }
+}
+

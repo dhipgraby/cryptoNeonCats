@@ -1,0 +1,235 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academy kitties </title>
+  <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <script src="assets/bootstrap/js/popper.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/mystyle.css">
+  <link rel="stylesheet" href="assets/css/cats.css">
+  <link rel="stylesheet" href="assets/css/colors.css">
+  <link rel="stylesheet" href="assets/css/factory.css">
+  <link rel="stylesheet" href="assets/css/frontend.css">
+</head>
+  <body>
+    <div class="container p-5" style="margin-top: 12vh; margin-bottom: 10vh;">
+        <div align="center">
+        <h1 class="c-white">Kitties-Factory</h1>
+        <p class="c-white">Create your custom Kitty</p>
+    </div>
+        <div class="row">
+            <div class="col-lg-4 catBox m-2 light-b-shadow">
+                <div class="cat">
+                    <div id="ears" class="cat__ear">
+                        <div id="leftEar" class="cat__ear--left">
+                            <div class="ear-whisker1left"></div>
+                            <div class="ear-whisker2left"></div>
+                            <div class="cat__ear--left-inside"></div>
+                        </div>
+                        <div id="rightEar" class="cat__ear--right">
+                            <div class="ear-whisker1right"></div>
+                            <div class="ear-whisker2right"></div>
+                            <div class="cat__ear--right-inside"></div>
+                        </div>   
+                    </div>
+                    
+
+                    <div id="head" class="cat__head">
+                        <div class="cat__head-zoneBlur"></div>
+                        <div id="midDot" class="cat__head-dots">
+                            <div id="leftDot" class="cat__head-dots_first"></div>
+                            <div id="rightDot" class="cat__head-dots_second"></div> 
+                        </div>
+
+                        <div class="cat__eye-left-zoneblur"></div>
+                        <div class="cat__eye-right-zoneblur"></div>
+
+                        <div class="cat__eye">
+                            <div class="cat__eye--left"></div>
+                            <div class="cat__eye--right"></div>
+                        </div>
+                        
+                        <div class="pupil-left"></div>
+                        <div class="reflex-left"></div>
+                        
+                        <div class="pupil-right"></div>
+                        <div class="reflex-right"></div>
+                        
+                        <div class="cat__nose"></div>
+                        
+                        <!--<div class="cat__whiskers-left"></div>
+                        <div class="cat__whiskers-right"></div> -->
+
+                        <div class="cat__mouth-contour">
+                        <!--<div class="cat__mouth-left"></div>
+                        <div class="cat__mouth-right"></div> -->
+                            <div class="mouth-container">
+                                <div id="MouthLimit" class="square">
+                                   <!-- <div class="nose__shadow"></div>-->
+                                </div>
+                                <div class="ellipse">
+                                    <div class="tongue"></div>
+                                    <div class="tooth tooth1"></div>
+                                    <div class="tooth tooth2"></div>
+                                    </div>
+                                </div>  
+                            <div class="whisker__1left"></div>
+                            <div class="whisker__2left"></div>
+                            <div class="whisker__3left"></div>
+
+                            <div class="whisker__1right"></div>
+                            <div class="whisker__2right"></div>
+                            <div class="whisker__3right"></div>
+                        </div>
+                    </div>
+                                
+
+                    <div class="cat__body">
+                        <div class="cat__chest"></div>
+                        <div class="cat__chest_inner"></div>
+
+
+                        <div id="cat__pawL" class="cat__paw-left">
+                            <div class="cat__paw-shadowL">
+                                <div class="claw claw_pl1"></div>
+                                <div class="claw claw_pl2"></div>
+                                <div class="claw claw_pl3"></div>
+                            </div>
+                        </div>
+
+                        <div id="cat__stompL" class="cat__paw-left_inner">
+                            <div id="clawsInnerL" class="cat__paw-shadowInnerL">
+                                <div class="clawsL claws__left1"></div>
+                                <div class="clawsL claws__left2"></div>
+                                <div class="clawsL claws__left3"></div>
+                            </div>
+                        </div>
+
+                        <div id="cat__pawR" class="cat__paw-right">
+                            <div class="cat__paw-shadowR">
+                                <div class="claw claw_pr1"></div>
+                                <div class="claw claw_pr2"></div>
+                                <div class="claw claw_pr3"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="cat__stompR" class="cat__paw-right_inner">
+                            <div id="clawsInnerR" class="cat__paw-shadowInnerR">
+                                <div class="clawsR claws__right1"></div>
+                                <div class="clawsR claws__right2"></div>
+                                <div class="clawsR claws__right3"></div>
+                            </div>
+                        </div>
+                            
+                        <div id="tail" class="cat__tail">
+                            <div class="tail__arrow">
+                                <div class="tail__whisker tail__whiskerLeft"></div>
+                                <div class="tail__whisker tail__whiskerRight"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <br>
+                <div class="dnaDiv" id="catDNA">
+                    <b>
+                        DNA:
+                        <!-- Colors -->
+                         <span id="dnabody"></span>
+                         <span id="dnamouth"></span>
+                         <span id="dnashape"></span>
+                         <span id="dnapupils"></span>
+                         <span id="dnaears"></span>
+                         <!-- Cattributes -->
+                         <span id="dnadecoration"></span>
+                         <span id="dnadecorationMid"></span>
+                         <span id="dnadecorationSides"></span>
+                         <span id="dnaanimation"></span>
+                         <span id="dnaspecial"></span>
+                    </b>
+                </div>
+            </div>
+            <div class="col-lg-7 cattributes m-2 light-b-shadow">
+                <div>
+                    <nav class="navbar navbar-expand-lg">
+                      <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active pointer" id="colorsTab" onclick="showCatColors()">Cat Colors</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link pointer" id="attributesTab" onclick="showCatAttributes()">Cat Attributes</a>
+                        </li>
+                      </ul>
+                  </div>
+                        <!-- Cat colors -->
+                        <div id="catColors" class="hidden" class="table w-50">
+                                <br>
+                                <div class="form-group">
+                                    <label for="formControlRange"><b>Head and body</b><span class="badge badge-dark ml-2" id="headcode"></span></label>
+                                    <input type="range" min="10" max="98" class="form-control-range" id="bodycolor">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formControlRange"><b>Mouth/Belly/Tail Color</b><span class="badge badge-dark ml-2" id="mouthcode"></span></label>
+                                    <input type="range" min="10" max="98" class="form-control-range" id="mouthcolor">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formControlRange"><b>Eye Color</b><span class="badge badge-dark ml-2" id="eyeName"></span></label>
+                                    <input type="range" min="1" max="8" class="form-control-range" id="eyeshape">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formControlRange"><b>Pupil Color</b><span class="badge badge-dark ml-2" id="eyecode"></span></label>
+                                    <input type="range" min="1" max="9" class="form-control-range" id="pupilcolor">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formControlRange"><b>Ear & Paw Color</b><span class="badge badge-dark ml-2" id="earcode"></span></label>
+                                    <input type="range" min="10" max="98" class="form-control-range" id="earcolor">
+                                </div>
+                        </div>
+
+                        <!-- Cattributes -->
+                        <div id="catAttributes" class="hidden" class="table w-50">
+                                <br>
+                                <div class="form-group">
+                                    <label for="formControlRange"><b>Decoration Shape</b><span class="badge badge-dark ml-2" id="decoName"></span></label>
+                                    <input type="range" min="1" max="4" class="form-control-range" id="decoshape">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formControlRange"><b>Decoration Color Sides</b><span class="badge badge-dark ml-2" id="decoColorSides"></span></label>
+                                    <input type="range" min="1" max="20" class="form-control-range" id="decosidecolors">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formControlRange"><b>Decoration Color Mid</b><span class="badge badge-dark ml-2" id="decoColorMid"></span></label>
+                                    <input type="range" min="1" max="20" class="form-control-range" id="decomidcolor">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formControlRange"><b>Animation</b><span class="badge badge-dark ml-2" id="animationName"></span></label>
+                                    <input type="range" min="1" max="6" class="form-control-range" id="animation">
+                                </div>
+                            </div>
+
+                            </div>
+
+                            </div>
+                            <br>
+
+                        </div>
+
+
+
+    </div>
+    <footer align="left">
+        <p>Sneicode November 2020</p>
+    </footer>
+
+  </body>
+  <script src="assets/js/colors.js"></script>
+  <script src="assets/js/catSettings.js"></script>
+  <script src="assets/js/catFactory.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  
+
+</html>
