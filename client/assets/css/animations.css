@@ -1,5 +1,6 @@
-.jumpingHead{
+.jumpingHead {
     animation: jumpHead 3s infinite;
+    transition: 0.5s;
 }
 
 @keyframes jumpHead {
@@ -51,19 +52,20 @@
     7.5% {
         transform: scale(1);
     }
-    18% {
+    9% {
         transform: scale(1);
         }
-    22% {
+    13% {
         transform: scale(2.8);
     }
-    26% {
+    17% {
         transform: scale(1);
     }
 }
 
 .movingLeftEar{
     animation: moveLeftEar 4s infinite;
+    transition: 4s;
 }
 @keyframes moveLeftEar {
     5%{
@@ -76,6 +78,7 @@
 }
 .movingRightEar{
     animation: moveRightEar 4s infinite;
+    transition: 4s;
 }
 @keyframes moveRightEar {
     5%{
@@ -106,39 +109,11 @@
 }
 
 .growingClaws {
-    animation: growCLaws 3s infinite;
+    animation: growClaws 3s;
 }
-
 @keyframes growClaws {
     0% {
-        border-top: 12px solid black;
-    }
-    10% {
-        border-top: 14px solid black;
-    }
-    20% {
-        border-top: 18px solid black;
-    }
-    30% {
-        border-top: 20px solid black;
-    }
-    40% {
-        border-top: 22px solid black;
-    }
-    50% {
-        border-top: 24px solid black;
-    }
-    60% {
-        border-top: 26px solid black;
-    }
-    70% {
-        border-top: 28px solid black;
-    }
-    80% {
-        border-top: 30px solid black;
-    }
-    90% {
-        border-top: 32px solid black;
+        border-top: 8px solid black;
     }
     100% {
         border-top: 34px solid black;
@@ -147,27 +122,27 @@
 
 
 .twinklingEyes{
-    animation: eyeTwinkles 1s infinite;
+    animation: eyeTwinkles 4s infinite;
 }
 
 @keyframes eyeTwinkles {
-    0% {
-        border: 1px;
+    5% {
+        border: 0px solid black;
+    }
+    10% {
+        border: 1px solid black;
     }  
-    1% {
-        border: 8px;
+    15% {
+        border: 20px solid black;
     }
-    2% {
-        border: 1px;
+    20% {
+        border: 1px solid black;
     }
-    60% {
-        border: 1px;
+    25% {
+        border: 20px solid black;
     }
-    61% {
-        border: 8px;
-    }
-    62% {
-        border:1px;
+    30% {
+        border: 0px solid black;
     }
 }
 

@@ -18,7 +18,7 @@
   <body>
     <div class="container p-5" style="margin-top: 12vh; margin-bottom: 10vh;">
         <div align="center">
-        <h1 class="c-white">Neon-Cats-Factory</h1>
+        <h1 class="c-white">Neon-Cats Factory</h1>
         <p class="c-white">Create your custom Cat</p>
     </div>
         <div class="row">
@@ -49,8 +49,8 @@
                         <div class="cat__eye-right-zoneblur"></div>
 
                         <div class="cat__eye">
-                            <div class="cat__eye--left"></div>
-                            <div class="cat__eye--right"></div>
+                            <div id="leftTwinkle" class="cat__eye--left"></div>
+                            <div id="rightTwinkle" class="cat__eye--right"></div>
                         </div>
                         
                         <div class="pupil-left"></div>
@@ -91,11 +91,11 @@
                         <div class="cat__chest"></div>
                         <div class="cat__chest_inner"></div>
 
-                        <div id="cat__pawL" class="cat__paw-left">
+                        <div  class="cat__paw-left">
                             <div class="cat__paw-shadowL">
-                                <div class="claw claw_pl1"></div>
-                                <div class="claw claw_pl2"></div>
-                                <div class="claw claw_pl3"></div>
+                                <div id="cat__pawL" class="claw claw_pl1"></div>
+                                <div id="cat__pawL" class="claw claw_pl2"></div>
+                                <div id="cat__pawL" class="claw claw_pl3"></div>
                             </div>
                         </div>
 
@@ -107,11 +107,11 @@
                             </div>
                         </div>
 
-                        <div id="cat__pawR" class="cat__paw-right">
+                        <div class="cat__paw-right">
                             <div class="cat__paw-shadowR">
-                                <div class="claw claw_pr1"></div>
-                                <div class="claw claw_pr2"></div>
-                                <div class="claw claw_pr3"></div>
+                                <div id="cat__pawR" class="claw claw_pr1"></div>
+                                <div id="cat__pawR" class="claw claw_pr2"></div>
+                                <div id="cat__pawR" class="claw claw_pr3"></div>
                             </div>
                         </div>
                         
@@ -164,7 +164,7 @@
                       </ul>
                   </div>
                         <!-- Cat colors -->
-                        <div id="catColors" class="hidden" class="table w-50">
+                        <div id="catColors" class="table w-100">
                                 <br>
                                 <div class="form-group">
                                     <label for="formControlRange"><b>Head and body</b><span class="badge badge-dark ml-2" id="headcode"></span></label>

@@ -225,7 +225,7 @@ function animationVariation(num) {
             break
         case 7:
             animationReset()
-            $('animationNAme').html('GangnamStyle')
+            $('#animationName').html('Gangnam Style')
             animationVar6()
             break
     }
@@ -238,7 +238,8 @@ function animationReset(){
     $("#tail").removeClass("movingTail")
     $("#clawsInnerL").removeClass("growingClaws")
     $("#clawsInnerR").removeClass("growingClaws")
-    $("#cat__eye--right, cat__eye--left").removeClass("twinklingEyes")
+    $("#leftTwinkle").removeClass("twinklingEyes")
+    $("#rightTwinkle").removeClass("twinklingEyes")
     $("#cat__pawL").removeClass("gangnamStyleL")
     $("#cat__pawR").removeClass("gangnamStyleR")
     $("#cat__stompL").removeClass("gangnamStompL")
@@ -256,12 +257,20 @@ function animationVar2(){
 function animationVar3(){
     $("#tail").addClass("movingTail")
 }
+// claws of the back paws
+/*function animationVar4(){
+    $(".clawsL").addClass("growingClaws")
+    $(".clawsR").addClass("growingClaws")
+}*/
+
+// claws of the front paws
 function animationVar4(){
-    $("#clawsInnerL").addClass("growingClaws")
-    $("#clawsInnerR").addClass("growingClaws")
+    $(".claw").addClass("growingClaws")
 }
+
 function animationVar5(){
-    $("#cat__eye--right, cat__eye--left").addClass("twinklingEyes")
+    $("#leftTwinkle").addClass("twinklingEyes")
+    $("#rightTwinkle").addClass("twinklingEyes")
 }
 function animationVar6(){
     $("#cat__pawL").addClass("gangnamStyleL")

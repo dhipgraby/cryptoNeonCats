@@ -11,7 +11,7 @@ var defaultDNA = {
     "decorationPattern" : 1,
     "decorationMidColor" : 4,
     "decorationSidesColor" : 3,
-    "animation" : 5,
+    "animation" : 1,
     "lastNum" : 1
     }
 
