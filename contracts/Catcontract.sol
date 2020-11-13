@@ -31,6 +31,8 @@ contract Catscontract is IERC721, Ownable {
 
     uint256 public gen0Counter;
 
+    // set mumID, dadID and generation to 0, _genes from input and owner = 0address / msg.sender
+    // create var to limit 0 generation to max amount X, add require and increase counter
     function createCatGen0(uint256 _genes) public onlyOwner returns (uint256){
         require(gen0Counter <= supplyLimitGen0);
 
@@ -38,14 +40,7 @@ contract Catscontract is IERC721, Ownable {
 
         returns _createNeonCat(0, 0, 0, _genes, msg.sender);
          
-        // set generation to 0
-        // limit 0 generation to max amount X (is this a require?)
-        // get genes: how can we get this if the fronend hasn't been created yet???? - yes frontend
-        // is existing, need to create a listener to get the genes number via jQuery commands
-        // (create random number for genes value via separate random function)
-        // change createCatGen0-function to private or is "onlyOwner" suffieicnt ?
-        // call _createNeonCat function: no need for mumId nor dadId, only birthTime and generation
-        // set owner to 0-address, or is this already solved with Ownable?
+        
     }
 
     // function is private as meant to be executed only from within our own contract 
