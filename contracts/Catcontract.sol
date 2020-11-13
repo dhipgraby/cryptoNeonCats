@@ -11,7 +11,7 @@ contract Catscontract is IERC721, Ownable {
     string public constant name = "Neoncats";
     string public constant symbol = "NC";
 
-    struct Cats {
+    struct Neoncat {
         uint256 genes;
         uint64 birthTime;
         uint32 mumId;
@@ -19,7 +19,7 @@ contract Catscontract is IERC721, Ownable {
         uint16 generation;
     }
 
-    NeonCat[] neoncats;
+    Neoncat[] neoncats;
 
     mapping(uint256 => address) public catIndexToOwner;
     mapping(address => uint256) ownershipTokenCount;
@@ -38,21 +38,21 @@ contract Catscontract is IERC721, Ownable {
 
         gen0Counter++;
 
-        returns _createNeonCat(0, 0, 0, _genes, msg.sender);
+        return _createNeonCat(0, 0, 0, _genes, msg.sender);
          
         
     }
 
     // function is private as meant to be executed only from within our own contract 
-    function _createNeonCat(uint256 _mumId, uint256 _dadId, uint256 _generation, address _owner
+    function _createNeonCat(uint256 _mumId, uint256 _dadId, uint256 _generation, uint256 _genes, address _owner
     ) private returns (uint256){
-        NeonCat memory _neoncat = NeonCat({
+        Neoncat memory _neoncat = Neoncat({
             genes: _genes,
             birthTime: uint64(now),
-            momId: uint32(_mumId),
+            mumId: uint32(_mumId),
             dadId: uint32(_dadId),
             generation: uint16(_generation)
-        })
+        });
 
         uint256 newCatId = neoncats.push(_neoncat) -1;
 
@@ -62,7 +62,7 @@ contract Catscontract is IERC721, Ownable {
 
         return newCatId;
     }
-    )
+    
     function balanceOf(address owner) external view returns (uint256 balance){
         return ownershipTokenCount[owner];
     }
