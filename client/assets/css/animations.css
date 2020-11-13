@@ -109,7 +109,8 @@
 }
 
 .growingClaws {
-    animation: growClaws 3s;
+    /* animation: growClaws 3s ; */
+    border-top: 34px solid black;
 }
 @keyframes growClaws {
     0% {

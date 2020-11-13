@@ -1,4 +1,6 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: SPDX-License
+
+pragma solidity 0.5.12;
 /**
  * @dev Required interface of an ERC721 compliant contract.
  */
