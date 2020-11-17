@@ -39,8 +39,13 @@ contract Catscontract is IERC721, Ownable {
         gen0Counter++;
 
         return _createNeonCat(0, 0, 0, _genes, msg.sender);
-         
+     }
+
+    function getCat(uint256 _tokenId) public view returns(uint256 genes, uint256 birthTime, uint256 mumId, uint256 dadId, uint256 generation){        
         
+        Neoncat storage neoncat = neoncats[_tokenId];
+
+        return(neoncats[_tokenId].genes, neoncats[_tokenId].birthTime, neoncats[_tokenId].mumId, neoncats[_tokenId].dadId, neoncats[_tokenId].generation);
     }
 
     // function is private as meant to be executed only from within our own contract 

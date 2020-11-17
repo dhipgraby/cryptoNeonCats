@@ -64,8 +64,8 @@
 }
 
 .movingLeftEar{
-    animation: moveLeftEar 4s infinite;
-    transition: 4s;
+    animation: moveLeftEar 8s ;
+
 }
 @keyframes moveLeftEar {
     5%{
@@ -77,8 +77,8 @@
     }
 }
 .movingRightEar{
-    animation: moveRightEar 4s infinite;
-    transition: 4s;
+    animation: moveRightEar 8s ;
+
 }
 @keyframes moveRightEar {
     5%{
@@ -109,8 +109,7 @@
 }
 
 .growingClaws {
-    /* animation: growClaws 3s ; */
-    border-top: 34px solid black;
+    animation: growClaws 4s forwards;
 }
 @keyframes growClaws {
     0% {
@@ -118,6 +117,17 @@
     }
     100% {
         border-top: 34px solid black;
+    }
+}
+.growingClawsInner {
+    animation: growClawsI 4s forwards;
+}
+@keyframes growClawsI {
+    0% {
+        border-top: 8px solid black;
+    }
+    100% {
+        border-top: 18px solid black;
     }
 }
 
@@ -133,19 +143,43 @@
     10% {
         border: 1px solid black;
     }  
-    15% {
+    12% {
+        border: 20px solid black;
+    }
+    16% {
+        border: 1px solid black;
+    }
+    18% {
         border: 20px solid black;
     }
     20% {
-        border: 1px solid black;
-    }
-    25% {
-        border: 20px solid black;
-    }
-    30% {
         border: 0px solid black;
     }
 }
+.disappear {
+    animation: disapp 4s infinite
+}
+@keyframes disapp {
+    5% {
+        z-index: 1;
+    }
+    10% {
+        z-index: 1;
+    }  
+    12% {
+        z-index: 0;
+    }
+    16% {
+        z-index: 1;
+    }
+    18% {
+        z-index: 0;
+    }
+    20% {
+        z-index: 1;
+    }
+}
+
 
 .gangnamHeadMove {
     animation: gangnamHead 0.9s infinite;

@@ -862,12 +862,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x80A01cdb2c221720E35dcFC97D152DC1Ff2ADC58",
-      "transactionHash": "0x714ab247dab13b66ed9429a487854c2d911d21dd78a5ac3a15cb3d22f947243b"
+      "address": "0x20F342942D3Ed9942382935d3bf2EBF5d1Ef285B",
+      "transactionHash": "0x54c1f2a935f78fa36f2271810667c9a92d39facc2412a67541b0e6b6ba53082e"
     }
   },
   "schemaVersion": "3.3.1",
-  "updatedAt": "2020-11-13T13:43:17.557Z",
+  "updatedAt": "2020-11-16T09:38:47.743Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

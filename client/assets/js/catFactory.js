@@ -236,10 +236,15 @@ function animationReset(){
     $("#leftEar").removeClass("movingLeftEar")
     $("#rightEar").removeClass("movingRightEar")
     $("#tail").removeClass("movingTail")
-    $("#clawsInnerL").removeClass("growingClaws")
-    $("#clawsInnerR").removeClass("growingClaws")
+    $(".claw").removeClass("growingClaws")
+    $(".clawsL").removeClass("growingClawsInner")
+    $(".clawsR").removeClass("growingClawsInner")
     $("#leftTwinkle").removeClass("twinklingEyes")
     $("#rightTwinkle").removeClass("twinklingEyes")
+    $("#pupL-off").removeClass("disappear")
+    $("#refL-off").removeClass("disappear")
+    $("#pupR-off").removeClass("disappear")
+    $("#refR-off").removeClass("disappear")
     $("#cat__pawL").removeClass("gangnamStyleL")
     $("#cat__pawR").removeClass("gangnamStyleR")
     $("#cat__stompL").removeClass("gangnamStompL")
@@ -257,20 +262,23 @@ function animationVar2(){
 function animationVar3(){
     $("#tail").addClass("movingTail")
 }
-// claws of the back paws
-/*function animationVar4(){
-    $(".clawsL").addClass("growingClaws")
-    $(".clawsR").addClass("growingClaws")
-}*/
+
 
 // claws of the front paws
 function animationVar4(){
     $(".claw").addClass("growingClaws")
+    $(".clawsL").addClass("growingClawsInner")
+    $(".clawsR").addClass("growingClawsInner")
+
 }
 
 function animationVar5(){
     $("#leftTwinkle").addClass("twinklingEyes")
     $("#rightTwinkle").addClass("twinklingEyes")
+    $("#pupL-off").addClass("disappear")
+    $("#refL-off").addClass("disappear")
+    $("#pupR-off").addClass("disappear")
+    $("#refR-off").addClass("disappear")
 }
 function animationVar6(){
     $("#cat__pawL").addClass("gangnamStyleL")
