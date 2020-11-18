@@ -64,7 +64,7 @@
 }
 
 .movingLeftEar{
-    animation: moveLeftEar 8s ;
+    animation: moveLeftEar 8s forwards;
 
 }
 @keyframes moveLeftEar {
@@ -77,7 +77,7 @@
     }
 }
 .movingRightEar{
-    animation: moveRightEar 8s ;
+    animation: moveRightEar 8s forwards;
 
 }
 @keyframes moveRightEar {

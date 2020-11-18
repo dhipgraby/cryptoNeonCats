@@ -14,7 +14,6 @@ function genColors(){
     return colors
 }
 
-//This function code needs to modified so that it works with Your cat code.
 function headColor(color,code) {
     $('.cat__head, .cat__chest').css('background', '#' + color)  //This changes the color of the cat
     $('#headcode').html('code: '+code) //This updates text of the badge next to the slider
@@ -262,8 +261,6 @@ function animationVar2(){
 function animationVar3(){
     $("#tail").addClass("movingTail")
 }
-
-
 // claws of the front paws
 function animationVar4(){
     $(".claw").addClass("growingClaws")
@@ -271,7 +268,6 @@ function animationVar4(){
     $(".clawsR").addClass("growingClawsInner")
 
 }
-
 function animationVar5(){
     $("#leftTwinkle").addClass("twinklingEyes")
     $("#rightTwinkle").addClass("twinklingEyes")

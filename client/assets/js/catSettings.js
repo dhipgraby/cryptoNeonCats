@@ -114,3 +114,4 @@ $('#animation').change(()=>{
     var animationVal = parseInt( $('#animation').val() )
     animationVariation(animationVal)
 })
+

@@ -21,8 +21,8 @@
   <body>
     <div class="container p-5" style="margin-top: 12vh; margin-bottom: 10vh;">
         <div align="center">
-        <h1 class="c-white">Neon-Cats Factory</h1>
-        <p class="c-white">Create your custom Cat</p>
+        <h1 class="c-white">NeonCat Factory</h1>
+        <p class="c-white">Create your custom NeonCat</p>
     </div>
         <div class="row">
             <div class="col-lg-4 catBox m-2 light-b-shadow">
@@ -152,6 +152,8 @@
                     </b>
                 </div>
             </div>
+
+             
             <div class="col-lg-7 cattributes m-2 light-b-shadow">
                 <div>
                     <nav class="navbar navbar-expand-lg">
@@ -164,6 +166,7 @@
                         </li>
                       </ul>
                   </div>
+                  
                         <!-- Cat colors -->
                         <div id="catColors" class="table w-100">
                                 <br>
@@ -209,15 +212,22 @@
                                     <input type="range" min="1" max="7" class="form-control-range" id="animation">
                                 </div>
                             </div>
-
-                            </div>
-
-                            </div>
+                        </div>
+                            <br>
+                            <div class="container">
+                                <div class="btn-group">
+                                    <button class="btn btn-primary btn-sm tsp-1 m-1 light-b-shadow" onclick="randomCat()"><b>Get random Cat</b></button>
+                                    <button class="btn btn-primary btn-sm tsp-1 m-1 light-b-shadow" onclick="defaultCat()"><b>Get default Cat</b></button>
+                                </div>
+                                <div class="group btn float-right">
+                                    <button class="btn btn-success btn-sm mr-5 tsp-1 m-1 light-b-shadow" onclick="createNeonCat()"><b>Create NeonCat</b></button>
+                                </div>
+                            <br>
                             <br>
 
                         </div>
 
-
+                        
 
     </div>
     <footer align="left">
