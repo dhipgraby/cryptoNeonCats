@@ -148,7 +148,6 @@
                          <span id="dnadecorationMid"></span>
                          <span id="dnadecorationSides"></span>
                          <span id="dnaanimation"></span>
-                         <span id="dnaspecial"></span>
                     </b>
                 </div>
             </div>
@@ -184,7 +183,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="formControlRange"><b>Pupil Color</b><span class="badge badge-dark ml-2" id="eyecode"></span></label>
-                                    <input type="range" min="1" max="9" class="form-control-range" id="pupilcolor">
+                                    <input type="range" min="10" max="98" class="form-control-range" id="pupilcolor">
                                 </div>
                                 <div class="form-group">
                                     <label for="formControlRange"><b>Ear & Paw Color</b><span class="badge badge-dark ml-2" id="earcode"></span></label>
@@ -200,12 +199,12 @@
                                     <input type="range" min="1" max="4" class="form-control-range" id="decoshape">
                                 </div>
                                 <div class="form-group">
-                                    <label for="formControlRange"><b>Decoration Color Sides</b><span class="badge badge-dark ml-2" id="decoColorSides"></span></label>
-                                    <input type="range" min="1" max="20" class="form-control-range" id="decosidecolors">
+                                    <label for="formControlRange"><b>Decoration Color Mid</b><span class="badge badge-dark ml-2" id="decoColorMid"></span></label>
+                                    <input type="range" min="10" max="98" class="form-control-range" id="decomidcolor">
                                 </div>
                                 <div class="form-group">
-                                    <label for="formControlRange"><b>Decoration Color Mid</b><span class="badge badge-dark ml-2" id="decoColorMid"></span></label>
-                                    <input type="range" min="1" max="20" class="form-control-range" id="decomidcolor">
+                                    <label for="formControlRange"><b>Decoration Color Sides</b><span class="badge badge-dark ml-2" id="decoColorSides"></span></label>
+                                    <input type="range" min="10" max="98" class="form-control-range" id="decosidecolors">
                                 </div>
                                 <div class="form-group">
                                     <label for="formControlRange"><b>Animation</b><span class="badge badge-dark ml-2" id="animationName"></span></label>
@@ -216,14 +215,17 @@
                             <br>
                             <div class="container">
                                 <div class="btn-group">
-                                    <button class="btn btn-primary btn-sm tsp-1 m-1 light-b-shadow" onclick="randomCat()"><b>Get random Cat</b></button>
-                                    <button class="btn btn-primary btn-sm tsp-1 m-1 light-b-shadow" onclick="defaultCat()"><b>Get default Cat</b></button>
+                                    <button class="btn btn-primary btn-sm tsp-1 m-1 light-b-shadow" id="randomButton"><b>Get Random Cat</b></button>
+                                    <button class="btn btn-primary btn-sm tsp-1 m-1 light-b-shadow" id="defaultButton"><b>Get Default Cat</b></button>
                                 </div>
                                 <div class="group btn float-right">
-                                    <button class="btn btn-success btn-sm mr-5 tsp-1 m-1 light-b-shadow" onclick="createNeonCat()"><b>Create NeonCat</b></button>
+                                    <button class="btn btn-success btn-sm mr-5 tsp-1 m-1 light-b-shadow" id="createButton" ><b>Create New Cat</b></button>
                                 </div>
                             <br>
-                            <br>
+                            
+                            <div class="alert alert-success" role="alert" id="CatCreation" style="display:none"><b>Characeristics of new NeonCat: </b>
+
+                            </div>
 
                         </div>
 
@@ -231,7 +233,7 @@
 
     </div>
     <footer align="left">
-        <p>Sneicode November 2020</p>
+        <p>© Sneicode, November 2020</p>
     </footer>
 
   </body>

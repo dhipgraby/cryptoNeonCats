@@ -7,7 +7,7 @@ import "./Ownable.sol";
 
 contract Catscontract is IERC721, Ownable {
 
-    uint256 public constant supplyLimitGen0 = 50;
+    uint256 public constant supplyLimitGen0 = 13;
     string public constant name = "Neoncats";
     string public constant symbol = "NC";
 
@@ -23,7 +23,8 @@ contract Catscontract is IERC721, Ownable {
 
     mapping(uint256 => address) public catIndexToOwner;
     mapping(address => uint256) ownershipTokenCount;
-    mapping(uint256 => bool) private tokenExists;
+    mapping(address => uint256[]) public ownerCats;
+    
 
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
@@ -43,12 +44,12 @@ contract Catscontract is IERC721, Ownable {
 
     function getCat(uint256 _tokenId) public view returns(uint256 genes, uint256 birthTime, uint256 mumId, uint256 dadId, uint256 generation){        
         
-        Neoncat storage neoncat = neoncats[_tokenId];
+        //Neoncat storage neoncat = neoncats[_tokenId];
 
         return(neoncats[_tokenId].genes, neoncats[_tokenId].birthTime, neoncats[_tokenId].mumId, neoncats[_tokenId].dadId, neoncats[_tokenId].generation);
     }
 
-    // function is private as meant to be executed only from within our own contract 
+    // function is private as meant to be executed only from within this contract 
     function _createNeonCat(uint256 _mumId, uint256 _dadId, uint256 _generation, uint256 _genes, address _owner
     ) private returns (uint256){
         Neoncat memory _neoncat = Neoncat({
@@ -59,7 +60,12 @@ contract Catscontract is IERC721, Ownable {
             generation: uint16(_generation)
         });
 
+        // is the same as 
+        // _neoncat.genes = genes;
+        // _neoncat.birthTime = uint64(now); etc.
+
         uint256 newCatId = neoncats.push(_neoncat) -1;
+        ownerCats[msg.sender].push(newCatId);
 
         emit Birth(_owner, newCatId, _mumId, _dadId, _genes);
 
@@ -68,6 +74,23 @@ contract Catscontract is IERC721, Ownable {
         return newCatId;
     }
     
+    /*
+    // create an array of all catIds
+    uint[] private arrayOfCatIds;
+
+    // query the above array and get all catIds of a single owner/address
+    function ownedCats() public view returns (uint256 [] memory){
+        require(address = msg.sender);
+
+        for(i = 0, i <= objects.length, i++) {
+        uint objects = objects[i];
+
+            if(object){
+
+            }   
+        }
+    }*/
+
     function balanceOf(address owner) external view returns (uint256 balance){
         return ownershipTokenCount[owner];
     }
@@ -83,7 +106,6 @@ contract Catscontract is IERC721, Ownable {
      * - `tokenId` must exist.
      */
     function ownerOf(uint256 _tokenId) external view returns (address){
-        require(tokenExists[_tokenId]);
         return catIndexToOwner[_tokenId];
     }
 
@@ -101,7 +123,6 @@ contract Catscontract is IERC721, Ownable {
     function transfer(address _to, uint256 _tokenId) external{
         require(_to != address(0));
         require(_to != address(this));
-        require(tokenExists[_tokenId]);
         require(_owns(msg.sender, _tokenId));
 
         _transfer(msg.sender, _to, _tokenId);

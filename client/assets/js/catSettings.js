@@ -5,19 +5,19 @@ var defaultDNA = {
     "headcolor" : 48,
     "mouthColor" : 10,
     "eyesShape" : 1,
-    "pupilColor" : 3,
+    "pupilColor" : 11,
     "earsColor" : 30,
     //Cattributes
     "decorationPattern" : 1,
-    "decorationMidColor" : 4,
-    "decorationSidesColor" : 3,
+    "decorationMidColor" : 30,
+    "decorationSidesColor" : 17,
     "animation" : 1,
     "lastNum" : 1
     }
 
 // when page load
 $( document ).ready(function() {
-   $('#dnabody').html(defaultDNA.headcolor)
+/* $('#dnabody').html(defaultDNA.headcolor)
    $('#dnamouth').html(defaultDNA.mouthColor)
    $('#dnashape').html(defaultDNA.eyesShape)
    $('#dnapupils').html(defaultDNA.pupilColor)
@@ -26,10 +26,34 @@ $( document ).ready(function() {
    $('#dnadecorationMid').html(defaultDNA.decorationMidColor)
    $('#dnadecorationSides').html(defaultDNA.decorationSidesColor)
    $('#dnaanimation').html(defaultDNA.animation)
-   $('#dnaspecial').html(defaultDNA.lastNum)
+   $('#dnaspecial').html(defaultDNA.lastNum) */
 
-  renderCat(defaultDNA)
+    renderCat(defaultDNA)
 });
+
+function randomDna(){
+    // create a random DNA number with a fixed amount of 16 digits, remove decimals
+    var dnaStr = String(Math.floor(Math.random() * 1E16));
+    //console.log(randomDNA);
+    var dna = {
+        "headcolor" : dnaStr.substring(0, 2),
+        "mouthColor" : dnaStr.substring(2, 4),
+        "eyesShape" : dnaStr.substring(5, 6) % 8 + 1,
+        "pupilColor" : dnaStr.substring(6, 8),
+        "earsColor" : dnaStr.substring(8, 10),
+        "decorationPattern" : dnaStr.substring(10, 11) % 4 + 1,
+        "decorationMidColor" : dnaStr.substring(11, 13),
+        "decorationSidesColor" : dnaStr.substring(13, 15),
+        "animation" : dnaStr.substring(15, 16) % 7 + 1
+        //"lastNum" : dnaStr.substring(6, 7)
+        }
+        return dna
+    }
+
+function randomCat(){
+    var dna = randomDna()
+    renderCat(dna)
+}
 
 function getDna(){
     var dna = ''
@@ -114,4 +138,20 @@ $('#animation').change(()=>{
     var animationVal = parseInt( $('#animation').val() )
     animationVariation(animationVal)
 })
+/*
+// CLICK LISTENERS
 
+// 1. create Cat Gen 0 --> as it interacts with the blockchain, this function was moved to index.js file
+$('#createButton').click(()=>{
+    createCat();
+})    */
+
+// 2. default Cat
+$('#defaultButton').click(()=>{
+    renderCat(defaultDNA);
+})
+
+// 3. random Cat
+$('#randomButton').click(()=>{
+    randomCat();
+})

@@ -1,5 +1,6 @@
 
-var colors = {00: "ae494f",
+var colors = {
+00: "ae494f",
 01: "9a3031",
 02: "8cd42e",
 03: "a0417a",
