@@ -2,21 +2,16 @@ var web3 = new Web3(Web3.givenProvider);
 
 var contract;
 var user;
-var contractAddress ="0xD4968E301297ebc78199B2C46c52e3835d6AAc78";
+var contractAddress ="0xDDE17c49c02A656ee77b6Ec98404288CE4492bAf";
 
 $(document).ready(function(){
-    window.ethereum.enable().then(function(accounts){
+    window.ethereum.enable().then(async function(accounts){
         contract = new web3.eth.Contract(abi, contractAddress, {from: accounts[0]})
         user = accounts[0];
-
-        console.log(contract);
         
         
         $('#createButton').click(()=>{
-        //    function createCat(){
 
-        
-        
             var dnaStr = getDna().toString();
         
             contract.methods.createCatGen0(dnaStr).send({}, function(error, txHash){
@@ -45,7 +40,26 @@ $(document).ready(function(){
                                     +" genes " + genes)
         })
         .on('error', console.error)
-        
+        await getCats()
+
+        async function getCats(){
+            var arrayId;
+            var neonCat; 
+            try{
+                //get array of IDs
+                arrayId = await contract.methods.getNeonCatsPerOwner(user).call();
+                console.log(arrayId);
+            }   catch(err){
+                console.log(err);
+            }
+            // for each of the cat that are returned by the loop, the corresponding cat is rendered on the Webpage via appendCat
+            for (i = 0; i < arrayId.length; i++){
+                neonCat = await contract.methods.getCat(arrayId[i]).call();
+                appendCat(neonCat[0],i)
+            }
+            console.log(neonCat);
+        }  
     })
 
 })
+  

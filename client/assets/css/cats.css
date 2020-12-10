@@ -7,8 +7,48 @@ html {
     box-sizing: border-box;
     overflow-y: scroll;
 }
+
 body {
-    background: #607d8b;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 30s ease infinite;
+    }
+    
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+
+/*
+//RESPONSIVE CSS
+.myClass {
+   width:50%;
+}
+@media screen and (max-width: 1024px) {
+   .myClass {
+     width:80%;
+     }
+}
+@media screen and (max-width: 800px) {
+  .myClass {
+     width:100%;
+     }
+}
+}*/
+
+
+
+.cat {
+    position: relative;
+    padding-top: 30px;
 }
 
 .cat__head {

@@ -14,6 +14,7 @@ function genColors(){
     return colors
 }
 
+
 function headColor(color,code) {
     $('.cat__head, .cat__chest').css('background', '#' + color)  //This changes the color of the cat
     $('#headcode').html('code: '+code) //This updates text of the badge next to the slider
@@ -89,28 +90,28 @@ function eyesType2() {
 }
 //yellow rgb(252, 252, 141)
 function eyesType3() {
-    $('.cat__eye--left').css({ 'background-image': 'linear-gradient(to bottom left, rgb(41, 41, 40), rgb(252, 240, 3) )'})
-    $('.cat__eye--right').css({ 'background-image': 'linear-gradient(to bottom left, rgb(252, 240, 3), rgb(41, 41, 40) )'})
+    $('.cat__eye--left').css({ 'background-image': 'linear-gradient(to bottom left, rgb(41, 41, 40), rgb(252, 240, 3))'})
+    $('.cat__eye--right').css({ 'background-image': 'linear-gradient(to bottom left, rgb(252, 240, 3), rgb(41, 41, 40))'})
 }
 //red rgb(255, 117, 119)
 function eyesType4() {
-    $('.cat__eye--left').css({ 'background-image': 'linear-gradient(to bottom left, rgb(41, 41, 40), rgb(255, 117, 119) )'})
+    $('.cat__eye--left').css({ 'background-image': 'linear-gradient(to bottom left, rgb(41, 41, 40), rgb(255, 117, 119))'})
     $('.cat__eye--right').css({ 'background-image': 'linear-gradient(to bottom left, rgb(255, 117, 119), rgb(41, 41, 40)) '})
 }
 //black rgb(2, 0, 0)
 function eyesType5() {
     $('.cat__eye--left').css({ 'background-image': 'linear-gradient(to bottom left, rgb(41, 41, 40), rgb(2, 0, 0)) '})
-    $('.cat__eye--right').css({ 'background-image': 'linear-gradient(to bottom left, rgb(2, 0, 0), rgb(41, 41, 40) )'})
+    $('.cat__eye--right').css({ 'background-image': 'linear-gradient(to bottom left, rgb(2, 0, 0), rgb(41, 41, 40))'})
 }
 //grey rgb(130, 130, 130)
 function eyesType6() {
-    $('.cat__eye--left').css({ 'background-image': 'linear-gradient(to bottom left, rgb(41, 41, 40), rgb(130, 130, 130) )'})
-    $('.cat__eye--right').css({ 'background-image': 'linear-gradient(to bottom left, rgb(130, 130, 130), rgb(41, 41, 40) )'})
+    $('.cat__eye--left').css({ 'background-image': 'linear-gradient(to bottom left, rgb(41, 41, 40), rgb(130, 130, 130))'})
+    $('.cat__eye--right').css({ 'background-image': 'linear-gradient(to bottom left, rgb(130, 130, 130), rgb(41, 41, 40))'})
 }
 //pink rgb(255, 23, 254)
 function eyesType7() {
-    $('.cat__eye--left').css({ 'background-image': 'linear-gradient(to bottom left, rgb(41, 41, 40), rgb(255, 23, 254) )'})
-    $('.cat__eye--right').css({ 'background-image': 'linear-gradient(to bottom left, rgb(255, 23, 254), rgb(41, 41, 40) )'})
+    $('.cat__eye--left').css({ 'background-image': 'linear-gradient(to bottom left, rgb(41, 41, 40), rgb(255, 23, 254))'})
+    $('.cat__eye--right').css({ 'background-image': 'linear-gradient(to bottom left, rgb(255, 23, 254), rgb(41, 41, 40))'})
 }
 
 function pupilColor(color,code) {
@@ -128,13 +129,7 @@ function earColor(color,code) {
 // cattributes
 
 // 4 decoration types
-async function normaldecoration() {
-    //Remove all style from other decorations
-    //In this way we can also use normalDecoration() to reset the decoration style
-    $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "80px", "width": "6px", "top": "1px", "border-radius": "50% 50% 50% 50%" })
-    $('.cat__head-dots_first').css({ "transform": "rotate(0deg)", "height": "60px", "width": "5px", "top": "3px", "left": "-20px", "border-radius": "50% 50% 50% 50%" })
-    $('.cat__head-dots_second').css({ "transform": "rotate(0deg)", "height": "60px", "width": "5px", "top": "3px", "left": "20px", "border-radius": "50% 50% 50% 50%" })
-}
+
 function decorationVariation(num) {
     $('#dnadecoration').html(num)
     switch (num) {
@@ -155,6 +150,13 @@ function decorationVariation(num) {
             decoVar3()
             break
     }
+}
+async function normaldecoration() {
+    //Remove all style from other decorations
+    //In this way we can also use normalDecoration() to reset the decoration style
+    $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "80px", "width": "6px", "top": "1px", "border-radius": "50% 50% 50% 50%" })
+    $('.cat__head-dots_first').css({ "transform": "rotate(0deg)", "height": "60px", "width": "5px", "top": "3px", "left": "-20px", "border-radius": "50% 50% 50% 50%" })
+    $('.cat__head-dots_second').css({ "transform": "rotate(0deg)", "height": "60px", "width": "5px", "top": "3px", "left": "20px", "border-radius": "50% 50% 50% 50%" })
 }
 //spread
 function decoVar1() {
@@ -266,7 +268,6 @@ function animationVar4(){
     $(".claw").addClass("growingClaws")
     $(".clawsL").addClass("growingClawsInner")
     $(".clawsR").addClass("growingClawsInner")
-
 }
 function animationVar5(){
     $("#leftTwinkle").addClass("twinklingEyes")

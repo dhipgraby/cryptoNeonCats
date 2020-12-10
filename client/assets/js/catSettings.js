@@ -17,16 +17,6 @@ var defaultDNA = {
 
 // when page load
 $( document ).ready(function() {
-/* $('#dnabody').html(defaultDNA.headcolor)
-   $('#dnamouth').html(defaultDNA.mouthColor)
-   $('#dnashape').html(defaultDNA.eyesShape)
-   $('#dnapupils').html(defaultDNA.pupilColor)
-   $('#dnaears').html(defaultDNA.earsColor)
-   $('#dnadecoration').html(defaultDNA.decorationPattern)
-   $('#dnadecorationMid').html(defaultDNA.decorationMidColor)
-   $('#dnadecorationSides').html(defaultDNA.decorationSidesColor)
-   $('#dnaanimation').html(defaultDNA.animation)
-   $('#dnaspecial').html(defaultDNA.lastNum) */
 
     renderCat(defaultDNA)
 });
@@ -100,7 +90,7 @@ function renderCat(dna){
     $('#animation').val(dna.animation)
 }
 
-// Changing cat colors
+// Listeners - Changing cat colors
 $('#bodycolor').change(()=>{
     var colorVal = $('#bodycolor').val()
     headColor(colors[colorVal],colorVal)
@@ -138,10 +128,12 @@ $('#animation').change(()=>{
     var animationVal = parseInt( $('#animation').val() )
     animationVariation(animationVal)
 })
-/*
-// CLICK LISTENERS
 
-// 1. create Cat Gen 0 --> as it interacts with the blockchain, this function was moved to index.js file
+/*
+// CLICK LISTENERS FOR HTML BUTTONS
+
+// 1. create Cat Gen 0 
+--> as it interacts with the blockchain, this function was moved to index.js file
 $('#createButton').click(()=>{
     createCat();
 })    */

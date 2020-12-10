@@ -9,7 +9,7 @@ var colors = {
 06: "c65d1e",
 07: "b2bbd6",
 08: "2d4024",
-9: "4b5715",
+09: "4b5715",
 10: "ffcc80",
 11: "3f1174",
 12: "b22a90",
@@ -105,3 +105,72 @@ function allColors(){
 return colors;
 
 }
+
+var gradients = {
+// green (default) -> normalEyes
+0: {left: "linear-gradient(to bottom left, rgb(41, 41, 40), rgb(57, 255, 20))",
+    right:"linear-gradient(to bottom left, rgb(57, 255, 20), rgb(41, 41, 40))"
+    },
+// orange, eyesType1
+1: {left: "linear-gradient(to bottom left, rgb(41, 41, 40), rgb(255, 191, 0))",
+    right: "linear-gradient(to bottom left, rgb(255, 191, 0), rgb(41, 41, 40))"
+    },
+// blue, eyesType2
+2: {left: "linear-gradient(to bottom left, rgb(41, 41, 40), rgb(84, 255, 249))",
+    right: "linear-gradient(to bottom left, rgb(84, 255, 249), rgb(41, 41, 40))"
+    },
+//yellow rgb(252, 252, 141)
+3: {left: "linear-gradient(to bottom left, rgb(41, 41, 40), rgb(252, 240, 3))",
+   right: "linear-gradient(to bottom left, rgb(252, 240, 3), rgb(41, 41, 40))"
+    },
+//red rgb(255, 117, 119)
+4: {left: "linear-gradient(to bottom left, rgb(41, 41, 40), rgb(255, 117, 119))",
+    right: "linear-gradient(to bottom left, rgb(255, 117, 119), rgb(41, 41, 40))"
+    },
+//black rgb(2, 0, 0)
+5: {left: "linear-gradient(to bottom left, rgb(41, 41, 40), rgb(2, 0, 0))",
+    right: "linear-gradient(to bottom left, rgb(2, 0, 0), rgb(41, 41, 40))"
+    },
+//grey rgb(130, 130, 130)
+6: {left: "linear-gradient(to bottom left, rgb(41, 41, 40), rgb(130, 130, 130))",
+    right: "linear-gradient(to bottom left, rgb(130, 130, 130), rgb(41, 41, 40))"
+    },
+//pink rgb(255, 23, 254)
+7: {left: "linear-gradient(to bottom left, rgb(41, 41, 40), rgb(255, 23, 254))",
+    right: "linear-gradient(to bottom left, rgb(255, 23, 254), rgb(41, 41, 40))"
+    }
+}
+
+var dVariations = {
+    
+    //normaldecoration
+    0: {dots: 'transform(rotate(0deg))', 'height': '80px', 'width': '6px', 'top': '1px', 'border-radius': '50% 50% 50% 50%',
+        dots_first: 'transform(rotate(0deg))', 'height': '60px', 'width': '5px', 'top': '3px', 'left': '-20px', 'border-radius': '50% 50% 50% 50%',
+        dots_second: 'transform(rotate(0deg))', 'height': '60px', 'width': '5px', 'top': '3px', 'left': '20px', 'border-radius': '50% 50% 50% 50%'
+        },
+    // spread - decoVar1
+    1: {dots: 'top(1px)','width': '8px', 'height': '80x', 'left': '108px', 'border-radius': '50% 50% 50% 50%',
+        dots_first: 'top(-10px)', 'width': '8px', 'height': '87px', 'left': '-38px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(45deg)',
+        dots_second: 'top(-10px)', 'width': '8px', 'height': '87px', 'left': '41px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(-45deg)'
+        },
+    //long mid - decoVar2
+    2: {dots: 'height(95px)', 'width': '11px', 'border-radius': '50% 50% 50% 50%',
+        dots_first: 'top(-3px)', 'width': '8px', 'height': '38px', 'left': '-21px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(45deg)',
+        dots_second: 'top(-3px)', 'width': '8px', 'height': '38px', 'left': '24px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(-45deg)'
+        },
+    //spread narrow - decoVar3
+    3: {dots: 'height(101px)', 'width': '8px', 'border-radius': '50% 50% 50% 50%',
+        dots_first: 'top(-2px)', 'width': '8px', 'height': '92px', 'left': '-22px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(20deg)',
+        dots_second: 'top(-2px)', 'width': '8px', 'height': '92px', 'left': '23px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(-20deg)'
+        }
+}
+
+/*0: {
+        left:"linear-gradient(to bottom left, rgb(41, 41, 40), rgb(57, 255, 20))",
+        right:"linear-gradient(to bottom left, rgb(57, 255, 20), rgb(41, 41, 40))"
+    },
+    1: {
+        left:"linear-gradient(to bottom left, rgb(41, 41, 40), rgb(57, 255, 20))",
+        right:"linear-gradient(to bottom left, rgb(57, 255, 20), rgb(41, 41, 40))"
+    }
+}*/

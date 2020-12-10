@@ -7,7 +7,7 @@ import "./Ownable.sol";
 
 contract Catscontract is IERC721, Ownable {
 
-    uint256 public constant supplyLimitGen0 = 13;
+    uint256 public constant supplyLimitGen0 = 10;
     string public constant name = "Neoncats";
     string public constant symbol = "NC";
 
@@ -33,14 +33,32 @@ contract Catscontract is IERC721, Ownable {
     uint256 public gen0Counter;
 
     // set mumID, dadID and generation to 0, _genes from input and owner = 0address / msg.sender
-    // create var to limit 0 generation to max amount X, add require and increase counter
+    // create var to limit 0 generation to max amount 10, add require and increase counter
     function createCatGen0(uint256 _genes) public onlyOwner returns (uint256){
-        require(gen0Counter <= supplyLimitGen0);
+        require(gen0Counter < supplyLimitGen0);
+        // assure no DNA duplicates via a if-condition that stops generation if this condition is not met:  _genes != _existingGenes
+        // ¿how to access existing genes? --> Birth event?
 
         gen0Counter++;
 
         return _createNeonCat(0, 0, 0, _genes, msg.sender);
      }
+
+    function getNeonCatsPerOwner(address _owner) external view returns (uint [] memory){
+        uint[] memory result = new uint[](ownershipTokenCount[_owner]);
+        uint counter = 0;
+        for(uint i = 0; i < neoncats.length; i++){
+            if (catIndexToOwner[i] == _owner) {
+                result[counter] = i;
+                counter++;
+            }
+        }
+        return result;
+    }
+   /* function getCatIdsPerOwner() public view returns (uint [] memory){
+        return ownerCats[msg.sender];
+    }
+    */
 
     function getCat(uint256 _tokenId) public view returns(uint256 genes, uint256 birthTime, uint256 mumId, uint256 dadId, uint256 generation){        
         
@@ -65,6 +83,7 @@ contract Catscontract is IERC721, Ownable {
         // _neoncat.birthTime = uint64(now); etc.
 
         uint256 newCatId = neoncats.push(_neoncat) -1;
+        
         ownerCats[msg.sender].push(newCatId);
 
         emit Birth(_owner, newCatId, _mumId, _dadId, _genes);
@@ -73,23 +92,8 @@ contract Catscontract is IERC721, Ownable {
 
         return newCatId;
     }
+
     
-    /*
-    // create an array of all catIds
-    uint[] private arrayOfCatIds;
-
-    // query the above array and get all catIds of a single owner/address
-    function ownedCats() public view returns (uint256 [] memory){
-        require(address = msg.sender);
-
-        for(i = 0, i <= objects.length, i++) {
-        uint objects = objects[i];
-
-            if(object){
-
-            }   
-        }
-    }*/
 
     function balanceOf(address owner) external view returns (uint256 balance){
         return ownershipTokenCount[owner];
