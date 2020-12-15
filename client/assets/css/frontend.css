@@ -67,8 +67,9 @@ footer {
     padding-left:30px;
     padding-right:30px;
     padding-top: 70px;
-    padding-bottom: 70px;
+    padding-bottom: 30px;
     border: 1px solid #ffc5c2;
+    background-color: rgba(245, 237, 237, 0.582);
     border-radius: 10px;
     margin:10px;
     transition: 0.8s ease-in-out;

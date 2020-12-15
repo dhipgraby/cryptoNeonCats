@@ -25,6 +25,9 @@ contract Catscontract is IERC721, Ownable {
     mapping(address => uint256) ownershipTokenCount;
     mapping(address => uint256[]) public ownerCats;
     
+    mapping(uint256 => address) public neonCatIndexToApproved;
+    mapping(address => mapping (address => bool)) private _operatorApprovals;
+    
 
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);

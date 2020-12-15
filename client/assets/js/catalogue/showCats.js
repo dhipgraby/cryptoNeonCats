@@ -1,5 +1,12 @@
 // Append each Cat card as a catalog entry
 
+$(document).ready(
+    setTimeout(() => {
+        getCats()
+    }, 1000)
+    )
+
+
 function appendCat(dna, id) {
     //1 return DNA cat into readable string
     var NeonCatDna = catDna(dna)
@@ -8,7 +15,7 @@ function appendCat(dna, id) {
     //3 Render the cats CSS style dpeending on DNA string
     renderCat(NeonCatDna, id)
     $('#catDNA' + id).html(`
-        <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>0</h4></span>
+        <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b> 0</h4></span>
         <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna +`</h4></span>
     `) 
 }
@@ -17,22 +24,23 @@ function appendCat(dna, id) {
 function renderCat(dna, id){
     headColor(dna.headColor, id)
     mouthColor(dna.mouthColor, id)
+    console.log(dna.eyesShape);
     eyeVariation(dna.eyesShape, id)
     pupilColor(dna.pupilColor, id)
     earsColor(dna.earsColor, id)
-    decorationPattern(dna.decorationPattern, id)
-    decorationMidColor(dna.decorationMidColor, id)
-    decorationSidesColor(dna.decorationSidesColor, id)
-    animation(dna.animation, id)
+    decorationVariation(dna.decorationPattern, id)
+    decorationColorMid(dna.decorationMidColor, id)
+    decorationColorSides(dna.decorationSidesColor, id)
+    animationVariation(dna.animation, id)
 }
 
 
 function catDna(dnaStr){
     var dna = {
         //Colors
-        "headcolor" : dnaStr.substring(0, 2),
+        "headColor" : dnaStr.substring(0, 2),
         "mouthColor" : dnaStr.substring(2, 4),
-        "eyesShape" : dnaStr.substring(5, 6) ,
+        "eyesShape" : dnaStr.substring(5, 6),
         "pupilColor" : dnaStr.substring(6, 8),
         "earsColor" : dnaStr.substring(8, 10),
         //Attributes
@@ -73,8 +81,8 @@ function catBox(id) {
                         <div class="cat__eye-right-zoneblur"></div>
 
                         <div class="cat__eye">
-                            <div id="leftTwinkle`+ id + `" class="cat__eye--left"></div>
-                            <div id="rightTwinkle" class="cat__eye--right"></div>
+                            <div data-twinkleLeft="leftTwinkle`+ id + `" class="cat__eye--left" id="eye-left`+ id + `"></div>
+                            <div data-twinkleRight="rightTwinkle`+ id + `" class="cat__eye--right" id="eye-right`+ id + `"></div>
                         </div>
                         
                         <div id="pupL-off`+ id + `" class="pupil-left"></div>
@@ -87,7 +95,7 @@ function catBox(id) {
                         <div class="cat__nose"></div>
                         
 
-                        <div class="cat__mouth-contour">
+                        <div class="cat__mouth-contour" id="mouth-contour`+ id + `">
 
                             <div class="mouth-container">
                                 <div id="MouthLimit`+ id + `" class="square">
@@ -109,38 +117,38 @@ function catBox(id) {
                         </div>
                     </div>
                     <div class="cat__body">
-                        <div class="cat__chest"></div>
-                        <div class="cat__chest_inner"></div>
+                        <div class="cat__chest" id="chest`+ id + `"></div>
+                        <div class="cat__chest_inner" id="chest_inner`+ id + `"></div>
 
                         <div id="cat__pawL`+ id + `" class="cat__paw-left">
                             <div class="cat__paw-shadowL">
-                                <div class="claw claw_pl1"></div>
-                                <div class="claw claw_pl2"></div>
-                                <div class="claw claw_pl3"></div>
+                                <div id="claw" class="claw claw_pl1"></div>
+                                <div id="claw" class="claw claw_pl2"></div>
+                                <div id="claw" class="claw claw_pl3"></div>
                             </div>
                         </div>
 
                         <div id="cat__stompL`+ id + `" class="cat__paw-left_inner">
                             <div id="clawsInnerL`+ id + `" class="cat__paw-shadowInnerL">
-                                <div class="clawsL claws__left1"></div>
-                                <div class="clawsL claws__left2"></div>
-                                <div class="clawsL claws__left3"></div>
+                                <div id=clawsL class="clawsL claws__left1"></div>
+                                <div id=clawsL class="clawsL claws__left2"></div>
+                                <div id=clawsL class="clawsL claws__left3"></div>
                             </div>
                         </div>
 
                         <div id="cat__pawR`+ id + `" class="cat__paw-right">
                             <div class="cat__paw-shadowR">
-                                <div  class="claw claw_pr1"></div>
-                                <div class="claw claw_pr2"></div>
-                                <div class="claw claw_pr3"></div>
+                                <div id="claw" class="claw claw_pr1"></div>
+                                <div id="claw" class="claw claw_pr2"></div>
+                                <div id="claw" class="claw claw_pr3"></div>
                             </div>
                         </div>
                         
                         <div id="cat__stompR`+ id + `" class="cat__paw-right_inner">
                             <div id="clawsInnerR`+ id + `" class="cat__paw-shadowInnerR">
-                                <div class="clawsR claws__right1"></div>
-                                <div class="clawsR claws__right2"></div>
-                                <div class="clawsR claws__right3"></div>
+                                <div id=clawsR class="clawsR claws__right1"></div>
+                                <div id=clawsR class="clawsR claws__right2"></div>
+                                <div id=clawsR class="clawsR claws__right3"></div>
                             </div>
                         </div>
                             
@@ -149,13 +157,13 @@ function catBox(id) {
                                 <div class="tail__whisker tail__whiskerLeft"></div>
                                 <div class="tail__whisker tail__whiskerRight"></div>
                             </div>
-                        </div>
-                        <div class="dnaDiv" id="catDNA`+ id + `"></div>
+                        </div> <br><br><br><br><br>
+                            <div class="dnaDiv" id="catDNA`+ id + `"></div>
 
                         <ul class="ml-5 cattributes">
                             <li><span id="eyeName`+ id + `"></span> eyes</li>
-                            <li><span id="decoName`+ id + `"></span> eyes</li>
-                            <li><span id="animationName`+ id + `"></span> eyes</li>
+                            <li><span id="decoName`+ id + `"></span> decoration</li>
+                            <li><span id="animationName`+ id + `"></span> animation </li>
                         </ul>
                         
                     </div>

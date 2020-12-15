@@ -381,7 +381,7 @@ body {
           clip-path: ellipse(25% 36% at 57% 47%);
       }
       .tongue{
-        position:absolute;
+        position: absolute;
         top: 141px;
         left: 95px;
         height: 40px;
@@ -486,7 +486,7 @@ body {
         .claw {
             width: 0;
             height: 0;
-            border-left: 2px solid transparent;
+            border-left: 1px solid transparent;
             border-right: 2px solid transparent;
             border-top: 10px solid black;
             transform: rotate(360deg);
@@ -524,7 +524,7 @@ body {
         .claw {
             width: 0;
             height: 0;
-            border-left: 2px solid transparent;
+            border-left: 1px solid transparent;
             border-right: 2px solid transparent;
             border-top: 10px solid black;
             transform: rotate(360deg);
@@ -580,15 +580,15 @@ box-shadow: inset 1px 1px 5px rgb(134, 111, 111);
             z-index: 10;
         }
         .claws__right1 {
-        left: 29%;
+        left: 34%;
         top: 65%;
         }
         .claws__right2 {
-            left: 58%;
+            left: 63%;
             top: 60%;
         }
         .claws__right3 {
-            left: 87%;
+            left: 92%;
         }
         
 .cat__paw-left_inner {
@@ -627,15 +627,15 @@ box-shadow: inset 1px 1px 5px rgb(134, 111, 111);
             z-index: 10;
         }
         .claws__left1 {
-            left: -8%;
+            left: -13%;
             
         }
         .claws__left2 {
-            left: 23%;
+            left: 18%;
             top: 60%;
         }
         .claws__left3 {
-            left: 55%;
+            left: 50%;
             top: 65%;
         }
 

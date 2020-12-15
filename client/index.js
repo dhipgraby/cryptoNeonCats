@@ -2,7 +2,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 var contract;
 var user;
-var contractAddress ="0xDDE17c49c02A656ee77b6Ec98404288CE4492bAf";
+var contractAddress ="0x124A9a629654e719D180d1047c36C21591FF5347";
 
 $(document).ready(function(){
     window.ethereum.enable().then(async function(accounts){
@@ -22,7 +22,6 @@ $(document).ready(function(){
                     console.log(txHash);
                 }
             })
-            
         })
 
         contract.events.Birth().on('data', function(event){
@@ -40,26 +39,27 @@ $(document).ready(function(){
                                     +" genes " + genes)
         })
         .on('error', console.error)
-        await getCats()
+        
 
-        async function getCats(){
-            var arrayId;
-            var neonCat; 
-            try{
-                //get array of IDs
-                arrayId = await contract.methods.getNeonCatsPerOwner(user).call();
-                console.log(arrayId);
-            }   catch(err){
-                console.log(err);
-            }
-            // for each of the cat that are returned by the loop, the corresponding cat is rendered on the Webpage via appendCat
-            for (i = 0; i < arrayId.length; i++){
-                neonCat = await contract.methods.getCat(arrayId[i]).call();
-                appendCat(neonCat[0],i)
-            }
-            console.log(neonCat);
-        }  
+        
     })
 
 })
-  
+
+async function getCats(){
+    var arrayId;
+    var neonCat; 
+    try{
+        //get array of IDs
+        arrayId = await contract.methods.getNeonCatsPerOwner(user).call();
+        console.log(arrayId);
+    }   catch(err){
+        console.log(err);
+    }
+    // for each of the cat that are returned by the loop, the corresponding cat is rendered on the Webpage via appendCat
+    for (i = 0; i < arrayId.length; i++){
+        neonCat = await contract.methods.getCat(arrayId[i]).call();
+        appendCat(neonCat[0],i)
+    }
+    console.log(neonCat);
+}  

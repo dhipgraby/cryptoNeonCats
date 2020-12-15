@@ -144,33 +144,24 @@ var gradients = {
 var dVariations = {
     
     //normaldecoration
-    0: {dots: 'transform(rotate(0deg))', 'height': '80px', 'width': '6px', 'top': '1px', 'border-radius': '50% 50% 50% 50%',
-        dots_first: 'transform(rotate(0deg))', 'height': '60px', 'width': '5px', 'top': '3px', 'left': '-20px', 'border-radius': '50% 50% 50% 50%',
-        dots_second: 'transform(rotate(0deg))', 'height': '60px', 'width': '5px', 'top': '3px', 'left': '20px', 'border-radius': '50% 50% 50% 50%'
+    0: {dots: {'transform': 'rotate(0deg)', 'height': '80px', 'width': '6px', 'top': '1px', 'border-radius': '50% 50% 50% 50%'},
+        dots_first: {'transform': 'rotate(0deg)', 'height': '60px', 'width': '5px', 'top': '3px', 'left': '-20px', 'border-radius': '50% 50% 50% 50%'},
+        dots_second: {'transform': 'rotate(0deg)', 'height': '60px', 'width': '5px', 'top': '3px', 'left': '20px', 'border-radius': '50% 50% 50% 50%'}
         },
     // spread - decoVar1
-    1: {dots: 'top(1px)','width': '8px', 'height': '80x', 'left': '108px', 'border-radius': '50% 50% 50% 50%',
-        dots_first: 'top(-10px)', 'width': '8px', 'height': '87px', 'left': '-38px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(45deg)',
-        dots_second: 'top(-10px)', 'width': '8px', 'height': '87px', 'left': '41px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(-45deg)'
+    1: {dots: {'top': '1px','width': '8px', 'height': '80x', 'left': '108px', 'border-radius': '50% 50% 50% 50%'},
+        dots_first: {'top': '-10px', 'width': '8px', 'height': '87px', 'left': '-38px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(45deg)'},
+        dots_second: {'top': '-10px', 'width': '8px', 'height': '87px', 'left': '41px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(-45deg)'}
         },
     //long mid - decoVar2
-    2: {dots: 'height(95px)', 'width': '11px', 'border-radius': '50% 50% 50% 50%',
-        dots_first: 'top(-3px)', 'width': '8px', 'height': '38px', 'left': '-21px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(45deg)',
-        dots_second: 'top(-3px)', 'width': '8px', 'height': '38px', 'left': '24px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(-45deg)'
+    2: {dots: {'height': '95px', 'width': '11px', 'border-radius': '50% 50% 50% 50%'},
+        dots_first: {'top': '-3px', 'width': '8px', 'height': '38px', 'left': '-21px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(45deg)'},
+        dots_second: {'top': '-3px', 'width': '8px', 'height': '38px', 'left': '24px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(-45deg)'}
         },
     //spread narrow - decoVar3
-    3: {dots: 'height(101px)', 'width': '8px', 'border-radius': '50% 50% 50% 50%',
-        dots_first: 'top(-2px)', 'width': '8px', 'height': '92px', 'left': '-22px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(20deg)',
-        dots_second: 'top(-2px)', 'width': '8px', 'height': '92px', 'left': '23px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(-20deg)'
+    3: {dots: {'height': '101px', 'width': '8px', 'border-radius': '50% 50% 50% 50%'},
+        dots_first: {'top': '-2px', 'width': '8px', 'height': '92px', 'left': '-22px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(20deg)'},
+        dots_second: {'top': '-2px', 'width': '8px', 'height': '92px', 'left': '23px', 'border-radius': '50% 50% 50% 50%', 'transform': 'rotate(-20deg)'}
         }
+    
 }
-
-/*0: {
-        left:"linear-gradient(to bottom left, rgb(41, 41, 40), rgb(57, 255, 20))",
-        right:"linear-gradient(to bottom left, rgb(57, 255, 20), rgb(41, 41, 40))"
-    },
-    1: {
-        left:"linear-gradient(to bottom left, rgb(41, 41, 40), rgb(57, 255, 20))",
-        right:"linear-gradient(to bottom left, rgb(57, 255, 20), rgb(41, 41, 40))"
-    }
-}*/
