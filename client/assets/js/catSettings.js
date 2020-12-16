@@ -28,13 +28,13 @@ function randomDna(){
     var dna = {
         "headcolor" : dnaStr.substring(0, 2),
         "mouthColor" : dnaStr.substring(2, 4),
-        "eyesShape" : dnaStr.substring(5, 6) % 8 + 1,
-        "pupilColor" : dnaStr.substring(6, 8),
-        "earsColor" : dnaStr.substring(8, 10),
-        "decorationPattern" : dnaStr.substring(10, 11) % 4 + 1,
-        "decorationMidColor" : dnaStr.substring(11, 13),
-        "decorationSidesColor" : dnaStr.substring(13, 15),
-        "animation" : dnaStr.substring(15, 16) % 7 + 1
+        "eyesShape" : dnaStr.substring(4, 5) % 8 + 1,
+        "pupilColor" : dnaStr.substring(5, 7),
+        "earsColor" : dnaStr.substring(7, 9),
+        "decorationPattern" : dnaStr.substring(9, 10) % 4 + 1,
+        "decorationMidColor" : dnaStr.substring(10, 12),
+        "decorationSidesColor" : dnaStr.substring(12, 14),
+        "animation" : dnaStr.substring(14, 15) % 7 + 1
         //"lastNum" : dnaStr.substring(6, 7)
         }
         return dna

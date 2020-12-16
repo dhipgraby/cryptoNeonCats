@@ -61,8 +61,8 @@ function eyeVariation(num, id){
 
         //green (default)
         async function normalEyes(id){
-        $('#eye-right' + id).css({ 'background-image': gradients[0].right })
-        $('#eye-left' + id).css({ 'background-image': gradients[0].left })
+            $('#eye-right' + id).css({ 'background-image': gradients[0].right })
+            $('#eye-left' + id).css({ 'background-image': gradients[0].left })
         }
         //orange
         function eyesType1(id) {
@@ -110,12 +110,6 @@ function earsColor(code, id) {
     var color = colors[code]
     $('#leftEar' + id + ', #rightEar' + id + ', #cat__pawL' + id + ', #cat__stompL' + id + ', #cat__pawR' + id + ', #cat__stompR' + id).css('background', '#' + color)
 }
-
-// Don't know how to build same challenge as eyeVariation function
-//function decorationVariation(num){
-//    $('#dnadecoration').html(num)
-// unfinished
-//}
 
 // 4 decoration types
 function decorationVariation(num, id) {
@@ -171,19 +165,13 @@ function decorationVariation(num, id) {
 
 function decorationColorMid(code, id) {
     var color = colors[code]
-   // $('#midDot' + id).css('background', '#' + color)
+    $('#midDot' + id).css('background', '#' + color)
 }
 
 function decorationColorSides(code, id) {
     var color = colors[code]
-   // $('#leftDot' + id + ', #rightDot' + id).css('background', '#' + color)
+    $('#leftDot' + id + ', #rightDot' + id).css('background', '#' + color)
 }
-
-
-// Don't know how to build same challenge as eyeVariation function
-//function animationVariation(num){
-//    $('#dnaanimation').html(num)
-// unfinished
 
 // Animation
 function animationVariation(num, id) {

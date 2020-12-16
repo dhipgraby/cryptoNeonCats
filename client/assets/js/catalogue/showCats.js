@@ -24,30 +24,31 @@ function appendCat(dna, id) {
 function renderCat(dna, id){
     headColor(dna.headColor, id)
     mouthColor(dna.mouthColor, id)
-    console.log(dna.eyesShape);
     eyeVariation(dna.eyesShape, id)
     pupilColor(dna.pupilColor, id)
     earsColor(dna.earsColor, id)
+    console.log(dna.decorationPattern);
     decorationVariation(dna.decorationPattern, id)
     decorationColorMid(dna.decorationMidColor, id)
     decorationColorSides(dna.decorationSidesColor, id)
     animationVariation(dna.animation, id)
 }
 
+//83 04 7 73 93 3 99 43 4 - 444220853261843
 
 function catDna(dnaStr){
     var dna = {
         //Colors
         "headColor" : dnaStr.substring(0, 2),
         "mouthColor" : dnaStr.substring(2, 4),
-        "eyesShape" : dnaStr.substring(5, 6),
-        "pupilColor" : dnaStr.substring(6, 8),
-        "earsColor" : dnaStr.substring(8, 10),
+        "eyesShape" : dnaStr.substring(4, 5),
+        "pupilColor" : dnaStr.substring(5, 7),
+        "earsColor" : dnaStr.substring(7, 9),
         //Attributes
-        "decorationPattern" : dnaStr.substring(10, 11),
-        "decorationMidColor" : dnaStr.substring(11, 13),
-        "decorationSidesColor" : dnaStr.substring(13, 15),
-        "animation" : dnaStr.substring(15, 16)
+        "decorationPattern" : dnaStr.substring(9, 10),
+        "decorationMidColor" : dnaStr.substring(10, 12),
+        "decorationSidesColor" : dnaStr.substring(12, 14),
+        "animation" : dnaStr.substring(14, 15)
     }
     return dna
 }
@@ -55,10 +56,10 @@ function catDna(dnaStr){
 
 function catBox(id) {
 
-    var catDiv = `<div class="col-log-4 pointer fit-content">
+    var catDiv = `<div class="col-xl-4 pointer fit-content">
                 <div class="featureBox catDiv">
                 
-                    <div id="ears" class="cat__ear">
+                    <div id="ears`+ id + `" class="cat__ear">
                         <div id="leftEar`+ id + `" class="cat__ear--left">
                             <div class="ear-whisker1left"></div>
                             <div class="ear-whisker2left"></div>
@@ -81,8 +82,8 @@ function catBox(id) {
                         <div class="cat__eye-right-zoneblur"></div>
 
                         <div class="cat__eye">
-                            <div data-twinkleLeft="leftTwinkle`+ id + `" class="cat__eye--left" id="eye-left`+ id + `"></div>
-                            <div data-twinkleRight="rightTwinkle`+ id + `" class="cat__eye--right" id="eye-right`+ id + `"></div>
+                            <div id="leftTwinkle`+ id + `" class="cat__eye--left"></div>
+                            <div id="rightTwinkle`+ id + `" class="cat__eye--right"></div>
                         </div>
                         
                         <div id="pupL-off`+ id + `" class="pupil-left"></div>
