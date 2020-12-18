@@ -23,18 +23,18 @@ $( document ).ready(function() {
 
 function randomDna(){
     // create a random DNA number with a fixed amount of 16 digits, remove decimals
-    var dnaStr = String(Math.floor(Math.random() * 1E16));
+    //var dnaStr = String(Math.floor(Math.random() * 1E16));
     //console.log(randomDNA);
     var dna = {
-        "headcolor" : dnaStr.substring(0, 2),
-        "mouthColor" : dnaStr.substring(2, 4),
-        "eyesShape" : dnaStr.substring(4, 5) % 8 + 1,
-        "pupilColor" : dnaStr.substring(5, 7),
-        "earsColor" : dnaStr.substring(7, 9),
-        "decorationPattern" : dnaStr.substring(9, 10) % 4 + 1,
-        "decorationMidColor" : dnaStr.substring(10, 12),
-        "decorationSidesColor" : dnaStr.substring(12, 14),
-        "animation" : dnaStr.substring(14, 15) % 7 + 1
+        "headcolor" : Math.floor(Math.random() * 88) + 10,
+        "mouthColor" : Math.floor(Math.random() * 88) + 10,
+        "eyesShape" : Math.floor(Math.random() * 8) + 1,
+        "pupilColor" : Math.floor(Math.random() * 88) + 10,
+        "earsColor" : Math.floor(Math.random() * 88) + 10,
+        "decorationPattern" : Math.floor(Math.random() * 4) + 1,
+        "decorationMidColor" : Math.floor(Math.random() * 88) + 10,
+        "decorationSidesColor" : Math.floor(Math.random() * 88) + 10,
+        "animation" : Math.floor(Math.random() * 7) + 1,
         //"lastNum" : dnaStr.substring(6, 7)
         }
         return dna

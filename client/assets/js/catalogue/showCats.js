@@ -123,33 +123,33 @@ function catBox(id) {
 
                         <div id="cat__pawL`+ id + `" class="cat__paw-left">
                             <div class="cat__paw-shadowL">
-                                <div id="claw`+ id + `" class="claw claw_pl1"></div>
-                                <div id="claw`+ id + `" class="claw claw_pl2"></div>
-                                <div id="claw`+ id + `" class="claw claw_pl3"></div>
+                                <div name="claw`+ id + `" class="claw claw_pl1"></div>
+                                <div name="claw`+ id + `" class="claw claw_pl2"></div>
+                                <div name="claw`+ id + `" class="claw claw_pl3"></div>
                             </div>
                         </div>
 
                         <div id="cat__stompL`+ id + `" class="cat__paw-left_inner">
                             <div id="clawsInnerL`+ id + `" class="cat__paw-shadowInnerL">
-                                <div id="clawsL`+ id + `" class="clawsL claws__left1"></div>
-                                <div id="clawsL`+ id + `" class="clawsL claws__left2"></div>
-                                <div id="clawsL`+ id + `" class="clawsL claws__left3"></div>
+                                <div name="clawsL`+ id + `" class="clawsL claws__left1"></div>
+                                <div name="clawsL`+ id + `" class="clawsL claws__left2"></div>
+                                <div name="clawsL`+ id + `" class="clawsL claws__left3"></div>
                             </div>
                         </div>
 
                         <div id="cat__pawR`+ id + `" class="cat__paw-right">
                             <div class="cat__paw-shadowR">
-                                <div id="claw`+ id + `" class="claw claw_pr1"></div>
-                                <div id="claw`+ id + `" class="claw claw_pr2"></div>
-                                <div id="claw`+ id + `" class="claw claw_pr3"></div>
+                                <div name="claw`+ id + `" class="claw claw_pr1"></div>
+                                <div name="claw`+ id + `" class="claw claw_pr2"></div>
+                                <div name="claw`+ id + `" class="claw claw_pr3"></div>
                             </div>
                         </div>
                         
                         <div id="cat__stompR`+ id + `" class="cat__paw-right_inner">
                             <div id="clawsInnerR`+ id + `" class="cat__paw-shadowInnerR">
-                                <div id="clawsR`+ id + `" class="clawsR claws__right1"></div>
-                                <div id="clawsR`+ id + `" class="clawsR claws__right2"></div>
-                                <div id="clawsR`+ id + `" class="clawsR claws__right3"></div>
+                                <div name="clawsR`+ id + `" class="clawsR claws__right1"></div>
+                                <div name="clawsR`+ id + `" class="clawsR claws__right2"></div>
+                                <div name="clawsR`+ id + `" class="clawsR claws__right3"></div>
                             </div>
                         </div>
                             

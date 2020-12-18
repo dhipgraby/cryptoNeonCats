@@ -6,7 +6,7 @@ import "./IERC721.sol";
 import "./Ownable.sol";
 import "./IERC721Receiver.sol";
 
-contract Catscontract is IERC721, Ownable, IERC721Receiver {
+contract Catscontract is IERC721, Ownable {
 
     uint256 public constant supplyLimitGen0 = 10;
     string public constant name = "Neoncats";
@@ -132,7 +132,7 @@ contract Catscontract is IERC721, Ownable, IERC721Receiver {
         }
 
     function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes calldata _data) external{
-        require(_isApprovedOrOwner(msg.sender, _from, _to, _tokenId));
+        require( _isApprovedOrOwner(msg.sender, _from, _to, _tokenId) );
         _safeTransfer(_from, _to, _tokenId, _data);
     }
 
@@ -159,12 +159,12 @@ contract Catscontract is IERC721, Ownable, IERC721Receiver {
         return size > 0;
     }
 
-    function _isApprovedOrOwner(address _spender, address _from, address _to, uint256 _tokenId) internal{
+    function _isApprovedOrOwner(address _spender, address _from, address _to, uint256 _tokenId) internal returns(bool){
         require(_tokenId < neoncats.length); // token must exist
         require(_to != address(0)); // TO address cant be zero address
         require(_owns(_from, _tokenId)); // From owns the token
         // spender is from OR spender is approved for tokenId OR spender is operator for from
-        require(_spender == _from || _approvedFor(_spender, _tokenId) || isApprovedForAll(_from, _spender));
+        return(_spender == _from || _approvedFor(_spender, _tokenId) || isApprovedForAll(_from, _spender));
     }
 
     function transfer(address _to, uint256 _tokenId) external{

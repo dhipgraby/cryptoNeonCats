@@ -249,9 +249,11 @@ function animationVariation(num, id) {
     }
     // claws of the front paws
     function animationVar4(id){
-        $("#claw" + id).addClass("growingClaws")
-        $("#clawsL" + id).addClass("growingClawsInner")
-        $("#clawsR" + id).addClass("growingClawsInner")
+        $("[name='claw"+ id +"']").addClass("growingClaws")
+        //var firstClaw = document.querySelectorAll("div[name='claw"+ id +"']") 
+        //for(var i = 0; i < firstClaw.length; i++ ) firstClaw[i].classList.add("growingClaws")
+        $("[name='clawsL"+ id +"']").addClass("growingClawsInner")
+        $("[name='clawsR"+ id +"']").addClass("growingClawsInner")
     }
     function animationVar5(id){
         $("#leftTwinkle" + id).addClass("twinklingEyes")
