@@ -4,12 +4,19 @@ pragma solidity 0.5.12;
 
 import "./IERC721.sol";
 import "./Ownable.sol";
+import "./IERC721Receiver.sol";
 
-contract Catscontract is IERC721, Ownable {
+contract Catscontract is IERC721, Ownable, IERC721Receiver {
 
     uint256 public constant supplyLimitGen0 = 10;
     string public constant name = "Neoncats";
     string public constant symbol = "NC";
+    
+    bytes4 internal constant MAGIC_ERC721_RECEIVED = bytes4(keccak256("onERC721Received(address,address,uint256,bytes)")); 
+
+    bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
+
+    bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
 
     struct Neoncat {
         uint256 genes;
@@ -28,12 +35,16 @@ contract Catscontract is IERC721, Ownable {
     mapping(uint256 => address) public neonCatIndexToApproved;
     mapping(address => mapping (address => bool)) private _operatorApprovals;
     
-
+    event Birth(address owner, uint256 newCatId, uint256 mumId, uint256 dadId, uint256 genes);
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
-    event Birth(address owner, uint256 newCatId, uint256 mumId, uint256 dadId, uint256 genes);
+    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
     uint256 public gen0Counter;
+
+    function supportsInterface(bytes4 _interfaceId) external view returns (bool){
+        return ( _interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165 );
+        }
 
     // set mumID, dadID and generation to 0, _genes from input and owner = 0address / msg.sender
     // create var to limit 0 generation to max amount 10, add require and increase counter
@@ -116,17 +127,46 @@ contract Catscontract is IERC721, Ownable {
         return catIndexToOwner[_tokenId];
     }
 
-     /* @dev Transfers `tokenId` token from `msg.sender` to `to`.
-     *
-     *
-     * Requirements:
-     *
-     * - `to` cannot be the zero address.
-     * - `to` can not be the contract address.
-     * - `tokenId` token must be owned by `msg.sender`.
-     *
-     * Emits a {Transfer} event.
-     */
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId) public {
+        _safeTransfer(_from, _to, _tokenId, "");
+        }
+
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes calldata _data) external{
+        require(_isApprovedOrOwner(msg.sender, _from, _to, _tokenId));
+        _safeTransfer(_from, _to, _tokenId, _data);
+    }
+
+    function _safeTransfer(address _from, address _to, uint256 _tokenId, bytes memory _data) internal {
+        _transfer(_from, _to, _tokenId);
+        require( _checkERC721Support(_from, _to, _tokenId, _data) );
+    }
+
+    function _checkERC721Support(address _from, address _to, uint256 _tokenId, bytes memory _data) internal returns (bool) {
+        if( !_isContract(_to) ){
+            return true;
+        }
+        //Call onERC721Received in the _to contract
+        bytes4 returnData = IERC721Receiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data);
+        // Check return value
+        return returnData == MAGIC_ERC721_RECEIVED;    
+        }
+
+    function _isContract(address _to) view internal returns (bool) {
+        uint32 size;
+        assembly {
+            size := extcodesize(_to)
+        }
+        return size > 0;
+    }
+
+    function _isApprovedOrOwner(address _spender, address _from, address _to, uint256 _tokenId) internal{
+        require(_tokenId < neoncats.length); // token must exist
+        require(_to != address(0)); // TO address cant be zero address
+        require(_owns(_from, _tokenId)); // From owns the token
+        // spender is from OR spender is approved for tokenId OR spender is operator for from
+        require(_spender == _from || _approvedFor(_spender, _tokenId) || isApprovedForAll(_from, _spender));
+    }
+
     function transfer(address _to, uint256 _tokenId) external{
         require(_to != address(0));
         require(_to != address(this));
@@ -142,6 +182,7 @@ contract Catscontract is IERC721, Ownable {
 
         if (_from != address(0)) {
             ownershipTokenCount[_from]--;
+            delete neonCatIndexToApproved[_tokenId];
         }
 
         emit Transfer(_from, _to, _tokenId);
@@ -150,7 +191,47 @@ contract Catscontract is IERC721, Ownable {
     function _owns(address _claimant, uint256 _tokenId) internal view returns (bool){
         return (catIndexToOwner[_tokenId] == _claimant);
     }
+    function isApprovedForAll(address owner, address operator) public view returns (bool){
+        return _operatorApprovals[owner][operator];
+    }
+
+    function transferFrom(address _from, address _to, uint256 _tokenId) public {
+        require( _isApprovedOrOwner(msg.sender, _from, _to, _tokenId) );
+
+        _transfer(_to, _from, _tokenId);
+    }
+        function _approvedFor(address _claimant, uint256 _tokenId) internal view returns (bool) {
+            return neonCatIndexToApproved[_tokenId] == _claimant;
+        }
+   
 
 
+    function approve(address _to, uint256 _tokenId) external {
+        require(_owns(msg.sender, _tokenId));
 
+        _approve(_to, _tokenId);
+        emit Approval(msg.sender, _to, _tokenId);
+        }
+    
+        function _approve(address approved, uint256 _tokenId) internal {
+            neonCatIndexToApproved[_tokenId] = approved;
+        }
+        
+    function getApproved(uint256 _tokenId) public view returns (address) {
+        require(_tokenId < neoncats.length); // token must exist
+        
+        return neonCatIndexToApproved[_tokenId];
+    }
+
+    function setApprovalForAll(address operator, bool approved) external {
+        require(msg.sender != operator);
+
+        _setApprovalForAll(operator, approved);
+        emit ApprovalForAll(msg.sender, operator, approved);
+    }
+        function _setApprovalForAll(address operator, bool approved) internal {
+            _operatorApprovals[msg.sender][operator] = approved;
+            
+        }
+    
 }
