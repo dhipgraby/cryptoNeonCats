@@ -647,3 +647,5 @@ var abi = [
         "type": "function"
       }
     ]
+  }
+]
