@@ -42,6 +42,40 @@ contract Catscontract is IERC721, Ownable {
 
     uint256 public gen0Counter;
 
+   function breed(uint256 _dadId, uint256 _mumId) public returns (uint256){
+        require(_owns(msg.sender, _dadId), "The user doesn't own the token"); // check ownership
+        require(_owns(msg.sender, _mumId), "The user doesn't own the token"); // check ownership
+        // you got the DNA
+        // Figure out the generation: Add generation numbers, i.e. Gen0 + Gen1 = Gen1, Gen1 + Gen1 = Gen2, Gen1 + Gen2 = Gen3
+        // get DNA and generation from mum and dad
+        ( uint256 dadDna,,,,uint256 dadGen ) = getCat(_dadId);
+        ( uint256 mumDna,,,,uint256 mumGen ) = getCat(_mumId);
+        
+        uint256 newDna = _mixDna(dadDna, mumDna);
+
+        uint256 kidGen = 0;
+        if (dadGen == 0 && mumGen == 0){
+            kidGen = 1;
+        } else {
+            kidGen = dadGen + mumGen;
+        }
+
+        // create a new Cat with new properties, give it to the msg.sender
+            _createNeonCat( _mumId, _dadId, kidGen, newDna, owner);
+    }
+    
+        function _mixDna(uint256 _dadDna, uint256 _mumDna) internal returns (uint256) {
+            // 11 22 33 44 55 66 77 88
+            // 88 77 66 55 44 33 22 11
+
+            uint256 firstHalf = _dadDna / 100000000; // 11 22 33 44
+            uint256 secondHalf = _mumDna % 100000000; // 88 77 66 55
+
+            uint256 newDna = firstHalf + 100000000;
+            newDna = newDna + secondHalf; // 11 22 33 44 88 77 66 55 
+        }
+
+
     function supportsInterface(bytes4 _interfaceId) external view returns (bool){
         return ( _interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165 );
         }
@@ -74,10 +108,14 @@ contract Catscontract is IERC721, Ownable {
     }
     */
 
-    function getCat(uint256 _tokenId) public view returns(uint256 genes, uint256 birthTime, uint256 mumId, uint256 dadId, uint256 generation){        
+    function getCat(uint256 _tokenId) public view returns(
+        uint256 genes, 
+        uint256 birthTime, 
+        uint256 mumId, 
+        uint256 dadId, 
+        uint256 generation){        
         
         //Neoncat storage neoncat = neoncats[_tokenId];
-
         return(neoncats[_tokenId].genes, neoncats[_tokenId].birthTime, neoncats[_tokenId].mumId, neoncats[_tokenId].dadId, neoncats[_tokenId].generation);
     }
 

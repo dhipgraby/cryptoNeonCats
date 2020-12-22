@@ -14,11 +14,14 @@ function appendCat(dna, id) {
     catBox(id)
     //3 Render the cats CSS style dpeending on DNA string
     renderCat(NeonCatDna, id)
+    $('#catIdNumber' + id).html(`
+        <span class="badge badge-light"><h4><b>CatId: </b>`+ id +`</h4></span>
+    `)
     $('#catDNA' + id).html(`
         <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b> 0</h4></span>
         <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna +`</h4></span>
     `) 
-}
+}   
 
 // Apply cat CSS Styles from buildCat.js
 function renderCat(dna, id){
@@ -58,7 +61,7 @@ function catBox(id) {
 
     var catDiv = `<div class="col-xl-4 pointer fit-content">
                 <div class="featureBox catDiv">
-                
+                <div class="idDiv" id="catIdNumber`+ id + `"></div>
                     <div id="ears`+ id + `" class="cat__ear">
                         <div id="leftEar`+ id + `" class="cat__ear--left">
                             <div class="ear-whisker1left"></div>

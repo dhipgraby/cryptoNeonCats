@@ -102,7 +102,7 @@ function eyesType4() {
 function eyesType5() {
     $('.cat__eye--left').css({ 'background-image': 'linear-gradient(to bottom left, rgb(41, 41, 40), rgb(2, 0, 0)) '})
     $('.cat__eye--right').css({ 'background-image': 'linear-gradient(to bottom left, rgb(2, 0, 0), rgb(41, 41, 40))'})
-}
+}   
 //grey rgb(130, 130, 130)
 function eyesType6() {
     $('.cat__eye--left').css({ 'background-image': 'linear-gradient(to bottom left, rgb(41, 41, 40), rgb(130, 130, 130))'})
