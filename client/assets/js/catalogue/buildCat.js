@@ -61,43 +61,44 @@ function eyeVariation(num, id){
 
         //green (default)
         async function normalEyes(id){
-            $('#eye-right' + id).css({ 'background-image': gradients[0].right })
-            $('#eye-left' + id).css({ 'background-image': gradients[0].left })
+            $("[name='eye-right"+ id +"']").css({ 'background-image': gradients[0].right })
+            $("[name='eye-left"+ id +"']").css({ 'background-image': gradients[0].left })
+            //$("[name='clawsL"+ id +"']").addClass("growingClawsInner")
         }
         //orange
         function eyesType1(id) {
-            $('#eye-right' + id).css({ 'background-image': gradients[1].right })
-            $('#eye-left' + id).css({ 'background-image': gradients[1].left })
+            $("[name='eye-right"+ id +"']").css({ 'background-image': gradients[1].right })
+            $("[name='eye-left"+ id +"']").css({ 'background-image': gradients[1].left })
         }
         //blue 
         function eyesType2(id) {
-            $('#eye-right' + id).css({ 'background-image': gradients[2].right })
-            $('#eye-left' + id).css({ 'background-image': gradients[2].left })
+            $("[name='eye-right"+ id +"']").css({ 'background-image': gradients[2].right })
+            $("[name='eye-left"+ id +"']").css({ 'background-image': gradients[2].left })
         }
         //yellow
         function eyesType3(id) {
-            $('#eye-right' + id).css({ 'background-image': gradients[3].right })
-            $('#eye-left' + id).css({ 'background-image': gradients[3].left })
+            $("[name='eye-right"+ id +"']").css({ 'background-image': gradients[3].right })
+            $("[name='eye-left"+ id +"']").css({ 'background-image': gradients[3].left })
         }
         //red
         function eyesType4(id) {
-            $('#eye-right' + id).css({ 'background-image': gradients[4].right })
-            $('#eye-left' + id).css({ 'background-image': gradients[4].left })
+            $("[name='eye-right"+ id +"']").css({ 'background-image': gradients[4].right })
+            $("[name='eye-left"+ id +"']").css({ 'background-image': gradients[4].left })
         }
         //black
         function eyesType5(id) {
-            $('#eye-right' + id).css({ 'background-image': gradients[5].right })
-            $('#eye-left' + id).css({ 'background-image': gradients[5].left })
+            $("[name='eye-right"+ id +"']").css({ 'background-image': gradients[5].right })
+            $("[name='eye-left"+ id +"']").css({ 'background-image': gradients[5].left })
         }
         //grey
         function eyesType6(id) {
-            $('#eye-right' + id).css({ 'background-image': gradients[6].right })
-            $('#eye-left' + id).css({ 'background-image': gradients[6].left })
+            $("[name='eye-right"+ id +"']").css({ 'background-image': gradients[6].right })
+            $("[name='eye-left"+ id +"']").css({ 'background-image': gradients[6].left })
         }
         //pink
         function eyesType7(id) {
-            $('#eye-right' + id).css({ 'background-image': gradients[7].right })
-            $('#eye-left' + id).css({ 'background-image': gradients[7].left })
+            $("[name='eye-right"+ id +"']").css({ 'background-image': gradients[7].right })
+            $("[name='eye-left"+ id +"']").css({ 'background-image': gradients[7].left })
         }
     }
 
@@ -180,7 +181,7 @@ function animationVariation(num, id) {
     switch (num) {
         case 1:
             animationReset(id)
-            $('#animationName' + id).html('No Animation')
+            $('#animationName' + id).html('No ')
             animationReset(id)
             break
         case 2:

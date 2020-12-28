@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <script src="assets/bootstrap/js/popper.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/web3.min.js"></script>
+  <script src="./abi.js"></script>
   
   <link rel="stylesheet" href="assets/css/cats.css">
   <link rel="stylesheet" href="assets/css/mystyle.css">
@@ -44,14 +46,117 @@
         </div>
     </nav>
 
+    
+
     <div class="container p-5" style="margin-top: 2vh; margin-bottom: 10vh;">
         <div align="center">
         <h1 class="c-white">Breeding</h1>
         <p class="c-white">Here is where you can breed new NeonCats</p>
     </div>
 
+    <br><br><br>
+
+    
+    <!-- Button trigger modal -->
+<div class="container"></div>
+    <div align="center"></div>
+      <div class="btn-group w-100">
+        <button type="button" 
+        class="btn btn-primary m-5" 
+        data-toggle="modal" 
+        data-target="#catModal"
+        onclick="setMum()">
+            Choose the Mother Cat
+        </button>
+        <button type="button" 
+        class="btn btn-primary m-5" 
+        data-toggle="modal" 
+        data-target="#catModal"
+        onclick="setDad()">
+            Choose the Father Cat
+        </button>
+      </div>
+      <div class="input-group p-3">
+        <input type="number" id="selectedMum" class="form-control d-none" disabled="true">     
+        <input type="number" id="selectedDad" class="form-control ml-2 d-none" disabled="true">      
+      </div>
+    </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="catModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">My Cats</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row col-xl-12 justify-content-center ml-1" id="catsDiv">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+  <br><br><br>
+
+  <p align="center">Once you're happy with your choices click the breed button below
+    </p>
+    
+    <div class="breedButton" align="center">
+        <button type="button" class="btn btn-primary btn-lg" id="breedButton">Breed</button>
+    </div>
+
+    <br><br><br>
+
+    <div class="newBornCat" align="center"> <!-- show div only once cat breeding is complete-->
+    <p>Wow !!! here is your newly born NeonCat - looking fabulous !!!<br> 
+    Your new NeonCat has been added to your catalogue<br> - check it out <a style="color:deepskyblue" href="catalogue.html" target="blank">here</a></p>
+    </div> 
+    
 
 
     <footer class="fixed-bottom" align="right">
         <p>©copyright Sneicode 2020</p>
     </footer>
+
+    <script>
+      // female by default is "false"
+      var gender = false;
+        $(document).ready(
+         setTimeout(() => {
+           var callback = "selectCat(this.id)"
+             getCats(callback)
+         }, 1000)
+         )
+         function selectCat(id){
+           if(gender == true){
+             $("#selectedDad").val(id)
+           } else{
+            $("#selectedMum").val(id)
+           }
+           $("#catModal").modal("hide")
+         }
+         function setMum(){
+          gender = false;
+         }
+         function setDad(){
+          gender = true;
+         }
+         </script>
+
+
+
+    <script src="./index.js"></script>
+    <script src="assets/js/colors.js"></script>
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/catalogue/showCats.js"></script>
+    <script src="assets/js/catalogue/buildCat.js"></script>
+    <script src="assets/js/breeding/breeding.js"></script>

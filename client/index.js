@@ -2,7 +2,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 var contract;
 var user;
-var contractAddress ="0x2ec77254f25c3bbC191B811E9EaEA87dD78882bb";
+var contractAddress ="0x3a5b6B780f18cBDd38ef37bD8f945732d7c0250B";
 
 $(document).ready(function(){
     window.ethereum.enable().then(async function(accounts){
@@ -46,7 +46,7 @@ $(document).ready(function(){
 
 })
 
-async function getCats(){
+async function getCats(callback){
     var arrayId;
     var neonCat; 
     try{
@@ -59,7 +59,20 @@ async function getCats(){
     // for each of the cat that are returned by the loop, the corresponding cat is rendered on the Webpage via appendCat
     for (i = 0; i < arrayId.length; i++){
         neonCat = await contract.methods.getCat(arrayId[i]).call();
-        appendCat(neonCat[0],i)
+        appendCat(neonCat[0], arrayId[i], callback)
     }
     console.log(neonCat);
 }  
+
+async function getSingleCat(id){
+    neonCat = await contract.methods.getCat(arrayId[i]).call();
+    appendCat(neonCat[0], id[i])
+}
+
+/*$('#breedButton').click(()=>{
+
+    async function breedCat(){
+        var Cat1;
+        var Cat2;
+    }
+})*/

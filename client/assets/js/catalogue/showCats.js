@@ -1,25 +1,25 @@
 // Append each Cat card as a catalog entry
 
-$(document).ready(
-    setTimeout(() => {
-        getCats()
-    }, 1000)
-    )
 
-
-function appendCat(dna, id) {
+function appendCat(dna, id, callback) {
     //1 return DNA cat into readable string
     var NeonCatDna = catDna(dna)
     //2 build the catBox into HTML
-    catBox(id)
+    catBox(id, callback)
     //3 Render the cats CSS style dpeending on DNA string
     renderCat(NeonCatDna, id)
     $('#catIdNumber' + id).html(`
-        <span class="badge badge-light"><h4><b>CatId: </b>`+ id +`</h4></span>
+        <div align="center">
+            <span class="text-center badge badge-light">
+            <h4 class="tsp-2 m-0"><b>ID: </b>`+ id +`</h4></span>
+        </div>
+        <br><br>
     `)
     $('#catDNA' + id).html(`
-        <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b> 0</h4></span>
-        <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna +`</h4></span>
+        <span class="badge badge-light mb-2">
+        <h4 class="tsp-2 m-0"><b>GEN:</b> 0</h4></span>
+        <span class="badge badge-light mb-3">
+        <h4 class="tsp-2 m-0"><b>DNA: </b>`+ dna +`</h4></span>
     `) 
 }   
 
@@ -30,7 +30,6 @@ function renderCat(dna, id){
     eyeVariation(dna.eyesShape, id)
     pupilColor(dna.pupilColor, id)
     earsColor(dna.earsColor, id)
-    console.log(dna.decorationPattern);
     decorationVariation(dna.decorationPattern, id)
     decorationColorMid(dna.decorationMidColor, id)
     decorationColorSides(dna.decorationSidesColor, id)
@@ -57,9 +56,9 @@ function catDna(dnaStr){
 }
 
 
-function catBox(id) {
+function catBox(id, callback) {
 
-    var catDiv = `<div class="col-xl-4 pointer fit-content">
+    var catDiv = `<div class="col cat-container pointer" onclick="` + callback + `" id="`+ id + `">
                 <div class="featureBox catDiv">
                 <div class="idDiv" id="catIdNumber`+ id + `"></div>
                     <div id="ears`+ id + `" class="cat__ear">
@@ -85,8 +84,8 @@ function catBox(id) {
                         <div class="cat__eye-right-zoneblur"></div>
 
                         <div class="cat__eye">
-                            <div id="leftTwinkle`+ id + `" class="cat__eye--left"></div>
-                            <div id="rightTwinkle`+ id + `" class="cat__eye--right"></div>
+                            <div name="eye-left`+ id + `" id="leftTwinkle`+ id + `" class="cat__eye--left"></div>
+                            <div name="eye-right`+ id + `" id="rightTwinkle`+ id + `" class="cat__eye--right"></div>
                         </div>
                         
                         <div id="pupL-off`+ id + `" class="pupil-left"></div>
@@ -164,7 +163,7 @@ function catBox(id) {
                         </div> <br><br><br><br><br>
                             <div class="dnaDiv" id="catDNA`+ id + `"></div>
 
-                        <ul class="ml-5 cattributes">
+                        <ul class="ml-5 cattributes" id="listAlign">
                             <li><span id="eyeName`+ id + `"></span> eyes</li>
                             <li><span id="decoName`+ id + `"></span> decoration</li>
                             <li><span id="animationName`+ id + `"></span> animation </li>

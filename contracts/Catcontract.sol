@@ -46,34 +46,65 @@ contract Catscontract is IERC721, Ownable {
         require(_owns(msg.sender, _dadId), "The user doesn't own the token"); // check ownership
         require(_owns(msg.sender, _mumId), "The user doesn't own the token"); // check ownership
         // you got the DNA
-        // Figure out the generation: Add generation numbers, i.e. Gen0 + Gen1 = Gen1, Gen1 + Gen1 = Gen2, Gen1 + Gen2 = Gen3
         // get DNA and generation from mum and dad
         ( uint256 dadDna,,,,uint256 dadGen ) = getCat(_dadId);
         ( uint256 mumDna,,,,uint256 mumGen ) = getCat(_mumId);
         
         uint256 newDna = _mixDna(dadDna, mumDna);
 
+        // Figure out the generation: Add generation numbers, i.e. Gen0 + Gen1 = Gen1, Gen1 + Gen1 = Gen2, Gen1 + Gen2 = Gen3
         uint256 kidGen = 0;
         if (dadGen == 0 && mumGen == 0){
             kidGen = 1;
+        } else if (dadGen < mumGen) {
+            kidGen = mumGen +1;
         } else {
-            kidGen = dadGen + mumGen;
+            kidGen = dadGen + 1;
         }
-
-        // create a new Cat with new properties, give it to the msg.sender
+        
             _createNeonCat( _mumId, _dadId, kidGen, newDna, owner);
     }
     
         function _mixDna(uint256 _dadDna, uint256 _mumDna) internal returns (uint256) {
-            // 11 22 33 44 55 66 77 88
+            uint256[8] memory geneArray;
+            uint256 i = 1;
+            uint8 random = uint8( now % 255 ); // yields binary between 00000000-11111111
+            uint256 index = 7;
+            
+            for (i = 1; i <= 128; i=i*2)   {    // 1, 2, 4, 8, 16, 32, 64, 128
+                if(random & i != 0){
+                    geneArray[index] = uint8( _mumDna % 100 );
+                }
+                else{
+                    geneArray[index] = uint8( _dadDna % 100 );
+                }
+                _mumDna = _mumDna / 100;
+                _dadDna = _dadDna / 100;
+
+                index = index -1;
+            }
+            uint256 newGene;
+            // [11, 22, 33, 44, 55, 66, 77, 88]
+
+            for (i = 0; i < 8; i++){
+                newGene = newGene + geneArray[i];
+                if(i != 7){
+                    newGene = newGene * 100;
+                }
+            }
+            return newGene;
+        }           
+            
+            /* this is the easier first function for dna mixing: 
+            //11 22 33 44 55 66 77 88
             // 88 77 66 55 44 33 22 11
 
             uint256 firstHalf = _dadDna / 100000000; // 11 22 33 44
-            uint256 secondHalf = _mumDna % 100000000; // 88 77 66 55
+            uint256 secondHalf = _mumDna % 100000000; // 44 33 22 11
 
             uint256 newDna = firstHalf + 100000000;
-            newDna = newDna + secondHalf; // 11 22 33 44 88 77 66 55 
-        }
+            newDna = newDna + secondHalf; // 11 22 33 44 44 33 22 11 
+        } */
 
 
     function supportsInterface(bytes4 _interfaceId) external view returns (bool){
