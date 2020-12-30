@@ -2,7 +2,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 var contract;
 var user;
-var contractAddress ="0x3a5b6B780f18cBDd38ef37bD8f945732d7c0250B";
+var contractAddress ="0x731157D970bdC418B9E742B68BDcaaCa531F54d0";
 
 $(document).ready(function(){
     window.ethereum.enable().then(async function(accounts){
@@ -38,12 +38,8 @@ $(document).ready(function(){
                                     +" dadId " + dadId
                                     +" genes " + genes)
         })
-        .on('error', console.error)
-        
-
-        
+        .on('error', console.error)  
     })
-
 })
 
 async function getCats(callback){
@@ -59,20 +55,37 @@ async function getCats(callback){
     // for each of the cat that are returned by the loop, the corresponding cat is rendered on the Webpage via appendCat
     for (i = 0; i < arrayId.length; i++){
         neonCat = await contract.methods.getCat(arrayId[i]).call();
-        appendCat(neonCat[0], arrayId[i], callback)
+        appendCat(neonCat[0], neonCat["generation"], arrayId[i], callback)
     }
     console.log(neonCat);
 }  
 
 async function getSingleCat(id){
-    neonCat = await contract.methods.getCat(arrayId[i]).call();
-    appendCat(neonCat[0], id[i])
+    var neonCat = await contract.methods.getCat(id).call();
+    console.log(neonCat);
+    appendCat(neonCat[0], neonCat["generation"], id)
 }
 
-/*$('#breedButton').click(()=>{
-
-    async function breedCat(){
-        var Cat1;
-        var Cat2;
+$('#breedButton').click(async () =>{
+    let mumId = $('#selectedMum').val()
+    let dadId = $('#selectedDad').val()
+    if(empty(mumId) || empty(dadId)) {
+        alert("cat ID(s) missing")
+        return false
     }
-})*/
+
+    await contract.methods.breed(dadId, mumId).send({}, function(error, txHash){
+            
+        if(error)
+            console.log(error);
+        else {
+            console.log(txHash);
+        }
+    })
+})
+function empty(str){
+    if(str.length < 1 || str === undefined || str == ""){
+        return true;
+    }
+    return false;
+}

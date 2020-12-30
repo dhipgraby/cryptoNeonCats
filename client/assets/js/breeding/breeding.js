@@ -1,3 +1,0 @@
-function loadCat(id){
-    
-}

@@ -1,7 +1,7 @@
 // Append each Cat card as a catalog entry
 
 
-function appendCat(dna, id, callback) {
+function appendCat(dna, generation, id, callback) {
     //1 return DNA cat into readable string
     var NeonCatDna = catDna(dna)
     //2 build the catBox into HTML
@@ -17,7 +17,7 @@ function appendCat(dna, id, callback) {
     `)
     $('#catDNA' + id).html(`
         <span class="badge badge-light mb-2">
-        <h4 class="tsp-2 m-0"><b>GEN:</b> 0</h4></span>
+        <h4 class="tsp-2 m-0"><b>GEN:</b>`+ generation +`</h4></span>
         <span class="badge badge-light mb-3">
         <h4 class="tsp-2 m-0"><b>DNA: </b>`+ dna +`</h4></span>
     `) 

@@ -45,27 +45,28 @@ contract Catscontract is IERC721, Ownable {
    function breed(uint256 _dadId, uint256 _mumId) public returns (uint256){
         require(_owns(msg.sender, _dadId), "The user doesn't own the token"); // check ownership
         require(_owns(msg.sender, _mumId), "The user doesn't own the token"); // check ownership
+        require ((_mumId != _dadId), "Cat IDs can't be the same"); // assure two different cats are chosen for breeding
         // you got the DNA
         // get DNA and generation from mum and dad
         ( uint256 dadDna,,,,uint256 dadGen ) = getCat(_dadId);
         ( uint256 mumDna,,,,uint256 mumGen ) = getCat(_mumId);
         
         uint256 newDna = _mixDna(dadDna, mumDna);
+        
 
         // Figure out the generation: Add generation numbers, i.e. Gen0 + Gen1 = Gen1, Gen1 + Gen1 = Gen2, Gen1 + Gen2 = Gen3
         uint256 kidGen = 0;
-        if (dadGen == 0 && mumGen == 0){
-            kidGen = 1;
-        } else if (dadGen < mumGen) {
-            kidGen = mumGen +1;
+        if (dadGen < mumGen) {
+            kidGen = mumGen + 1;
         } else {
             kidGen = dadGen + 1;
         }
         
-            _createNeonCat( _mumId, _dadId, kidGen, newDna, owner);
+            _createNeonCat( _mumId, _dadId, kidGen, newDna, msg.sender);
     }
     
         function _mixDna(uint256 _dadDna, uint256 _mumDna) internal returns (uint256) {
+           
             uint256[8] memory geneArray;
             uint256 i = 1;
             uint8 random = uint8( now % 255 ); // yields binary between 00000000-11111111
@@ -84,27 +85,19 @@ contract Catscontract is IERC721, Ownable {
                 index = index -1;
             }
             uint256 newGene;
-            // [11, 22, 33, 44, 55, 66, 77, 88]
-
-            for (i = 0; i < 8; i++){
+            
+            for (i = 0; i < 8; i++){ 
                 newGene = newGene + geneArray[i];
+
                 if(i != 7){
                     newGene = newGene * 100;
                 }
             }
-            return newGene;
-        }           
             
-            /* this is the easier first function for dna mixing: 
-            //11 22 33 44 55 66 77 88
-            // 88 77 66 55 44 33 22 11
-
-            uint256 firstHalf = _dadDna / 100000000; // 11 22 33 44
-            uint256 secondHalf = _mumDna % 100000000; // 44 33 22 11
-
-            uint256 newDna = firstHalf + 100000000;
-            newDna = newDna + secondHalf; // 11 22 33 44 44 33 22 11 
-        } */
+            return newGene;
+        }    
+            
+          
 
 
     function supportsInterface(bytes4 _interfaceId) external view returns (bool){
@@ -134,17 +127,16 @@ contract Catscontract is IERC721, Ownable {
         }
         return result;
     }
-   /* function getCatIdsPerOwner() public view returns (uint [] memory){
-        return ownerCats[msg.sender];
-    }
-    */
+
 
     function getCat(uint256 _tokenId) public view returns(
         uint256 genes, 
         uint256 birthTime, 
         uint256 mumId, 
         uint256 dadId, 
-        uint256 generation){        
+        uint256 generation
+    )
+    {        
         
         //Neoncat storage neoncat = neoncats[_tokenId];
         return(neoncats[_tokenId].genes, neoncats[_tokenId].birthTime, neoncats[_tokenId].mumId, neoncats[_tokenId].dadId, neoncats[_tokenId].generation);
