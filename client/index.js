@@ -2,7 +2,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 var contract;
 var user;
-var contractAddress ="0x731157D970bdC418B9E742B68BDcaaCa531F54d0";
+var contractAddress ="0xa7753F2f578f8b777dBC0337d6AFb1e7362fc6a5";
 
 $(document).ready(function(){
     window.ethereum.enable().then(async function(accounts){
@@ -42,7 +42,7 @@ $(document).ready(function(){
     })
 })
 
-async function getCats(callback){
+async function getCats(onclick){
     var arrayId;
     var neonCat; 
     try{
@@ -55,22 +55,17 @@ async function getCats(callback){
     // for each of the cat that are returned by the loop, the corresponding cat is rendered on the Webpage via appendCat
     for (i = 0; i < arrayId.length; i++){
         neonCat = await contract.methods.getCat(arrayId[i]).call();
-        appendCat(neonCat[0], neonCat["generation"], arrayId[i], callback)
+        appendCat(neonCat[0], neonCat["generation"], arrayId[i], onclick)
     }
     console.log(neonCat);
 }  
 
-async function getSingleCat(id){
-    var neonCat = await contract.methods.getCat(id).call();
-    console.log(neonCat);
-    appendCat(neonCat[0], neonCat["generation"], id)
-}
 
-$('#breedButton').click(async () =>{
+$('#breedButton').click(async () => {
     let mumId = $('#selectedMum').val()
     let dadId = $('#selectedDad').val()
     if(empty(mumId) || empty(dadId)) {
-        alert("cat ID(s) missing")
+        alert("cat ID(s) missing, please select a mother and father cat for breeding")
         return false
     }
 
@@ -80,12 +75,42 @@ $('#breedButton').click(async () =>{
             console.log(error);
         else {
             console.log(txHash);
+            
+        showNewCat();
+
         }
     })
 })
+
+async function showNewCat() {
+    // define array of cats from owner like in getCats-function above
+    var arrayId;
+    try{
+        //get array of IDs
+        arrayId = await contract.methods.getNeonCatsPerOwner(user).call();
+        console.log(arrayId);
+    }   catch(err){
+        console.log(err);
+    }
+        // isolate/get last number of array
+        var newCatId = arrayId[arrayId.length -1];
+        var id = newCatId;
+        getSingleCat(id);
+}
+
+async function getSingleCat(id){
+    var neonCat = await contract.methods.getCat(id).call();
+    console.log(neonCat);
+    var dna = neonCat[0];
+    appendCat(dna, neonCat["generation"], id, "null");
+}
+
+
 function empty(str){
     if(str.length < 1 || str === undefined || str == ""){
         return true;
     }
     return false;
 }
+
+

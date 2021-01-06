@@ -107,50 +107,28 @@
     
   <br><br><br>
 
-  <p align="center">Once you're happy with your choices click the breed button below
+  <p align="center">Once you're happy with your choices click the breed button. 
     </p>
     
     <div class="breedButton" align="center">
         <button type="button" class="btn btn-primary btn-lg" id="breedButton">Breed</button>
     </div>
+    <br>
+    <p align="center">Your new NeonCat will show up here below !
+      </p>
 
-    <br><br><br>
+    <br><br>
 
-    <div class="newBornCat" align="center"> <!-- show div only once cat breeding is complete-->
-    <p>Wow !!! here is your newly born NeonCat - looking fabulous !!!<br> 
+     <!-- show div only once cat breeding is complete-->
+    <p align="center">Wow !!! here is your newly born NeonCat - looking fabulous !!!<br> 
     Your new NeonCat has been added to your catalogue<br> - check it out <a style="color:deepskyblue" href="catalogue.html" target="blank">here</a></p>
-    </div> 
+    </div>
+    <div class="col-xl-12 justify-content-center ml-1" id="catsDiv"><br>
     
-
-
+<br>
     <footer class="fixed-bottom" align="right">
         <p>©copyright Sneicode 2020</p>
     </footer>
-
-    <script>
-      // female by default is "false"
-      var gender = false;
-        $(document).ready(
-         setTimeout(() => {
-           var callback = "selectCat(this.id)"
-             getCats(callback)
-         }, 1000)
-         )
-         function selectCat(id){
-           if(gender == true){
-             $("#selectedDad").val(id)
-           } else{
-            $("#selectedMum").val(id)
-           }
-           $("#catModal").modal("hide")
-         }
-         function setMum(){
-          gender = false;
-         }
-         function setDad(){
-          gender = true;
-         }
-         </script>
 
 
 
@@ -159,3 +137,4 @@
     <script src="assets/js/navigation.js"></script>
     <script src="assets/js/catalogue/showCats.js"></script>
     <script src="assets/js/catalogue/buildCat.js"></script>
+    <script src="assets/js/breeding/breeding.js"></script>

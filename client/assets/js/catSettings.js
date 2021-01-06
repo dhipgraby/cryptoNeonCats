@@ -66,7 +66,7 @@ function renderCat(dna){
     $('#bodycolor').val(dna.headcolor)
 
     mouthColor(colors[dna.mouthColor],dna.mouthColor)
-    $('#mouthColor').val(dna.mouthColor)
+    $('#mouthcolor').val(dna.mouthColor)
 
     eyeVariation(dna.eyesShape)
     $('#eyeshape').val(dna.eyesShape)
