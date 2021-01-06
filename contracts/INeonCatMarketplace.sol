@@ -1,4 +1,4 @@
-pragma solidity ^0.5.12;
+pragma solidity 0.5.12;
 
 import "./Catcontract.sol";
 import "./Ownable.sol";

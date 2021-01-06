@@ -2,7 +2,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 var contract;
 var user;
-var contractAddress ="0xa7753F2f578f8b777dBC0337d6AFb1e7362fc6a5";
+var contractAddress ="0x2934Ff20931242c805343BFC0202C7De2783c331";
 
 $(document).ready(function(){
     window.ethereum.enable().then(async function(accounts){
@@ -94,6 +94,7 @@ async function showNewCat() {
     }
         // isolate/get last number of array
         var newCatId = arrayId[arrayId.length -1];
+        console.log(newCatId);
         var id = newCatId;
         getSingleCat(id);
 }
@@ -102,7 +103,7 @@ async function getSingleCat(id){
     var neonCat = await contract.methods.getCat(id).call();
     console.log(neonCat);
     var dna = neonCat[0];
-    appendCat(dna, neonCat["generation"], id, "null");
+    appendBreed(dna, neonCat["generation"], id, "null");
 }
 
 

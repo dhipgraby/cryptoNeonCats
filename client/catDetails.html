@@ -2,17 +2,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catalogue </title>
+  <title>CatDetails </title>
   <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <script src="assets/bootstrap/js/popper.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/contractInteract/web3.min.js"></script>
-  <script src="assets/contractInteract/abi.js"></script>
-
-
   
-
+  <script src="assets/contractInteract/js/web3.min.js"></script>
+  <script src="assets/contractInteract/js/abi.js"></script>
+  <script src="./index.js"></script>
+  
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/mystyle.css">
   <link rel="stylesheet" href="assets/css/cats.css">
@@ -56,46 +55,8 @@
         </div>
     </nav>
 
-    
-
-    
-
-    <div class="container" style="margin-top: 2vh; margin-bottom: 10vh;">
+    <div class="container p-5" style="margin-top: 5vh; margin-bottom: 10vh;">
         <div align="center">
-        <h1 class="c-white">Catalogue</h1>
-        <p class="c-white">All your NeonCats in one place</p>
+        <h1 class="c-white">CatDetails</h1>
+        <p class="c-white">Select a cat you want to sell</p>
     </div>
-
-    <div class="row col-xl-12 justify-content-center ml-1" id="catsDiv">
-        
-    </div>
-        
-    <br>
-
-
-
-    <footer class="fixed-bottom" align="rig">
-        <p>© copyright <b>Sneicode 2020</b></p>
-    </footer>
-    
-
-  </body>
-  <!--<script src="./index.js"></script>  -->
-
-  <script>
-   $(document).ready(
-    setTimeout(() => {
-        getCats()
-    }, 1000)
-    )
-    </script>
-
-  <script src="assets/contractInteract/index.js"></script>  
-  <script src="assets/js/colors.js"></script>
-  <script src="assets/js/navigation.js"></script>
-  <script src="assets/js/MultiCat/render.js"></script>
-  <script src="assets/js/MultiCat/config.js"></script>
- 
-  
-
-</html>

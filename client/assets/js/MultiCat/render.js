@@ -172,7 +172,7 @@ function catBox(id, onclick) {
                     </div>
                 </div>
             </div>`
-    
+
     $('#catsDiv').append(catDiv)
 
 
