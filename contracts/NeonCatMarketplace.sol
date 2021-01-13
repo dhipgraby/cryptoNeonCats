@@ -96,7 +96,7 @@ contract NeonCatMarketplace is Ownable, INeonCatMarketplace {
         emit MarketTransaction("Remove offer", msg.sender, _tokenId);
     }
 
-    function buyKitty(uint256 _tokenId) external payable{
+    function buyCat(uint256 _tokenId) external payable{
         Offer memory offer = tokenIdToOffer[_tokenId];
         require(msg.value == offer.price, "The price is incorrect");
         require(tokenIdToOffer[_tokenId].active == true, "Presently no active offer for this Cat");

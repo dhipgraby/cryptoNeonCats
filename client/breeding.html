@@ -56,7 +56,7 @@
 
     
 
-    <div class="container p-5" style="margin-top: 2vh; margin-bottom: 10vh;">
+    <div class="container p-5" style="margin-top: 2vh; margin-bottom: 2vh;">
         <div align="center">
         <h1 class="c-white">Breeding</h1>
         <p class="c-white">Here is where you can breed new NeonCats</p>
@@ -70,14 +70,14 @@
     <div align="center"></div>
       <div class="btn-group w-100">
         <button type="button" 
-        class="btn btn-primary m-5" 
+        class="btn btn-primary m-5 light-b-shadow" 
         data-toggle="modal" 
         data-target="#catModal"
         onclick="setMum()">
             Choose the Mother Cat
         </button>
         <button type="button" 
-        class="btn btn-primary m-5" 
+        class="btn btn-primary m-5 light-b-shadow" 
         data-toggle="modal" 
         data-target="#catModal"
         onclick="setDad()">
@@ -114,22 +114,25 @@
 
     
   <br><br><br>
-
-  <p align="center">Once you're happy with your choices click the breed button. 
-    </p>
+  <div class="showUp" id="hereBelow">
+    <p align="center">Once you're happy with your choices click the breed button. 
+      </p>
     
     <div class="breedButton" align="center">
-        <button type="button" class="btn btn-primary btn-lg" id="breedButton">Breed</button>
+        <button type="button" class="btn btn-primary btn-lg light-b-shadow" id="breedButton">Breed</button>
     </div>
     <br>
     <p align="center">Your new NeonCat will show up here below !
       </p>
-
-    <br><br>
+    </div>
 
      <!-- show div only once cat breeding is complete-->
-    <p align="center">Wow !!! here is your newly born NeonCat - looking fabulous !!!<br> 
-    Your new NeonCat has been added to your catalogue<br> - check it out <a style="color:deepskyblue" href="catalogue.html" target="blank">here</a></p>
+    <div class="newBreed" id="congrats" >
+      <h2 align="center"><b>C O N G R A T U L A T I O N S !!!</b></h2>
+        <h3 align="center">Here is your newly born NeonCat <br>Looking fabulous !!!<br> 
+        </h3>
+      <h4 align="center">We have added it to your catalogue - check it out <a style="color:deepskyblue" href="catalogue.html" target="blank">here</a>
+      </h4>
     </div>
     <div class="row col-xl-12 justify-content-center ml-1" id="catsBreedDiv">
     </div>
@@ -137,6 +140,15 @@
     <footer align="right">
         <p>©copyright Sneicode 2020</p>
     </footer>
+    
+    <script>
+    $(document).ready(
+      setTimeout(() => {
+        var onclick = "selectCat(this.id)"
+          getCats(onclick)
+      }, 1000)
+      )
+      </script>  
 
 
 

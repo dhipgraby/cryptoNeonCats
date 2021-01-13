@@ -53,5 +53,5 @@ interface INeonCatMarketplace {
     * Requirement: There must be an active offer for _tokenId
     * Requirement: there must be an active offer for _tokenId
      */
-    function buyKitty(uint256 _tokenId) external payable;
+    function buyCat(uint256 _tokenId) external payable;
 }

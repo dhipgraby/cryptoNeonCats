@@ -1,11 +1,6 @@
 // female by default is "false"
   var gender = false;
-    $(document).ready(
-      setTimeout(() => {
-        var onclick = "selectCat(this.id)"
-          getCats(onclick)
-      }, 1000)
-      )
+
       function selectCat(id){
         if(gender == true){
           $("#selectedDad").val(id)
@@ -27,23 +22,22 @@
         //2 build the catBox into HTML
         catBreedBox(id, onclick)
       
-          renderCat(NeonCatDna, "New")
-          $('#catIdNumberNew').html(`
-              <div align="center">
-                  <span class="text-center badge badge-light">
-                  <h4 class="tsp-2 m-0"><b>ID: </b>`+ id +`</h4></span>
-              </div>
-              <br><br>
-          `)
-          $('#catDNANew').html(`
-              <span class="badge badge-light mb-2">
-              <h4 class="tsp-2 m-0"><b>GEN:</b>`+ generation +`</h4></span>
-              <span class="badge badge-light mb-3">
-              <h4 class="tsp-2 m-0"><b>DNA: </b>`+ dna +`</h4></span>
-          `) 
-        
-        //3 Render the cats CSS style dpeending on DNA string
-        
+            renderCat(NeonCatDna, "New")
+            $('#catIdNumberNew').html(`
+                <div align="center">
+                    <span class="text-center badge badge-light">
+                    <h4 class="tsp-2 m-0"><b>ID: </b>`+ id +`</h4></span>
+                </div>
+                <br><br>
+            `)
+            $('#catDNANew').html(`
+                <span class="badge badge-light mb-2">
+                <h4 class="tsp-2 m-0"><b>GEN:</b>`+ generation +`</h4></span>
+                <span class="badge badge-light mb-3">
+                <h4 class="tsp-2 m-0"><b>DNA: </b>`+ dna +`</h4></span>
+            `) 
+            $('#hereBelow').css('display', 'none')
+            $('#congrats').css('display', 'block')
     }   
 
     function catBreedBox(id, onclick) {

@@ -58,7 +58,7 @@ function catDna(dnaStr){
 
 function catBox(id, onclick) {
 
-    var catDiv = `<div class="col cat-container pointer" onclick="` + onclick + `" id="`+ id + `">
+    var catDiv = `<div class="col cat-container pointer" id="`+ id +`" onclick="` + onclick + `" id="`+ id + `">
                 <div class="featureBox catDiv">
                 <div class="idDiv" id="catIdNumber`+ id + `"></div>
                     <div id="ears`+ id + `" class="cat__ear">
@@ -174,6 +174,11 @@ function catBox(id, onclick) {
             </div>`
 
     $('#catsDiv').append(catDiv)
+
+    /*function catToMarketplace(id){
+        id = $('#xxx').val()
+    }
+    */
 
 
 }

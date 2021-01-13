@@ -8,9 +8,9 @@
   <script src="assets/bootstrap/js/popper.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   
-  <script src="assets/contractInteract/js/web3.min.js"></script>
-  <script src="assets/contractInteract/js/abi.js"></script>
-  <script src="./index.js"></script>
+  <script src="assets/contractInteract/web3.min.js"></script>
+  <script src="assets/contractInteract/abi.js"></script>
+  <script src="assets/contractInteract/index.js"></script>  
   
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/mystyle.css">
@@ -20,43 +20,113 @@
 </head>
   <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" ><img src="assets/img/logo2.png" style="width: 10vw"><img src="assets/img/logo.png" style="width: 7vw"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="factory.html">NeonCat Factory</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="catalogue.html">Catalogue</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="breeding.html">Breeding</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="catDetails.html">CatDetails</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="marketplace.html">Buy&Sell Cats</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="info.html">Info</a>
-                    </li>
-                </ul>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" ><img src="assets/img/logo2.png" style="width: 10vw"><img src="assets/img/logo.png" style="width: 7vw"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="factory.html">NeonCat Factory</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="catalogue.html">Catalogue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="breeding.html">Breeding</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="catDetails.html">CatDetails</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="marketplace.html">Buy&Sell Cats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="info.html">Info</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container p-5" style="margin-top: 5vh; margin-bottom: 10vh;">
+            <div align="center">
+            <h1 class="c-white">CatDetails</h1>
+            <p class="c-white">Select the cat you want to sell</p>
+        </div>
+
+        <div class="catHeader">
+            <div class="row col-xl-12 justify-content-center ml-1">
+                <div id="catsBreedDiv">
+                </div>
             </div>
         </div>
-    </nav>
 
-    <div class="container p-5" style="margin-top: 5vh; margin-bottom: 10vh;">
-        <div align="center">
-        <h1 class="c-white">CatDetails</h1>
-        <p class="c-white">Select a cat you want to sell</p>
-    </div>
+        
+
+        <div class="container middleBox mt-5">
+            <div id="catDNA" align="center"></div>
+            <br>
+            <div class="hidden" align="center" id="buyBox"> <!--class="hidden" -->
+            <div class="btn-group">
+                <button class="btn btn-light btn-lg light-b-shadow" id="buyBtn"><b>Buy this NeonCat</b></button>
+                <button class="btn btn-light btn-lg ml-2 light-b-shadow" id="priceBtn"></button>
+            </div>
+            <br>
+        </div>
+
+        </div>
+        <div class="hidden row justify-content-center" align="center" id="sellBox"> <!--class="hidden" -->
+            <div class="col-lg-2 p-1">
+                <button class="btn btn-warning" id="sellBtn"><b>Sell this NeonCat</b></button>
+            </div>
+
+            <div class="col-lg-2 p1 input-group">
+                <input type="number" class="form-control" id="catPrice" placeholder="Price in ether">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2"><b>ETH</b></span>
+                </div>
+            </div>
+            <div class="col-lg-2 p-1 hidden" id="cancelBox"> <!--class="hidden" -->
+                <button class="btn btn-danger" id="cancelBtn"><b class="t-no-wrap">Cancel offer</b></button>
+            </div>
+        </div>
+        <div id="message" align="center"></div>
+        <br>
+        <div id="cattributes"></div>
+
+
+        <footer class="fixed-bottom" align="right">
+            <p>©copyright Sneicode 2020</p>
+        </footer>
+
+    </body>
+
+    <script>
+        $(document).ready(
+    setTimeout(() => {
+        var params = get_variables();
+        /*if(params.length < 1){
+            window.location.href="/client/catalogue.html"
+        }*/
+        var catId = params.catId;
+        getSingleCat(catId);
+    }, 1000)
+    )
+    </script>
+
+    <script src="assets/contractInteract/index.js"></script>  
+    <script src="assets/js/colors.js"></script>
+    <script src="assets/js/MultiCat/render.js"></script>
+    <script src="assets/js/MultiCat/config.js"></script>
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/breeding/breeding.js"></script>
+
+
+</html>

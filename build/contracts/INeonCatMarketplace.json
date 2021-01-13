@@ -141,19 +141,19 @@
           "type": "uint256"
         }
       ],
-      "name": "buyKitty",
+      "name": "buyCat",
       "outputs": [],
       "payable": true,
       "stateMutability": "payable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"TxType\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"MarketTransaction\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"buyKitty\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getAllTokenOnSale\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"listOfOffers\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"getOffer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"seller\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"active\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"removeOffer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_neonCatContractAddress\",\"type\":\"address\"}],\"name\":\"setNeonCatContract\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_price\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"setOffer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{\"buyKitty(uint256)\":{\"notice\":\"Executes the purchase of _tokenId. Sends the funds to the seller and transfers the token using transferFrom in Kittycontract. Emits the MarketTransaction event with txType \\\"Buy\\\". Requirement: The msg.value needs to equal the price of _tokenId Requirement: There must be an active offer for _tokenId Requirement: there must be an active offer for _tokenId\"},\"getAllTokenOnSale()\":{\"notice\":\"Get all tokenId's that are currently for sale. Returns an empty error if none exist.\"},\"getOffer(uint256)\":{\"notice\":\"Get the details about a offer for _tokenId. Throws an error if there is no active offer for _tokenId.\"},\"removeOffer(uint256)\":{\"notice\":\"Removes an existing offer. Emits the MarketTransaction event with txType \\\"Remove offer\\\" Requirement: Only the seller of _tokenId can remove an offer.\"},\"setNeonCatContract(address)\":{\"notice\":\"Set the current KittyContract address and initialize the instance of Kittycontract. Requirement: Only the contract owner can call.\"},\"setOffer(uint256,uint256)\":{\"notice\":\"Creates a new offer for _tokenId for the price _price. Emits the MarketTransaction event with txType \\\"Create offer\\\" Requirement: Only the owner of _tokenId can create an offer. Requirement: There can only be one active offer for a token at a time. Requirement: Marketplace contract (this) needs to be an approved operator when the offer is created.\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/INeonCatMarketplace.sol\":\"INeonCatMarketplace\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/Catcontract.sol\":{\"keccak256\":\"0x1bcb94c5b62717bc58b89ab79b1e99db2ba5c7774b9c3fa82b53ae9d9e97543f\",\"urls\":[\"bzz-raw://2a59fcd07275fafdb5882cb1df19e3810f2baf8f319ed597812fa284f66f1d60\",\"dweb:/ipfs/QmWJKT85o3FzprXzU7hTsTYEiAA9W3JmmyFujrP6GbFv7u\"]},\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/IERC721.sol\":{\"keccak256\":\"0x2712c574afd94d1134a9aacb7c89ba008a67d6e7765a110ad38b6e265fdae3f1\",\"urls\":[\"bzz-raw://002a9ba3bb8339a711fa459cd5e59359cc754aa30edbf6ed2eb0636e730bb8e5\",\"dweb:/ipfs/QmPWDJKDPimt7r6Ufrv9oFhXxeBwH1npYDVzVRjKLeRt4e\"]},\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/IERC721Receiver.sol\":{\"keccak256\":\"0xf29b779ac39c2bc4ff1cfcd41f83ef664f9d856665c7e8d80911725502665d3a\",\"urls\":[\"bzz-raw://85c831efe1b55245cd9c4d73129675f14f04d2ac7023f8587eb83b587f8cb210\",\"dweb:/ipfs/QmPJa4YTYCXgEdwxeCDDTMGCBq19pHYoKHEbP3kLgUTuHW\"]},\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/INeonCatMarketplace.sol\":{\"keccak256\":\"0x27cfd8f0e9a39d09c9b8475edd26b6f935226333228ae840907eabc2435a2a21\",\"urls\":[\"bzz-raw://c81edab6d6a5fb8fd29b425f2be58362f90e604aa45bb7fe2642110c093cc1d0\",\"dweb:/ipfs/QmXwKvHfS4rmfGpUYDnMuNTUTpzbufDVc35KqLHuDLtQRj\"]},\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/Ownable.sol\":{\"keccak256\":\"0x8537a031ac4cdda24c081232bf7a877b6880b60d1fd396b8895fbd5c55f2fd26\",\"urls\":[\"bzz-raw://7d9e94beafe575812a568ae93551c978811cff841dc987067dc40ae3ec86ad48\",\"dweb:/ipfs/QmdmCNzU7w3p5khon9N45ai9GyLwgTmSdeYnivapXgkTKv\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"TxType\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"MarketTransaction\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"buyCat\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getAllTokenOnSale\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"listOfOffers\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"getOffer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"seller\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"active\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"removeOffer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_neonCatContractAddress\",\"type\":\"address\"}],\"name\":\"setNeonCatContract\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_price\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"setOffer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{\"buyCat(uint256)\":{\"notice\":\"Executes the purchase of _tokenId. Sends the funds to the seller and transfers the token using transferFrom in Kittycontract. Emits the MarketTransaction event with txType \\\"Buy\\\". Requirement: The msg.value needs to equal the price of _tokenId Requirement: There must be an active offer for _tokenId Requirement: there must be an active offer for _tokenId\"},\"getAllTokenOnSale()\":{\"notice\":\"Get all tokenId's that are currently for sale. Returns an empty error if none exist.\"},\"getOffer(uint256)\":{\"notice\":\"Get the details about a offer for _tokenId. Throws an error if there is no active offer for _tokenId.\"},\"removeOffer(uint256)\":{\"notice\":\"Removes an existing offer. Emits the MarketTransaction event with txType \\\"Remove offer\\\" Requirement: Only the seller of _tokenId can remove an offer.\"},\"setNeonCatContract(address)\":{\"notice\":\"Set the current KittyContract address and initialize the instance of Kittycontract. Requirement: Only the contract owner can call.\"},\"setOffer(uint256,uint256)\":{\"notice\":\"Creates a new offer for _tokenId for the price _price. Emits the MarketTransaction event with txType \\\"Create offer\\\" Requirement: Only the owner of _tokenId can create an offer. Requirement: There can only be one active offer for a token at a time. Requirement: Marketplace contract (this) needs to be an approved operator when the offer is created.\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/INeonCatMarketplace.sol\":\"INeonCatMarketplace\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/Catcontract.sol\":{\"keccak256\":\"0x1bcb94c5b62717bc58b89ab79b1e99db2ba5c7774b9c3fa82b53ae9d9e97543f\",\"urls\":[\"bzz-raw://2a59fcd07275fafdb5882cb1df19e3810f2baf8f319ed597812fa284f66f1d60\",\"dweb:/ipfs/QmWJKT85o3FzprXzU7hTsTYEiAA9W3JmmyFujrP6GbFv7u\"]},\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/IERC721.sol\":{\"keccak256\":\"0x2712c574afd94d1134a9aacb7c89ba008a67d6e7765a110ad38b6e265fdae3f1\",\"urls\":[\"bzz-raw://002a9ba3bb8339a711fa459cd5e59359cc754aa30edbf6ed2eb0636e730bb8e5\",\"dweb:/ipfs/QmPWDJKDPimt7r6Ufrv9oFhXxeBwH1npYDVzVRjKLeRt4e\"]},\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/IERC721Receiver.sol\":{\"keccak256\":\"0xf29b779ac39c2bc4ff1cfcd41f83ef664f9d856665c7e8d80911725502665d3a\",\"urls\":[\"bzz-raw://85c831efe1b55245cd9c4d73129675f14f04d2ac7023f8587eb83b587f8cb210\",\"dweb:/ipfs/QmPJa4YTYCXgEdwxeCDDTMGCBq19pHYoKHEbP3kLgUTuHW\"]},\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/INeonCatMarketplace.sol\":{\"keccak256\":\"0xbf52285b451221329c12fadb99268bd4234b0be08178af4bf53c45b55c3cde27\",\"urls\":[\"bzz-raw://c7cebef07fb1138507c6c29d3ffabb8c25166f20687fe4db9c4846f4bfd56451\",\"dweb:/ipfs/Qmf2gvVscec9XzwHbtZN7ujt84NYUqBVx4S9sXMmbMdbPi\"]},\"/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/Ownable.sol\":{\"keccak256\":\"0x8537a031ac4cdda24c081232bf7a877b6880b60d1fd396b8895fbd5c55f2fd26\",\"urls\":[\"bzz-raw://7d9e94beafe575812a568ae93551c978811cff841dc987067dc40ae3ec86ad48\",\"dweb:/ipfs/QmdmCNzU7w3p5khon9N45ai9GyLwgTmSdeYnivapXgkTKv\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.5.12;\r\n\r\nimport \"./Catcontract.sol\";\r\nimport \"./Ownable.sol\";\r\n\r\n/*\r\n * Market place to trade kitties (should **in theory** be used for any ERC721 token)\r\n * It needs an existing Cat contract to interact with\r\n * Note: it does not inherit from the Cat contracts\r\n * Note: The contract needs to be an operator for everyone who is selling through this contract.\r\n */\r\ninterface INeonCatMarketplace {\r\n\r\n    event MarketTransaction(string TxType, address owner, uint256 tokenId);\r\n\r\n    /**\r\n    * Set the current KittyContract address and initialize the instance of Kittycontract.\r\n    * Requirement: Only the contract owner can call.\r\n     */\r\n    function setNeonCatContract(address _neonCatContractAddress) external;\r\n\r\n    /**\r\n    * Get the details about a offer for _tokenId. Throws an error if there is no active offer for _tokenId.\r\n     */\r\n    function getOffer(uint256 _tokenId) external view returns ( address seller, uint256 price, uint256 index, uint256 tokenId, bool active);\r\n\r\n    /**\r\n    * Get all tokenId's that are currently for sale. Returns an empty error if none exist.\r\n     */\r\n    function getAllTokenOnSale() external view  returns(uint256[] memory listOfOffers);\r\n\r\n    /**\r\n    * Creates a new offer for _tokenId for the price _price.\r\n    * Emits the MarketTransaction event with txType \"Create offer\"\r\n    * Requirement: Only the owner of _tokenId can create an offer.\r\n    * Requirement: There can only be one active offer for a token at a time.\r\n    * Requirement: Marketplace contract (this) needs to be an approved operator when the offer is created.\r\n     */\r\n    function setOffer(uint256 _price, uint256 _tokenId) external;\r\n\r\n    /**\r\n    * Removes an existing offer.\r\n    * Emits the MarketTransaction event with txType \"Remove offer\"\r\n    * Requirement: Only the seller of _tokenId can remove an offer.\r\n     */\r\n    function removeOffer(uint256 _tokenId) external;\r\n\r\n    /**\r\n    * Executes the purchase of _tokenId.\r\n    * Sends the funds to the seller and transfers the token using transferFrom in Kittycontract.\r\n    * Emits the MarketTransaction event with txType \"Buy\".\r\n    * Requirement: The msg.value needs to equal the price of _tokenId\r\n    * Requirement: There must be an active offer for _tokenId\r\n    * Requirement: there must be an active offer for _tokenId\r\n     */\r\n    function buyKitty(uint256 _tokenId) external payable;\r\n}\r\n",
+  "source": "pragma solidity 0.5.12;\r\n\r\nimport \"./Catcontract.sol\";\r\nimport \"./Ownable.sol\";\r\n\r\n/*\r\n * Market place to trade kitties (should **in theory** be used for any ERC721 token)\r\n * It needs an existing Cat contract to interact with\r\n * Note: it does not inherit from the Cat contracts\r\n * Note: The contract needs to be an operator for everyone who is selling through this contract.\r\n */\r\ninterface INeonCatMarketplace {\r\n\r\n    event MarketTransaction(string TxType, address owner, uint256 tokenId);\r\n\r\n    /**\r\n    * Set the current KittyContract address and initialize the instance of Kittycontract.\r\n    * Requirement: Only the contract owner can call.\r\n     */\r\n    function setNeonCatContract(address _neonCatContractAddress) external;\r\n\r\n    /**\r\n    * Get the details about a offer for _tokenId. Throws an error if there is no active offer for _tokenId.\r\n     */\r\n    function getOffer(uint256 _tokenId) external view returns ( address seller, uint256 price, uint256 index, uint256 tokenId, bool active);\r\n\r\n    /**\r\n    * Get all tokenId's that are currently for sale. Returns an empty error if none exist.\r\n     */\r\n    function getAllTokenOnSale() external view  returns(uint256[] memory listOfOffers);\r\n\r\n    /**\r\n    * Creates a new offer for _tokenId for the price _price.\r\n    * Emits the MarketTransaction event with txType \"Create offer\"\r\n    * Requirement: Only the owner of _tokenId can create an offer.\r\n    * Requirement: There can only be one active offer for a token at a time.\r\n    * Requirement: Marketplace contract (this) needs to be an approved operator when the offer is created.\r\n     */\r\n    function setOffer(uint256 _price, uint256 _tokenId) external;\r\n\r\n    /**\r\n    * Removes an existing offer.\r\n    * Emits the MarketTransaction event with txType \"Remove offer\"\r\n    * Requirement: Only the seller of _tokenId can remove an offer.\r\n     */\r\n    function removeOffer(uint256 _tokenId) external;\r\n\r\n    /**\r\n    * Executes the purchase of _tokenId.\r\n    * Sends the funds to the seller and transfers the token using transferFrom in Kittycontract.\r\n    * Emits the MarketTransaction event with txType \"Buy\".\r\n    * Requirement: The msg.value needs to equal the price of _tokenId\r\n    * Requirement: There must be an active offer for _tokenId\r\n    * Requirement: there must be an active offer for _tokenId\r\n     */\r\n    function buyCat(uint256 _tokenId) external payable;\r\n}\r\n",
   "sourcePath": "/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/INeonCatMarketplace.sol",
   "ast": {
     "absolutePath": "/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/INeonCatMarketplace.sol",
@@ -753,7 +753,7 @@
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "buyKitty",
+            "name": "buyCat",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 1216,
@@ -765,7 +765,7 @@
                   "name": "_tokenId",
                   "nodeType": "VariableDeclaration",
                   "scope": 1218,
-                  "src": "2364:16:3",
+                  "src": "2362:16:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -776,7 +776,7 @@
                     "id": 1214,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2364:7:3",
+                    "src": "2362:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -786,26 +786,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2363:18:3"
+              "src": "2361:18:3"
             },
             "returnParameters": {
               "id": 1217,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2398:0:3"
+              "src": "2396:0:3"
             },
             "scope": 1219,
-            "src": "2346:53:3",
+            "src": "2346:51:3",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 1220,
-        "src": "384:2018:3"
+        "src": "384:2016:3"
       }
     ],
-    "src": "0:2404:3"
+    "src": "0:2402:3"
   },
   "legacyAST": {
     "absolutePath": "/Users/imac/Nextcloud/Documents/GitHub/neon-kitties/contracts/INeonCatMarketplace.sol",
@@ -1405,7 +1405,7 @@
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "buyKitty",
+            "name": "buyCat",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 1216,
@@ -1417,7 +1417,7 @@
                   "name": "_tokenId",
                   "nodeType": "VariableDeclaration",
                   "scope": 1218,
-                  "src": "2364:16:3",
+                  "src": "2362:16:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1428,7 +1428,7 @@
                     "id": 1214,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2364:7:3",
+                    "src": "2362:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1438,26 +1438,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2363:18:3"
+              "src": "2361:18:3"
             },
             "returnParameters": {
               "id": 1217,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2398:0:3"
+              "src": "2396:0:3"
             },
             "scope": 1219,
-            "src": "2346:53:3",
+            "src": "2346:51:3",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 1220,
-        "src": "384:2018:3"
+        "src": "384:2016:3"
       }
     ],
-    "src": "0:2404:3"
+    "src": "0:2402:3"
   },
   "compiler": {
     "name": "solc",
@@ -1465,13 +1465,13 @@
   },
   "networks": {},
   "schemaVersion": "3.3.1",
-  "updatedAt": "2021-01-06T11:21:30.883Z",
+  "updatedAt": "2021-01-08T09:56:44.101Z",
   "devdoc": {
     "methods": {}
   },
   "userdoc": {
     "methods": {
-      "buyKitty(uint256)": {
+      "buyCat(uint256)": {
         "notice": "Executes the purchase of _tokenId. Sends the funds to the seller and transfers the token using transferFrom in Kittycontract. Emits the MarketTransaction event with txType \"Buy\". Requirement: The msg.value needs to equal the price of _tokenId Requirement: There must be an active offer for _tokenId Requirement: there must be an active offer for _tokenId"
       },
       "getAllTokenOnSale()": {

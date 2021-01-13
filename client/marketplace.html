@@ -8,9 +8,9 @@
   <script src="assets/bootstrap/js/popper.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   
-  <script src="assets/contractInteract/js/web3.min.js"></script>
-  <script src="assets/contractInteract/js/abi.js"></script>
-  <script src="asset/contractInteract/index.js"></script>  
+  <script src="assets/contractInteract/web3.min.js"></script>
+  <script src="assets/contractInteract/abi.js"></script>
+  <script src="assets/contractInteract/index.js"></script>  
   
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/mystyle.css">
@@ -22,43 +22,91 @@
 
 
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" ><img src="assets/img/logo2.png" style="width: 10vw"><img src="assets/img/logo.png" style="width: 7vw"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="factory.html">NeonCat Factory</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="catalogue.html">Catalogue</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="breeding.html">Breeding</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="catDetails.html">CatDetails</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="marketplace.html">Buy&Sell Cats</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="info.html">Info</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" ><img src="assets/img/logo2.png" style="width: 10vw"><img src="assets/img/logo.png" style="width: 7vw"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="factory.html">NeonCat Factory</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="catalogue.html">Catalogue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="breeding.html">Breeding</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="catDetails.html">CatDetails</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="marketplace.html">Buy&Sell Cats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="info.html">Info</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-<div class="container p-5" style="margin-top: 5vh; margin-bottom: 10vh;">
-    <div align="center">
-    <h1 class="c-white">Buy & Sell</h1>
-    <p class="c-white">This is the marketplace for buying and selling NeonCats</p>
-</div>
+        <div class="container p-5" style="margin-top: 5vh; margin-bottom: 10vh;">
+            <div align="center">
+            <h1 class="c-white">Buy & Sell</h1>
+            <p class="c-white">This is the marketplace for buying and selling NeonCats</p>
+        </div>
+
+        <div class="notification" id="approveDiv">
+            <div align="center">
+                <h3 class="c-white"><b>Important Note:</b></h3>
+                <p class="c-white">In order to buy and sell NeonCats you need to facilitate approval to the marketplace <br>
+                contract so it can buy and sell the selected NeonCats in your name. <br>
+                Whithout this approval you can't buy nor sell any cats. <br>
+                To continue please click the button below </p>
+                <div class="container">
+                    <div class="btn-group">
+                        <button class="btn btn-success btn-sm light-b-shadow" id="approveButton" onclick="Approve()"><b>Approve</b></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+            <script>
+            
+            $(document).ready( function(){
+                setTimeout (async ()  =>  {
+                var isMarketplaceOperator = await contract.methods.isApprovedForAll(user, marketplaceAddress).call();
+            if (!isMarketplaceOperator){
+                getOwnersCats();
+            } else {
+                $('#approveDiv').css('display', 'block')
+                }
+            }, 1000)
+             })
+
+            </script>
+
+        <footer class="fixed-bottom" align="right">
+            <p>©copyright Sneicode 2020</p>
+        </footer>
+
+
+    </body>
+
+    <script src="assets/contractInteract/index.js"></script>
+    <script src="assets/js/colors.js"></script>
+    <script src="assets/js/SingleCat/render.js"></script>
+    <script src="assets/js/SingleCat/config.js"></script>
+    <script src="assets/js/navigation.js"></script>
+
+
+</html>
