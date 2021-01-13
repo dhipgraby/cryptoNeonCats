@@ -30,13 +30,11 @@ contract NeonCatMarketplace is Ownable, INeonCatMarketplace {
         _catContract = Catscontract(_catContractAddress);
     }
     
-    
-
     function getOffer(uint256 _tokenId) external view returns ( address seller, uint256 price, uint256 index, uint256 tokenId, bool active ) 
     {    
-        Offer storage offer = tokenIdToOffer[_tokenId];
+        Offer storage current_offer = tokenIdToOffer[_tokenId];
 
-        return (offer.seller, offer.price, offer.index, offer.tokenId, offer.active);
+        return (current_offer.seller, current_offer.price, current_offer.index, current_offer.tokenId, current_offer.active);
     }
 
     function getAllTokenOnSale() external view returns(uint256[] memory listOfOffers){
@@ -57,8 +55,7 @@ contract NeonCatMarketplace is Ownable, INeonCatMarketplace {
                 }
              
                return result;
-            }
-            
+            }            
     }     
 
     function _ownsCat(address _address, uint256 _tokenId) internal view returns (bool) {
@@ -67,12 +64,12 @@ contract NeonCatMarketplace is Ownable, INeonCatMarketplace {
 
     function setOffer(uint256 _price, uint256 _tokenId) external {
         require(_ownsCat(msg.sender, _tokenId), "your are not the owner of that Cat");
-        require(tokenIdToOffer[_tokenId].active == false, "You can't sell twice the same offer"); // what is the argument for "twice"??
+        require(tokenIdToOffer[_tokenId].active == false, "This cat is already on sale"); // what is the argument for "twice"??
         // the token must be "active" for it to be sold, where is this checked?¿ this checks for active to be false ?¿?¿?¿?
         //why isn't he checking if the offer is active? 
         require(_catContract.isApprovedForAll(msg.sender, address(this)), "Contract needs to be approved to transfer the Cat");
         
-        Offer memory _offer = Offer({
+        Offer memory current_offer = Offer({
             seller: msg.sender,
             price: _price,
             index: offers.length,
@@ -80,15 +77,15 @@ contract NeonCatMarketplace is Ownable, INeonCatMarketplace {
             active: true
         });
 
-        tokenIdToOffer[_tokenId] = _offer;
-        offers.push(_offer); 
+        tokenIdToOffer[_tokenId] = current_offer;
+        offers.push(current_offer); 
 
         emit MarketTransaction("Create offer", msg.sender, _tokenId);
     }
 
     function removeOffer(uint256 _tokenId) public {
-        Offer memory offer = tokenIdToOffer[_tokenId];
-        require(offer.seller == msg.sender, "You are not the seller of that kitty");
+        Offer memory current_offer = tokenIdToOffer[_tokenId];
+        require(current_offer.seller == msg.sender, "You are not the seller of that kitty");
         
         delete tokenIdToOffer[_tokenId];
         offers[tokenIdToOffer[_tokenId].index].active = false;
@@ -97,21 +94,21 @@ contract NeonCatMarketplace is Ownable, INeonCatMarketplace {
     }
 
     function buyCat(uint256 _tokenId) external payable{
-        Offer memory offer = tokenIdToOffer[_tokenId];
-        require(msg.value == offer.price, "The price is incorrect");
+        Offer memory current_offer = tokenIdToOffer[_tokenId];
+        require(msg.value == current_offer.price, "The price is incorrect");
         require(tokenIdToOffer[_tokenId].active == true, "Presently no active offer for this Cat");
 
         // Important: delete the Cat from the mapping BEFORE paying out to prevent reentry attack
         delete tokenIdToOffer[_tokenId];
-        offers[offer.index].active = false;
+        offers[current_offer.index].active = false;
 
         // Transfer the funds to the seller
-        if(offer.price > 0) {
-            offer.seller.transfer(offer.price);
+        if(current_offer.price > 0) {
+            current_offer.seller.transfer(current_offer.price);
         }
 
         // Transfer ownership to the new owner
-        _catContract.transferFrom(offer.seller, msg.sender, _tokenId);
+        _catContract.transferFrom(current_offer.seller, msg.sender, _tokenId);
 
         emit MarketTransaction("Buy", msg.sender, _tokenId);
     }

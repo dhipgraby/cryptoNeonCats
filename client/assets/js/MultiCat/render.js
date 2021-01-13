@@ -36,8 +36,6 @@ function renderCat(dna, id){
     animationVariation(dna.animation, id)
 }
 
-//83 04 7 73 93 3 99 43 4 - 444220853261843
-
 function catDna(dnaStr){
     var dna = {
         //Colors
@@ -55,7 +53,8 @@ function catDna(dnaStr){
     return dna
 }
 
-
+// renders the html code of the relevant catId into the catBox container for the pages: 
+// catalogue.html, marketplace.html
 function catBox(id, onclick) {
 
     var catDiv = `<div class="col cat-container pointer" id="`+ id +`" onclick="` + onclick + `" id="`+ id + `">
@@ -174,12 +173,6 @@ function catBox(id, onclick) {
             </div>`
 
     $('#catsDiv').append(catDiv)
-
-    /*function catToMarketplace(id){
-        id = $('#xxx').val()
-    }
-    */
-
 
 }
 

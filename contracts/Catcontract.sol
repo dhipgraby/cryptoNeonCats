@@ -141,7 +141,6 @@ contract Catscontract is IERC721, Ownable {
         uint256 generation
     )
     {        
-        
         //Neoncat storage neoncat = neoncats[_tokenId];
         return(neoncats[_tokenId].genes, neoncats[_tokenId].birthTime, neoncats[_tokenId].mumId, neoncats[_tokenId].dadId, neoncats[_tokenId].generation);
     }

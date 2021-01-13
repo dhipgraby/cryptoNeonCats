@@ -1,3 +1,25 @@
+$('#breedButton').click(async () => {
+    let mumId = $('#selectedMum').val()
+    let dadId = $('#selectedDad').val()
+    if(empty(mumId) || empty(dadId)) {
+        alert("cat ID(s) missing, please select a mother and father cat for breeding")
+        return false
+    }
+
+    await contract.methods.breed(dadId, mumId).send({}, function(error, txHash){
+            
+        if(error)
+            console.log(error);
+        else {
+            console.log(txHash);
+        // added a timeout of 5 seconds to make breeding more realistic
+        // need to add some gimmick to show breeding is in process
+        setTimeout (() => { showNewCat(); }, 5000);
+
+        }
+    })
+})
+
 // female by default is "false"
   var gender = false;
 
@@ -15,6 +37,7 @@
       function setDad(){
       gender = true;
       }
+
 
       function appendBreed(dna, generation, id, onclick) {
         //1 return DNA cat into readable string
@@ -39,7 +62,8 @@
             $('#hereBelow').css('display', 'none')
             $('#congrats').css('display', 'block')
     }   
-
+    // renders the relevant catId in html into the catBreedBox for it to appear on the 
+    // breeding.html and catDetails.html page
     function catBreedBox(id, onclick) {
 
       var catDiv = `<div class="col cat-container pointer" onclick="` + onclick + `" id="`+ id + `">

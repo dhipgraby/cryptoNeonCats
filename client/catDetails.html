@@ -42,10 +42,7 @@
                             <a class="nav-link" href="breeding.html">Breeding</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="catDetails.html">CatDetails</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="marketplace.html">Buy&Sell Cats</a>
+                            <a class="nav-link" href="marketplace.html">Marketplace</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="info.html">Info</a>
@@ -58,7 +55,7 @@
         <div class="container p-5" style="margin-top: 5vh; margin-bottom: 10vh;">
             <div align="center">
             <h1 class="c-white">CatDetails</h1>
-            <p class="c-white">Select the cat you want to sell</p>
+            <p class="c-white">Define your offer for the cat to be sold on the marketplace</p>
         </div>
 
         <div class="catHeader">
@@ -73,16 +70,16 @@
         <div class="container middleBox mt-5">
             <div id="catDNA" align="center"></div>
             <br>
-            <div class="hidden" align="center" id="buyBox"> <!--class="hidden" -->
+            <div align="center" id="buyBox"> <!--class="hidden" -->
             <div class="btn-group">
                 <button class="btn btn-light btn-lg light-b-shadow" id="buyBtn"><b>Buy this NeonCat</b></button>
                 <button class="btn btn-light btn-lg ml-2 light-b-shadow" id="priceBtn"></button>
             </div>
             <br>
-        </div>
+        </div
 
         </div>
-        <div class="hidden row justify-content-center" align="center" id="sellBox"> <!--class="hidden" -->
+        <div class="row justify-content-center" align="center" id="sellBox"> <!--class="hidden" -->
             <div class="col-lg-2 p-1">
                 <button class="btn btn-warning" id="sellBtn"><b>Sell this NeonCat</b></button>
             </div>
@@ -93,7 +90,7 @@
                     <span class="input-group-text" id="basic-addon2"><b>ETH</b></span>
                 </div>
             </div>
-            <div class="col-lg-2 p-1 hidden" id="cancelBox"> <!--class="hidden" -->
+            <div class="col-lg-2 p-1" id="cancelBox"> <!--class="hidden" -->
                 <button class="btn btn-danger" id="cancelBtn"><b class="t-no-wrap">Cancel offer</b></button>
             </div>
         </div>
@@ -110,7 +107,7 @@
 
     <script>
         $(document).ready(
-    setTimeout(() => {
+        setTimeout(() => {
         var params = get_variables();
         /*if(params.length < 1){
             window.location.href="/client/catalogue.html"
@@ -127,6 +124,9 @@
     <script src="assets/js/MultiCat/config.js"></script>
     <script src="assets/js/navigation.js"></script>
     <script src="assets/js/breeding/breeding.js"></script>
+    <script src="assets/contractInteract/catGetters.js"></script>
+    <script src="assets/contractInteract/helpers.js"></script>
+    <script src="assets/contractInteract/marketplace.js"></script>
 
 
 </html>
