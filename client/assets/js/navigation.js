@@ -15,9 +15,7 @@ if(catColors.hasClass("hidden")){
 
     catAttributes.addClass("hidden")
     attributesTab.removeClass("active")      
-
   }
-
 }
 
 function showCatAttributes(){
@@ -29,12 +27,6 @@ function showCatAttributes(){
 
     catColors.addClass("hidden")
     colorsTab.removeClass("active")         
-
   }
-
 }
 
-/* function gotoCatDetails(){
-
-}
-*/

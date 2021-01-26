@@ -1,3 +1,21 @@
+#panelHandler {
+    transition: 1s;
+    opacity: 0;
+}
+
+.acc-btn {
+    opacity: 0;
+    transition: 1.2s;
+}
+
+.result-box {
+    margin  : 10px;
+    position: fixed;
+    bottom  : 10px;
+    z-index : 2000;
+    right   : 10px;
+  }
+
 .showUp {
     margin-top: 2vh;
     margin-bottom: 2vh; 
@@ -11,9 +29,8 @@
 }
 
 .notification {
-    margin-top: 5vh; 
-    margin-bottom: 10vh; 
-    display: none;
+    margin-top: 15px; 
+    width: fit-content;
 }
 
 
@@ -78,7 +95,7 @@
 
 .middleBox {
     margin-top: 80px;
-    margin-bottom: 120px;
+    margin-bottom: 60px;
 }
 
 footer {

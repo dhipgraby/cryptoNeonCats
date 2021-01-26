@@ -1,59 +1,33 @@
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CatDetails </title>
-  <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <script src="assets/bootstrap/js/popper.js"></script>
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  
-  <script src="assets/contractInteract/web3.min.js"></script>
-  <script src="assets/contractInteract/abi.js"></script>
-  <script src="assets/contractInteract/index.js"></script>  
-  
-  <link rel="stylesheet" href="assets/css/animations.css">
-  <link rel="stylesheet" href="assets/css/mystyle.css">
-  <link rel="stylesheet" href="assets/css/cats.css">
-  <link rel="stylesheet" href="assets/css/colors.css">
-  <link rel="stylesheet" href="assets/css/frontend.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatDetails </title>
+    <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <script src="assets/bootstrap/js/popper.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="assets/contractInteract/web3.min.js"></script>
+    <script src="assets/contractInteract/abi.js"></script>
+    <script src="assets/contractInteract/index.js"></script>
+
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/mystyle.css">
+    <link rel="stylesheet" href="assets/css/cats.css">
+    <link rel="stylesheet" href="assets/css/colors.css">
+    <link rel="stylesheet" href="assets/css/frontend.css">
 </head>
-  <body>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" ><img src="assets/img/logo2.png" style="width: 10vw"><img src="assets/img/logo.png" style="width: 7vw"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="factory.html">NeonCat Factory</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="catalogue.html">Catalogue</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="breeding.html">Breeding</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="marketplace.html">Marketplace</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="info.html">Info</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<body>
 
-        <div class="container p-5" style="margin-top: 5vh; margin-bottom: 10vh;">
-            <div align="center">
+    <!-- Navigation -->
+    <div id="navMenu">
+    </div>
+
+    <div class="container p-5" style="margin-top: 5vh; margin-bottom: 10vh;">
+        <div align="center">
             <h1 class="c-white">CatDetails</h1>
             <p class="c-white">Define your offer for the cat to be sold on the marketplace</p>
         </div>
@@ -65,33 +39,67 @@
             </div>
         </div>
 
-        
 
-        <div class="container middleBox mt-5">
-            <div id="catDNA" align="center"></div>
-            <br>
-            <div align="center" id="buyBox"> <!--class="hidden" -->
-            <div class="btn-group">
-                <button class="btn btn-light btn-lg light-b-shadow" id="buyBtn"><b>Buy this NeonCat</b></button>
-                <button class="btn btn-light btn-lg ml-2 light-b-shadow" id="priceBtn"></button>
-            </div>
-            <br>
-        </div
-
-        </div>
-        <div class="row justify-content-center" align="center" id="sellBox"> <!--class="hidden" -->
-            <div class="col-lg-2 p-1">
-                <button class="btn btn-warning" id="sellBtn"><b>Sell this NeonCat</b></button>
-            </div>
-
-            <div class="col-lg-2 p1 input-group">
-                <input type="number" class="form-control" id="catPrice" placeholder="Price in ether">
-                <div class="input-group-append">
-                    <span class="input-group-text" id="basic-addon2"><b>ETH</b></span>
+        <div id="panelHandler" align="center">
+            <!-- APPROVE BOX -->
+            <div class="notification" id="approveDiv" align="center">
+                <div class="alert alert-info"><b>Important Note:</b></div>
+                <div align="center" class="card shadow p-4">
+                    <p class="c-black">In order to sell NeonCats you need to facilitate approval to the marketplace <br>
+                    contract so it can sell the selected NeonCats in your name. <br>
+                    Whithout this approval you can't sell any cats. <br>
+                    To continue please click the button below </p>
+                    <div class="container">
+                        <div class="btn-group">
+                            <button class="btn btn-success btn-sm light-b-shadow" id="approveButton" onclick="Approve()"><b>Approve</b></button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-2 p-1" id="cancelBox"> <!--class="hidden" -->
-                <button class="btn btn-danger" id="cancelBtn"><b class="t-no-wrap">Cancel offer</b></button>
+
+            <!-- BUY BOX -->
+            <div class="container middleBox mt-5">
+                <div id="catDNA" align="center"></div>
+                <div align="center" id="buyBox" class="hidden">
+                    <div class="btn-group">
+                        <button class="btn btn-light btn-lg light-b-shadow" id="buyBtn" onclick="buyNeonCat()"><b>Buy
+                                this
+                                NeonCat</b></button>
+                        <button class="btn btn-light btn-lg ml-2 light-b-shadow" id="priceBtn"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SELL BOX -->
+            <div class="row justify-content-center hidden" align="center" id="sellBox" >
+                <div class="col-lg-12 p-1">
+
+                    <table>
+                        <tr>
+                            <td>
+                                <button class="btn btn-warning light-b-shadow" id="sellBtn"
+                                    onclick="createOffer()"><b>Sell
+                                        this NeonCat</b>
+                                </button>
+                            </td>
+                            <td class="pl-2">
+
+                                <div class="input-group-append">
+                                    <input type="text" class="form-control light-b-shadow" id="catPrice"
+                                        placeholder="Price in ether">
+                                    <span class="input-group-text light-b-shadow" id="basic-addon2"><b>ETH</b></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- CANCEL BOX -->
+            <div class="col-lg-12 p-1 hidden" id="cancelBox" align="center">
+                <button class="btn btn-danger light-b-shadow" id="cancelBtn" onclick="cancelOffer()"><b class="t-no-wrap">Cancel
+                        offer</b></button>
             </div>
         </div>
         <div id="message" align="center"></div>
@@ -103,30 +111,38 @@
             <p>©copyright Sneicode 2020</p>
         </footer>
 
-    </body>
+</body>
 
-    <script>
-        $(document).ready(
+<script>
+    $(document).ready(
         setTimeout(() => {
-        var params = get_variables();
-        /*if(params.length < 1){
-            window.location.href="/client/catalogue.html"
-        }*/
-        var catId = params.catId;
-        getSingleCat(catId);
-    }, 1000)
+            var params = get_variables();
+            /*if(params.length < 1){
+                window.location.href="/client/catalogue.html"
+            }*/
+            var catId = params.catId;
+            if (catId === undefined || empty(catId)) {
+                alert_msg("invalid CatId, redirecting to home ...", "danger")
+                setTimeout(() => {
+                    window.location.href = './'
+                }, 3000)
+            }
+            getSingleCat(catId);
+            panelHandler(catId);
+        }, 1000)
     )
-    </script>
+</script>
 
-    <script src="assets/contractInteract/index.js"></script>  
-    <script src="assets/js/colors.js"></script>
-    <script src="assets/js/MultiCat/render.js"></script>
-    <script src="assets/js/MultiCat/config.js"></script>
-    <script src="assets/js/navigation.js"></script>
-    <script src="assets/js/breeding/breeding.js"></script>
-    <script src="assets/contractInteract/catGetters.js"></script>
-    <script src="assets/contractInteract/helpers.js"></script>
-    <script src="assets/contractInteract/marketplace.js"></script>
-
+<script src="assets/contractInteract/index.js"></script>
+<script src="assets/js/colors.js"></script>
+<script src="assets/js/MultiCat/render.js"></script>
+<script src="assets/js/MultiCat/config.js"></script>
+<script src="assets/js/navigation.js"></script>
+<script src="assets/js/breeding/breeding.js"></script>
+<script src="assets/contractInteract/catGetters.js"></script>
+<script src="assets/contractInteract/helpers.js"></script>
+<script src="assets/contractInteract/marketplace.js"></script>
+<script src="assets/js/components/render.js"></script>
+<script src="assets/js/components/components.js"></script>
 
 </html>

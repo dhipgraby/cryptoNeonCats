@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/contractInteract/web3.min.js"></script>
   <script src="assets/contractInteract/abi.js"></script>
-  
+
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/cats.css">
   <link rel="stylesheet" href="assets/css/mystyle.css">
@@ -17,78 +18,46 @@
   <link rel="stylesheet" href="assets/css/frontend.css">
 
 </head>
-  <body>
-    
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-      <div class="container-fluid">
-          <a class="navbar-brand" ><img src="assets/img/logo2.png" style="width: 10vw"><img src="assets/img/logo.png" style="width: 7vw"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="factory.html">NeonCat Factory</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="catalogue.html">Catalogue</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="breeding.html">Breeding</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="marketplace.html">Marketplace</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="info.html">Info</a>
-                  </li>
-              </ul>
-          </div>
-      </div>
-  </nav>
 
-    
+<body>
 
-    <div class="container p-5" style="margin-top: 2vh; margin-bottom: 2vh;">
-        <div align="center">
-        <h1 class="c-white">Breeding</h1>
-        <p class="c-white">Here is where you can breed new NeonCats</p>
+  <!-- Navigation -->
+  <div id="navMenu">
+  </div>
+
+
+
+  <div class="container p-5" style="margin-top: 2vh; margin-bottom: 2vh;">
+    <div align="center">
+      <h1 class="c-white">Breeding</h1>
+      <p class="c-white">Here is where you can breed new NeonCats</p>
     </div>
 
     <br><br><br>
 
-    
+
     <!-- Button trigger modal -->
-<div class="container"></div>
+    <div class="container"></div>
     <div align="center"></div>
-      <div class="btn-group w-100">
-        <button type="button" 
-        class="btn btn-primary m-5 light-b-shadow" 
-        data-toggle="modal" 
-        data-target="#catModal"
+    <div class="btn-group w-100">
+      <button type="button" class="btn btn-primary m-5 light-b-shadow" data-toggle="modal" data-target="#catModal"
         onclick="setMum()">
-            Choose the Mother Cat
-        </button>
-        <button type="button" 
-        class="btn btn-primary m-5 light-b-shadow" 
-        data-toggle="modal" 
-        data-target="#catModal"
+        Choose the Mother Cat
+      </button>
+      <button type="button" class="btn btn-primary m-5 light-b-shadow" data-toggle="modal" data-target="#catModal"
         onclick="setDad()">
-            Choose the Father Cat
-        </button>
-      </div>
-      <div class="input-group p-3">
-        <input type="number" id="selectedMum" class="form-control " disabled="true">     
-        <input type="number" id="selectedDad" class="form-control ml-2 " disabled="true">      
-      </div>
+        Choose the Father Cat
+      </button>
     </div>
-  
+    <div class="input-group p-3">
+      <input type="number" id="selectedMum" class="form-control d-none" disabled="true">
+      <input type="number" id="selectedDad" class="form-control ml-2 d-none" disabled="true">
+    </div>
+  </div>
+
   <!-- Modal -->
-  <div class="modal fade" id="catModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="catModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -98,8 +67,8 @@
           </button>
         </div>
         <div class="modal-body">
-            <div class="row col-xl-12 justify-content-center ml-1" id="catsDiv">
-            </div>
+          <div class="row col-xl-12 justify-content-center ml-1" id="catsDiv">
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -109,51 +78,54 @@
     </div>
   </div>
 
-    
+
   <br><br><br>
   <div class="showUp" id="hereBelow">
-    <p align="center">Once you're happy with your choices click the breed button. 
-      </p>
-    
+    <p align="center">Once you're happy with your choices click the breed button.
+    </p>
+
     <div class="breedButton" align="center">
-        <button type="button" class="btn btn-primary btn-lg light-b-shadow" id="breedButton">Breed</button>
+      <button type="button" class="btn btn-primary btn-lg light-b-shadow" id="breedButton">Breed</button>
     </div>
     <br>
     <p align="center">Your new NeonCat will show up here below !
-      </p>
-    </div>
+    </p>
+  </div>
 
-     <!-- show div only once cat breeding is complete-->
-    <div class="newBreed" id="congrats" >
-      <h2 align="center"><b>C O N G R A T U L A T I O N S !!!</b></h2>
-        <h3 align="center">Here is your newly born NeonCat <br>Looking fabulous !!!<br> 
-        </h3>
-      <h4 align="center">We have added it to your catalogue - check it out <a style="color:deepskyblue" href="catalogue.html" target="blank">here</a>
-      </h4>
-    </div>
-    <div class="row col-xl-12 justify-content-center ml-1" id="catsBreedDiv">
-    </div>
-<br>
-    <footer  align="right">
-        <p>©copyright Sneicode 2020</p>
-    </footer>
-    
-    <script>
+  <!-- show div only once cat breeding is complete-->
+  <div class="newBreed" id="congrats">
+    <h2 align="center"><b>C O N G R A T U L A T I O N S !!!</b></h2>
+    <h3 align="center">Here is your newly born NeonCat <br>Looking fabulous !!!<br>
+    </h3>
+    <h4 align="center">We have added it to your catalogue - check it out <a style="color:deepskyblue"
+        href="catalogue.html" target="blank">here</a>
+    </h4>
+  </div>
+  <div class="row col-xl-12 justify-content-center ml-1" id="catsBreedDiv">
+  </div>
+  <br>
+  <footer align="right">
+    <p>©copyright Sneicode 2020</p>
+  </footer>
+
+  <script>
     $(document).ready(
       setTimeout(() => {
         var onclick = "selectCat(this.id)"
-          getCats(onclick)
+        getCats(onclick)
       }, 5000)
-      )
-      </script>  
+    )
+  </script>
 
 
 
-    <script src="assets/contractInteract/index.js"></script>  
-    <script src="assets/js/colors.js"></script>
-    <script src="assets/js/navigation.js"></script>
-    <script src="assets/js/MultiCat/render.js"></script>
-    <script src="assets/js/MultiCat/config.js"></script>
-    <script src="assets/js/breeding/breeding.js"></script>
-    <script src="assets/contractInteract/catGetters.js"></script>
-    <script src="assets/contractInteract/helpers.js"></script>
+  <script src="assets/contractInteract/index.js"></script>
+  <script src="assets/js/colors.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/MultiCat/render.js"></script>
+  <script src="assets/js/MultiCat/config.js"></script>
+  <script src="assets/js/breeding/breeding.js"></script>
+  <script src="assets/contractInteract/catGetters.js"></script>
+  <script src="assets/contractInteract/helpers.js"></script>
+  <script src="assets/js/components/render.js"></script>
+  <script src="assets/js/components/components.js"></script>

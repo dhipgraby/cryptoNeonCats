@@ -104,7 +104,8 @@ function eyeVariation(num, id){
 
 function pupilColor(code, id) {
     var color = colors[code]
-    $('#pupL-off' + id + ', #pupR-off' + id).css('background', '#' + color)
+    $('#pupL-off' + id).css('background', '#' + color)
+    $('#pupR-off' + id).css('background', '#' + color)
 }
 
 function earsColor(code, id) {

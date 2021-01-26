@@ -15,7 +15,7 @@ contract NeonCatMarketplace is Ownable, INeonCatMarketplace {
         bool active;
     }
 
-        Offer[] offers;
+        Offer[] public offers;
 
         mapping(uint256 => Offer) tokenIdToOffer;
 
@@ -29,14 +29,13 @@ contract NeonCatMarketplace is Ownable, INeonCatMarketplace {
     function setNeonCatContract(address _catContractAddress) public onlyOwner {
         _catContract = Catscontract(_catContractAddress);
     }
-    
-    function getOffer(uint256 _tokenId) external view returns ( address seller, uint256 price, uint256 index, uint256 tokenId, bool active ) 
-    {    
+    // get struct details of a specific tokenId on offer
+    function getOffer(uint256 _tokenId) external view returns ( address seller, uint256 price, uint256 index, uint256 tokenId, bool active ) {    
         Offer storage current_offer = tokenIdToOffer[_tokenId];
 
         return (current_offer.seller, current_offer.price, current_offer.index, current_offer.tokenId, current_offer.active);
     }
-
+    // get all tokens that are on offer regardless of owner
     function getAllTokenOnSale() external view returns(uint256[] memory listOfOffers){
         uint256 totalOffers = offers.length;
         
@@ -64,9 +63,10 @@ contract NeonCatMarketplace is Ownable, INeonCatMarketplace {
 
     function setOffer(uint256 _price, uint256 _tokenId) external {
         require(_ownsCat(msg.sender, _tokenId), "your are not the owner of that Cat");
-        require(tokenIdToOffer[_tokenId].active == false, "This cat is already on sale"); // what is the argument for "twice"??
-        // the token must be "active" for it to be sold, where is this checked?¿ this checks for active to be false ?¿?¿?¿?
-        //why isn't he checking if the offer is active? 
+        // check if tokenId is already on offer and if so, throw an error
+        require(tokenIdToOffer[_tokenId].active == false, "This cat is already on sale"); 
+        // seller needs to have provided approval for specific tokenId or given operator approval for all Ids of this owner
+        // bare in mind that case of individual token approval is not included here
         require(_catContract.isApprovedForAll(msg.sender, address(this)), "Contract needs to be approved to transfer the Cat");
         
         Offer memory current_offer = Offer({
@@ -80,7 +80,7 @@ contract NeonCatMarketplace is Ownable, INeonCatMarketplace {
         tokenIdToOffer[_tokenId] = current_offer;
         offers.push(current_offer); 
 
-        emit MarketTransaction("Create offer", msg.sender, _tokenId);
+        emit MarketTransaction("Offer created", msg.sender, _tokenId);
     }
 
     function removeOffer(uint256 _tokenId) public {

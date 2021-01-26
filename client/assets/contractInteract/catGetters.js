@@ -1,38 +1,38 @@
 async function getOwnersCats() {
     var arrayId = await marketplaceContract.methods.getAllTokenOnSale().call();
+    var neonCat
     console.log(arrayId);
     for (i = 0; i < arrayId.length; i++) {
-        if(arrayId[i] != 0){
-            appendCat(arrayId[i])
-        }            
+        if (arrayId[i] != 0) {
+            neonCat = await contract.methods.getCat(arrayId[i]).call();
+            appendCat(neonCat[0], neonCat["generation"], arrayId[i], "gotoCatDetails(this.id)")
+            console.log(arrayId[i]);
+        }
     }
 }
 
-async function getCats(onclick){
-    var arrayId;
-    var neonCat; 
-    try{
+async function getCats(onclick) {
+    var neonCat;
+    try {
         //get array of IDs
-        arrayId = await contract.methods.getNeonCatsPerOwner(user).call();
-        console.log(arrayId);
-    }   catch(err){
+        var arrayId = await contract.methods.getNeonCatsPerOwner(user).call();
+        console.log(arrayId)
+        for (i = 0; i < arrayId.length; i++) {
+            neonCat = await contract.methods.getCat(arrayId[i]).call();
+            appendCat(neonCat[0], neonCat["generation"], arrayId[i], onclick)
+        }
+    } catch (err) {
         console.log(err);
     }
     // for each of the cat that are returned by the loop, the corresponding cat is 
     // rendered on the Cataloque page via appendCat (see MultiCat/render.js)
-    for (i = 0; i < arrayId.length; i++){
-        neonCat = await contract.methods.getCat(arrayId[i]).call();
-        appendCat(neonCat[0], neonCat["generation"], arrayId[i], onclick)
-    }
-    console.log(neonCat);
-}  
-
-async function getSingleCat(id){
-    var neonCat = await contract.methods.getCat(id).call();
-    console.log(neonCat);
-    var dna = neonCat.genes;
-    console.log(dna);
     
+}
+
+async function getSingleCat(id) {
+    var neonCat = await contract.methods.getCat(id).call();
+    var dna = neonCat.genes;
+
     appendBreed(dna, neonCat["generation"], id, "gotoCatDetails(this.id)");
 }
 
@@ -42,16 +42,28 @@ async function getSingleCat(id){
 async function showNewCat() {
     // define array of cats from owner like in getCats-function above
     var arrayId;
-    try{
+    try {
         //get array of IDs
         arrayId = await contract.methods.getNeonCatsPerOwner(user).call();
         console.log(arrayId);
-    }   catch(err){
+    } catch (err) {
         console.log(err);
     }
-        // isolate/get last number of array
-        var newCatId = arrayId[arrayId.length -1];
-        console.log(newCatId);
-        var id = newCatId;
-        getSingleCat(id);
+    // isolate/get last number of array
+    var newCatId = arrayId[arrayId.length - 1];
+    console.log(newCatId);
+    var id = newCatId;
+    getSingleCat(id);
+}
+
+// get offer from marketplace, return false if no offer, otherwise return offer details
+async function getOffer(catId) {
+    try{
+        var catDetails = await marketplaceContract.methods.getOffer(catId).call()
+        return catDetails
+    } 
+    catch(err) {
+        alert_msg("something went wrong, please reload and try again", "danger")
+        console.log(err)
+    }   
 }

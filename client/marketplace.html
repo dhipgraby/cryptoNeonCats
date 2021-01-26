@@ -23,41 +23,15 @@
 
 
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" ><img src="assets/img/logo2.png" style="width: 10vw"><img src="assets/img/logo.png" style="width: 7vw"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="factory.html">NeonCat Factory</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="catalogue.html">Catalogue</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="breeding.html">Breeding</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="marketplace.html">Marketplace</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="info.html">Info</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <div id="navMenu">
+    </div>
+
+        
 
         <div class="container p-5" style="margin-top: 5vh; margin-bottom: 10vh;">
             <div align="center">
-            <h1 class="c-white">Buy & Sell</h1>
-            <p class="c-white">This is the marketplace for buying and selling NeonCats</p>
+            <h1 class="c-white">Marketplace</h1>
+            <p class="c-white">If you're interested in buying a cat, simply click on it!</p>
         </div>
 
         <div class="notification" id="approveDiv">
@@ -74,20 +48,16 @@
                 </div>
             </div>
         </div>
+        <br>
 
-        
+        <div id="catsDiv" class="row justify-content-center">
+
+        </div>
 
             <script>
             
             $(document).ready( function(){
-                setTimeout (async ()  =>  {
-                var isMarketplaceOperator = await contract.methods.isApprovedForAll(user, marketplaceAddress).call();
-            if (!isMarketplaceOperator){
                 getOwnersCats();
-            } else {
-                $('#approveDiv').css('display', 'block')
-                }
-            }, 1000)
              })
 
             </script>
@@ -99,11 +69,14 @@
 
     </body>
 
-    <script src="assets/contractInteract/index.js"></script>
     <script src="assets/js/colors.js"></script>
-    <script src="assets/js/SingleCat/render.js"></script>
-    <script src="assets/js/SingleCat/config.js"></script>
+    <script src="assets/js/MultiCat/render.js"></script>
+    <script src="assets/js/MultiCat/config.js"></script>
     <script src="assets/js/navigation.js"></script>
-
+    <script src="assets/contractInteract/marketplace.js"></script>
+    <script src="assets/contractInteract/helpers.js"></script>
+    <script src="assets/contractInteract/catGetters.js"></script>
+    <script src="assets/js/components/render.js"></script>
+    <script src="assets/js/components/components.js"></script>
 
 </html>
