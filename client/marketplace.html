@@ -21,46 +21,30 @@
   <body>
 
 
-
         <!-- Navigation -->
     <div id="navMenu">
     </div>
 
         
-
         <div class="container p-5" style="margin-top: 5vh; margin-bottom: 10vh;">
             <div align="center">
             <h1 class="c-white">Marketplace</h1>
             <p class="c-white">If you're interested in buying a cat, simply click on it!</p>
         </div>
 
-        <div class="notification" id="approveDiv">
-            <div align="center">
-                <h3 class="c-white"><b>Important Note:</b></h3>
-                <p class="c-white">In order to buy and sell NeonCats you need to facilitate approval to the marketplace <br>
-                contract so it can buy and sell the selected NeonCats in your name. <br>
-                Whithout this approval you can't buy nor sell any cats. <br>
-                To continue please click the button below </p>
-                <div class="container">
-                    <div class="btn-group">
-                        <button class="btn btn-success btn-sm light-b-shadow" id="approveButton" onclick="Approve()"><b>Approve</b></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-
         <div id="catsDiv" class="row justify-content-center">
 
         </div>
 
-            <script>
-            
-            $(document).ready( function(){
-                getOwnersCats();
-             })
+        <script>
+            $(document).ready(
+                    setTimeout(() => {
+                        getOwnersCats()
+                    }, 1000)
+                )
 
-            </script>
+
+        </script>
 
         <footer class="fixed-bottom" align="right">
             <p>©copyright Sneicode 2020</p>

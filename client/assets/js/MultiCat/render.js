@@ -57,8 +57,9 @@ function catDna(dnaStr){
 // catalogue.html, marketplace.html
 function catBox(id, onclick) {
 
-    var catDiv = `<div class="col cat-container pointer" id="`+ id +`" onclick="` + onclick + `" id="`+ id + `">
-                <div class="featureBox catDiv">
+    var catDiv = `<div class="col cat-container pointer" onclick="` + onclick + `" id="`+ id + `">
+                <div class="cat-owner badge badge-danger" id="catOwner`+ id + `"></div>            
+                <div class="featureBox catDiv pb-2">
                 <div class="idDiv" id="catIdNumber`+ id + `"></div>
                     <div id="ears`+ id + `" class="cat__ear">
                         <div id="leftEar`+ id + `" class="cat__ear--left">

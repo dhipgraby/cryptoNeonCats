@@ -3,10 +3,23 @@ async function getOwnersCats() {
     var neonCat
     console.log(arrayId);
     for (i = 0; i < arrayId.length; i++) {
-        if (arrayId[i] != 0) {
-            neonCat = await contract.methods.getCat(arrayId[i]).call();
-            appendCat(neonCat[0], neonCat["generation"], arrayId[i], "gotoCatDetails(this.id)")
-            console.log(arrayId[i]);
+        var currentId = arrayId[i]
+        if (currentId != 0) {
+            neonCat = await contract.methods.getCat(currentId).call();
+            var catDetails = await getOffer(currentId)
+            console.log(catDetails);
+            appendCat(neonCat[0], neonCat["generation"], currentId, "gotoCatDetails(this.id)")
+
+            var priceBtn = `
+            <button class="btn btn-dark w-100 rounded-pill"> 
+            <h3 class="m-0">`+ getEth(catDetails.price) +  ` ETH</h3>
+            </button>`
+            $('#' + currentId).find(".featureBox").append(priceBtn)
+            if(user.toUpperCase() == catDetails.seller.toUpperCase()){
+                $('#catOwner' + currentId).html("is mine")
+            } else {
+                $('#catOwner' + currentId).html(shortAddr(catDetails.seller))
+            }
         }
     }
 }
