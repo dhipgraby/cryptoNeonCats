@@ -13,6 +13,7 @@ $('#breedButton').click(async () => {
         else {
             console.log(txHash);
         // added a timeout of 5 seconds to make breeding more realistic
+        // pending to add some visual effet (i.e. spinning little cat symbol) during the wait
         // need to add some gimmick to show breeding is in process
         setTimeout (() => { showNewCat(); }, 5000);
 

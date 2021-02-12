@@ -1,13 +1,11 @@
 async function getOwnersCats() {
     var arrayId = await marketplaceContract.methods.getAllTokenOnSale().call();
     var neonCat
-    console.log(arrayId);
     for (i = 0; i < arrayId.length; i++) {
         var currentId = arrayId[i]
         if (currentId != 0) {
             neonCat = await contract.methods.getCat(currentId).call();
             var catDetails = await getOffer(currentId)
-            console.log(catDetails);
             appendCat(neonCat[0], neonCat["generation"], currentId, "gotoCatDetails(this.id)")
 
             var priceBtn = `
@@ -24,12 +22,12 @@ async function getOwnersCats() {
     }
 }
 
+
 async function getCats(onclick) {
     var neonCat;
     try {
         //get array of IDs
         var arrayId = await contract.methods.getNeonCatsPerOwner(user).call();
-        console.log(arrayId)
         for (i = 0; i < arrayId.length; i++) {
             neonCat = await contract.methods.getCat(arrayId[i]).call();
             appendCat(neonCat[0], neonCat["generation"], arrayId[i], onclick)
@@ -58,13 +56,11 @@ async function showNewCat() {
     try {
         //get array of IDs
         arrayId = await contract.methods.getNeonCatsPerOwner(user).call();
-        console.log(arrayId);
     } catch (err) {
         console.log(err);
     }
     // isolate/get last number of array
     var newCatId = arrayId[arrayId.length - 1];
-    console.log(newCatId);
     var id = newCatId;
     getSingleCat(id);
 }

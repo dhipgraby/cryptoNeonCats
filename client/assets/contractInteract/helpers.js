@@ -13,7 +13,8 @@ function get_variables() {
 }
 
 function empty(str){
-    if(str.length < 1 || str === undefined || str == ""){
+    // str.length < 1 || 
+    if(str === undefined || str == ""){
         return true;
     }
     return false;
@@ -91,5 +92,22 @@ async function showUserInfo(){
 
 function numberFix(number) {
     return new Intl.NumberFormat('de-DE').format(number)
+}
+
+function catDna(dnaStr){
+    var dna = {
+        //Colors
+        "headColor" : dnaStr.substring(0, 2),
+        "mouthColor" : dnaStr.substring(2, 4),
+        "eyesShape" : dnaStr.substring(4, 5),
+        "pupilColor" : dnaStr.substring(5, 7),
+        "earsColor" : dnaStr.substring(7, 9),
+        //Attributes
+        "decorationPattern" : dnaStr.substring(9, 10),
+        "decorationMidColor" : dnaStr.substring(10, 12),
+        "decorationSidesColor" : dnaStr.substring(12, 14),
+        "animation" : dnaStr.substring(14, 15)
+    }
+    return dna
 }
 

@@ -2,7 +2,7 @@
 var colors = Object.values(allColors())
 
 var defaultDNA = {
-    "headcolor" : 48,
+    "headColor" : 48,
     "mouthColor" : 83,
     "eyesShape" : 1,
     "pupilColor" : 11,
@@ -11,15 +11,27 @@ var defaultDNA = {
     "decorationPattern" : 1,
     "decorationMidColor" : 30,
     "decorationSidesColor" : 17,
-    "animation" : 1,
-    "lastNum" : 1
+    "animation" : 1
     }
 
 // when page load
-$( document ).ready(function() {
-
-    renderCat(defaultDNA)
+window.addEventListener('DOMContentLoaded', async (event) => {
+    setTimeout(()=> {
+        var params = get_variables();
+        var catId = params.catId;
+        if(empty(catId)){
+        renderCat(defaultDNA)
+        $('#createButton').attr("onclick", "createNewCat()")
+        } else {
+            loadCat(catId)
+            $('#createButton').attr("onclick", "updateCat()")
+        }
+    }, 1000);
+    
 });
+function updateCat(){
+    console.log("cat updated")
+}
 
 function randomDna(){
     // create a random DNA number with a fixed amount of 16 digits, remove decimals
@@ -34,8 +46,7 @@ function randomDna(){
         "decorationPattern" : Math.floor(Math.random() * 4) + 1,
         "decorationMidColor" : Math.floor(Math.random() * 88) + 10,
         "decorationSidesColor" : Math.floor(Math.random() * 88) + 10,
-        "animation" : Math.floor(Math.random() * 7) + 1,
-        //"lastNum" : dnaStr.substring(6, 7)
+        "animation" : Math.floor(Math.random() * 7) + 1
         }
         return dna
     }
@@ -62,8 +73,8 @@ function getDna(){
 }
 
 function renderCat(dna){
-    headColor(colors[dna.headcolor],dna.headcolor)
-    $('#bodycolor').val(dna.headcolor)
+    headColor(colors[dna.headColor],dna.headColor)
+    $('#bodycolor').val(dna.headColor)
 
     mouthColor(colors[dna.mouthColor],dna.mouthColor)
     $('#mouthcolor').val(dna.mouthColor)
@@ -99,7 +110,12 @@ $('#mouthcolor').change(()=>{
     var colorVal = $('#mouthcolor').val()
     mouthColor(colors[colorVal],colorVal)
 })
-$('#eyeshape').on("change",()=>{
+// error here? why is this jQuery line different from all other ones?
+// errored line said: $('#eyeshape').on("change",()=>{ - now changed to mimick other lines
+// description from jQuery says: on()	Attaches event handlers to elements (please explain)
+// correction worked, inform mentor then delete these comments.
+// pending: also have to check render.js in MultiCat!!
+$('#eyeshape').change(()=>{
     var shape = parseInt($('#eyeshape').val())
     eyeVariation(shape)
 })
@@ -129,6 +145,13 @@ $('#animation').change(()=>{
     animationVariation(animationVal)
 })
 
+async function loadCat(id){
+    var neonCat = await contract.methods.getCat(id).call();
+    var dna = catDna(neonCat.genes);
+    renderCat(dna);
+
+}
+
 /*
 // CLICK LISTENERS FOR HTML BUTTONS
 
@@ -137,6 +160,20 @@ $('#animation').change(()=>{
 $('#createButton').click(()=>{
     createCat();
 })    */
+
+async function createNewCat(){
+
+    var dnaStr = getDna().toString();
+    try{
+        await contract.methods.createCatGen0(dnaStr).send()
+        .on('receipt', function (receipt) {
+            alert_msg("Cat created successfully", "success")
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
+}
 
 // 2. default Cat
 $('#defaultButton').click(()=>{

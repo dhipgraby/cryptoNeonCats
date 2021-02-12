@@ -39,6 +39,11 @@
             </div>
         </div>
 
+        <div align="center">
+            <button class="btn btn-light light-b-shadow" id="changeCat" >
+                Change Cat
+            </button>
+        </div>
 
         <div id="panelHandler" align="center">
             <!-- APPROVE BOX -->
@@ -48,10 +53,13 @@
                     <p class="c-black">In order to sell NeonCats you need to facilitate approval to the marketplace <br>
                     contract so it can sell the selected NeonCats in your name. <br>
                     Whithout this approval you can't sell any cats. <br>
-                    To continue please click the button below </p>
+                    You can either approve all of your NeonCats for sale, or alternatively,<br>
+                    approve only the single NeonCat you have chosen above.<br><br>
+                    To continue please click one of the two options below </p>
                     <div class="container">
-                        <div class="btn-group">
-                            <button class="btn btn-success btn-sm light-b-shadow" id="approveButton" onclick="Approve()"><b>Approve</b></button>
+                        <div class="btn-group row">
+                            <button class="btn btn-success btn-sm light-b-shadow mr-5" id="approveButton1" onclick="approveAll()"><b>Approve All</b></button>
+                            <button class="btn btn-success btn-sm light-b-shadow" id="approveButton2" onclick="approveSingle()"><b>Approve Single</b></button>
                         </div>
                     </div>
                 </div>
@@ -105,6 +113,7 @@
         <div id="message" align="center"></div>
         <br>
         <div id="cattributes"></div>
+        
 
 
         <footer class="fixed-bottom" align="right">
@@ -124,11 +133,20 @@
             if (catId === undefined || empty(catId)) {
                 alert_msg("invalid CatId, redirecting to home ...", "danger")
                 setTimeout(() => {
-                    window.location.href = './'
                 }, 3000)
             }
             getSingleCat(catId);
             panelHandler(catId);
+            $('#changeCat').on("click", async () => {
+                // adding if statement here to segregate out the case that the cat is gen0 in which
+                // no changes will be allowed, if not gen0 proceed to window.location.href....
+                var neoncats = await contract.methods.getCat(catId).call(); // this returns an array of catId
+                if(neoncats.generation == "0"){ // query if gen0, and reject any changes if true
+                    alert_msg("sorry, gen0-NeonCats can't be modified", "danger")
+                } else { // proceed if not a gen0 cat
+                window.location.href = '/client/factory.html?catId=' + catId
+                }
+            })
         }, 1000)
     )
 </script>

@@ -22,14 +22,14 @@ function headColor(color,code) {
 }
 
 function mouthColor(color,code) {
-    $('.cat__mouth-contour, .cat__chest_inner, .cat__tail').css('background', '#' + color)  //This changes the color of the cat
+    $('.cat__mouth-contour, .cat__chest_inner, .cat__tail').css('background', '#' + color)  //This changes the mouth/belly/tail color of the cat
     $('#MouthLimit').css('background', '#' + color)
     $('#mouthcode').html('code: '+code) //This updates text of the badge next to the slider
     $('#dnamouth').html(code) //This updates the body color part of the DNA that is displayed below the cat
 }
 
 function eyeVariation(num) {
-
+    num = parseInt(num)
     $('#dnashape').html(num)
     switch (num) {
         case 1:
@@ -131,6 +131,7 @@ function earColor(color,code) {
 // 4 decoration types
 
 function decorationVariation(num) {
+    num = parseInt(num)
     $('#dnadecoration').html(num)
     switch (num) {
         case 1:
@@ -193,6 +194,7 @@ function decorationColorSides(color,code) {
 
 // Animation
 function animationVariation(num) {
+    num = parseInt(num)
     $('#dnaanimation').html(num)
     switch (num) {
         case 1:

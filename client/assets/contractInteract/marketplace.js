@@ -1,10 +1,21 @@
-async function Approve() {
+// adding individual approval to already existing setApprovealForAll function
+
+async function approveSingle() {
+    var params = get_variables();
+    var catId = params.catId
+    await contract.methods.approve(marketplaceAddress, catId).send()
+    .on('receipt', function (receipt) {
+        $('#approveDiv').css('display', 'none')
+        reloadPanel(catId);
+    })
+}
+
+async function approveAll() {
 
     await contract.methods.setApprovalForAll(marketplaceAddress, true).send()
         .on('receipt', function (receipt) {
-            console.log("tx done");
             $('#approveDiv').css('display', 'none')
-            var params = get_variables()
+            var params = get_variables() 
             var catId = params.catId
             reloadPanel(catId);
         })
@@ -24,16 +35,21 @@ async function panelHandler(catId) {
         $('#sellBox').addClass("hidden")       
         $('#buyBox').addClass("hidden")
         } else { 
-            var isMarketplaceOperator = await contract.methods.isApprovedForAll(user, marketplaceAddress).call();
-            if (isMarketplaceOperator){
+            var allApproved = await contract.methods.isApprovedForAll(user, marketplaceAddress).call();
+            var singleApproved = await contract.methods.getApproved(catId).call()
+            if (allApproved){
         // show "sell box"
         $('#approveDiv').addClass('hidden')
         $('#sellBox').removeClass("hidden")
         $('#cancelBox').addClass("hidden") 
         $('#buyBox').addClass("hidden")
             } else {
+                if(singleApproved.toUpperCase() == marketplaceAddress.toUpperCase()){
+                $('#approveDiv').addClass('hidden')
+                } else {
                 $('#approveDiv').removeClass('hidden')
                 }
+            }
         // if approveForAll ? continue : singleApprove ? continue : showApproveButton
         
             }
@@ -65,7 +81,6 @@ async function createOffer() {
         return false
     }
     var amount = getWei(price)
-    console.log(amount)
     try {
         await marketplaceContract.methods.setOffer(amount, catId).send()
             .on('receipt', function () {

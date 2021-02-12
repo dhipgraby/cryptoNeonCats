@@ -36,23 +36,6 @@ function renderCat(dna, id){
     animationVariation(dna.animation, id)
 }
 
-function catDna(dnaStr){
-    var dna = {
-        //Colors
-        "headColor" : dnaStr.substring(0, 2),
-        "mouthColor" : dnaStr.substring(2, 4),
-        "eyesShape" : dnaStr.substring(4, 5),
-        "pupilColor" : dnaStr.substring(5, 7),
-        "earsColor" : dnaStr.substring(7, 9),
-        //Attributes
-        "decorationPattern" : dnaStr.substring(9, 10),
-        "decorationMidColor" : dnaStr.substring(10, 12),
-        "decorationSidesColor" : dnaStr.substring(12, 14),
-        "animation" : dnaStr.substring(14, 15)
-    }
-    return dna
-}
-
 // renders the html code of the relevant catId into the catBox container for the pages: 
 // catalogue.html, marketplace.html
 function catBox(id, onclick) {

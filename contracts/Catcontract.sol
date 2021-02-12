@@ -24,6 +24,8 @@ contract Catscontract is IERC721, Ownable {
         uint32 mumId;
         uint32 dadId;
         uint16 generation;
+        //string catName; //pending to update formulas returning struct
+        // uint8 energy; //pending to update formulas returning struct
     }
 
     Neoncat[] neoncats;
@@ -39,6 +41,7 @@ contract Catscontract is IERC721, Ownable {
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
+    event UpdateEvent(address indexed owner, uint256 indexed tokenId, uint newGenes, uint256 oldGenes);
 
     uint256 public gen0Counter;
 
@@ -65,7 +68,6 @@ contract Catscontract is IERC721, Ownable {
         } else {
             kidGen = dadGen + 1;
         }
-        
             _createNeonCat( _mumId, _dadId, kidGen, newDna, msg.sender);
     }
     
@@ -101,8 +103,6 @@ contract Catscontract is IERC721, Ownable {
             return newGene;
         }    
             
-          
-
 
     function supportsInterface(bytes4 _interfaceId) external view returns (bool){
         return ( _interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165 );
@@ -119,6 +119,27 @@ contract Catscontract is IERC721, Ownable {
 
         return _createNeonCat(0, 0, 0, _genes, msg.sender);
      }
+
+    function updateCat(uint256 _tokenId, uint256 _genesUpdated) public returns (uint256){
+         // assure we get the old DNA for UpdateEvent before changing the attributes
+         uint256 oldGenes = neoncats[_tokenId].genes;
+
+        // assuming I get the updated DNA from the front end once the user changed it, this change needs to 
+        // enter the blockchain, via a .send method from the front-end:
+        /* contract.methods.updateCat(catId, _genesUpdated).send({}, function(error, txHash){
+        if(error)
+            console.log(error);
+        else {
+            console.log(txHash); */
+        // the "genes" part of the struct of this catId needs to be updated. 
+        // how can I overwrite the existing genes info? with a push method?
+         uint256 newGenes = _genesUpdated; // store the new DNA in a new variable
+         neoncats[_tokenId].genes = _genesUpdated;
+
+         // update the catId/object rendering new parts of the dna --> frontEnd / render.js SingleCat
+
+         emit UpdateEvent(owner, _tokenId, newGenes, oldGenes); 
+    }
 
     function getNeonCatsPerOwner(address _owner) external view returns (uint [] memory){
         uint[] memory result = new uint[](ownershipTokenCount[_owner]);
@@ -141,7 +162,6 @@ contract Catscontract is IERC721, Ownable {
         uint256 generation
     )
     {        
-        //Neoncat storage neoncat = neoncats[_tokenId];
         return(neoncats[_tokenId].genes, neoncats[_tokenId].birthTime, neoncats[_tokenId].mumId, neoncats[_tokenId].dadId, neoncats[_tokenId].generation);
     }
 
@@ -155,10 +175,6 @@ contract Catscontract is IERC721, Ownable {
             dadId: uint32(_dadId),
             generation: uint16(_generation)
         });
-
-        // is the same as 
-        // _neoncat.genes = genes;
-        // _neoncat.birthTime = uint64(now); etc.
 
         uint256 newCatId = neoncats.push(_neoncat) -1;
         
@@ -180,13 +196,7 @@ contract Catscontract is IERC721, Ownable {
     function totalSupply() public view returns (uint256) {
         return neoncats.length;
     }
-     /**
-     * @dev Returns the owner of the `tokenId` token.
-     *
-     * Requirements:
-     *
-     * - `tokenId` must exist.
-     */
+  
     function ownerOf(uint256 _tokenId) external view returns (address){
         return catIndexToOwner[_tokenId];
     }
