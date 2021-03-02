@@ -24,12 +24,22 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         $('#createButton').attr("onclick", "createNewCat()")
         } else {
             loadCat(catId)
-            $('#createButton').attr("onclick", "updateCat()")
+            $('#createButton').attr("onclick", "updateCat(" + catId +") ")
         }
     }, 1000);
     
 });
-function updateCat(){
+async function updateCat(catId){
+    var dnaStr = getDna().toString();
+    try{
+        await contract.methods.updateCat(catId, dnaStr).send()
+        .on('receipt', function (receipt) {
+            alert_msg("Cat updated successfully", "success")
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
     console.log("cat updated")
 }
 
@@ -38,7 +48,7 @@ function randomDna(){
     //var dnaStr = String(Math.floor(Math.random() * 1E16));
     //console.log(randomDNA);
     var dna = {
-        "headcolor" : Math.floor(Math.random() * 88) + 10,
+        "headColor" : Math.floor(Math.random() * 88) + 10,
         "mouthColor" : Math.floor(Math.random() * 88) + 10,
         "eyesShape" : Math.floor(Math.random() * 8) + 1,
         "pupilColor" : Math.floor(Math.random() * 88) + 10,
@@ -110,11 +120,6 @@ $('#mouthcolor').change(()=>{
     var colorVal = $('#mouthcolor').val()
     mouthColor(colors[colorVal],colorVal)
 })
-// error here? why is this jQuery line different from all other ones?
-// errored line said: $('#eyeshape').on("change",()=>{ - now changed to mimick other lines
-// description from jQuery says: on()	Attaches event handlers to elements (please explain)
-// correction worked, inform mentor then delete these comments.
-// pending: also have to check render.js in MultiCat!!
 $('#eyeshape').change(()=>{
     var shape = parseInt($('#eyeshape').val())
     eyeVariation(shape)

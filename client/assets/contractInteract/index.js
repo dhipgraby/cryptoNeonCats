@@ -3,10 +3,10 @@ var web3 = new Web3(Web3.givenProvider);
 var contract;
 var marketplaceContract;
 var user;
-var contractAddress ="0x81D11b43dF40f4150B85068185Cce8adDdEEc904";
-var marketplaceAddress = "0x4ca4fb177Dda848D1d99fca4264b435Bd830f739";
+var contractAddress ="0xA778d86330A0dd0E33699A697276bfe5a1fAa299";
+var marketplaceAddress = "0x22860Ea50F41dBCAC286adD5e115be1aa18898fd";
 
-$(document).ready(function(){tr
+$(document).ready(function(){
     window.ethereum.enable().then(async function(accounts){
         contract = new web3.eth.Contract(abi.catContract, contractAddress, {from: accounts[0]})
         marketplaceContract = new web3.eth.Contract(abi.marketplace, marketplaceAddress, {from: accounts[0]})

@@ -41,7 +41,7 @@ contract Catscontract is IERC721, Ownable {
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
-    event UpdateEvent(address indexed owner, uint256 indexed tokenId, uint newGenes, uint256 oldGenes);
+    event UpdateEvent(address indexed owner, uint256 indexed tokenId, uint256 _genesUpdated, uint256 oldGenes);
 
     uint256 public gen0Counter;
 
@@ -133,12 +133,11 @@ contract Catscontract is IERC721, Ownable {
             console.log(txHash); */
         // the "genes" part of the struct of this catId needs to be updated. 
         // how can I overwrite the existing genes info? with a push method?
-         uint256 newGenes = _genesUpdated; // store the new DNA in a new variable
          neoncats[_tokenId].genes = _genesUpdated;
 
          // update the catId/object rendering new parts of the dna --> frontEnd / render.js SingleCat
 
-         emit UpdateEvent(owner, _tokenId, newGenes, oldGenes); 
+         emit UpdateEvent(owner, _tokenId, _genesUpdated, oldGenes); 
     }
 
     function getNeonCatsPerOwner(address _owner) external view returns (uint [] memory){
