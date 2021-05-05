@@ -24,7 +24,7 @@ contract Catscontract is IERC721, Ownable {
         uint32 mumId;
         uint32 dadId;
         uint16 generation;
-        //string catName; //pending to update formulas returning struct
+        // string catName; //pending to update formulas returning struct
         // uint8 energy; //pending to update formulas returning struct
     }
 
