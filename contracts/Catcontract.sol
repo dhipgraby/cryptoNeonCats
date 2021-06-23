@@ -25,7 +25,7 @@ contract Catscontract is IERC721, Ownable {
         uint32 dadId;
         uint16 generation;
         uint8 energy; //pending to update formulas returning struct
-        string name; //pending to update formulas returning struct
+        string petName; //pending to update formulas returning struct
     }
 
     Neoncat[] neoncats;
@@ -49,7 +49,7 @@ contract Catscontract is IERC721, Ownable {
         _createNeonCat(0,0,0, uint256(-1), address(0));
     }
 
-    function breed(uint256 _dadId, uint256 _mumId) public nameValidator(_name) returns (uint256){
+    function breed(uint256 _dadId, uint256 _mumId) public returns (uint256){
         require(_owns(msg.sender, _dadId), "The user doesn't own the token"); // check ownership
         require(_owns(msg.sender, _mumId), "The user doesn't own the token"); // check ownership
         require ((_mumId != _dadId), "Cat IDs can't be the same"); // assure two different cats are chosen for breeding
@@ -71,25 +71,25 @@ contract Catscontract is IERC721, Ownable {
 
     }
     
-    // let user create a cat name for his (check) cat assuring min4/max20 character length
-    function _catName(string memory _name, uint256 _tokenId) public {
+    // let user create a petName for his (check) cat assuring min4/max20 character length
+    function _petName(string memory _petName, uint256 _tokenId) public {
         require(_ownsCat(msg.sender, _tokenId), "only owner can name his/her cat");
     // get user input (string) from front-end
-    // run checks: _utf8StringLength(), nameValidator() (DONE)
-    // commit/record name to cat struct
-        nameValidator();
+    // run checks: _utf8StringLength(), petNameValidator() (DONE)
+    // commit/record petName to cat struct (DONE)
+        petNameValidator();
     
-        neoncats[_tokenId].name = _name;
+        neoncats[_tokenId].petName = _petName;
 
     }
 
-    // validate string name checking if min/max length is met
-    modifier nameValidator(string memory str) {
+    // validate string petName checking if min/max length is met
+    function petNameValidator(string memory str) {
         
         uint length = _utf8StringLength(str);
         
-        require(length <= 20, "Name too long, length is limited to 20 characters");
-        require(length >= 3, "Name too short, please assure a minimum of 3 characters");
+        require(length <= 20, "Petname too long, length is limited to 20 characters");
+        require(length >= 3, "Petname too short, please assure a minimum of 3 characters");
         _;
     }
 
@@ -189,7 +189,7 @@ contract Catscontract is IERC721, Ownable {
         uint256 dadId, 
         uint256 generation
         uint8 energy;
-        string name;
+        string petName;
     )
     {        
         return(
@@ -199,12 +199,12 @@ contract Catscontract is IERC721, Ownable {
             neoncats[_tokenId].dadId, 
             neoncats[_tokenId].generation,
             neoncats[_tokenId].energy,
-            neoncats[_tokenId].name
+            neoncats[_tokenId].petName
             );
     }
 
     // function is private as meant to be executed only from within this contract 
-    function _createNeonCat(uint256 _mumId, uint256 _dadId, uint256 _generation, uint256 _genes, address _owner, uint8 _energy, string memory _name
+    function _createNeonCat(uint256 _mumId, uint256 _dadId, uint256 _generation, uint256 _genes, address _owner, uint8 _energy, string memory _petName
     ) private returns (uint256){
         Neoncat memory _neoncat = Neoncat({
             genes: _genes,
@@ -212,7 +212,7 @@ contract Catscontract is IERC721, Ownable {
             mumId: uint32(_mumId),
             dadId: uint32(_dadId),
             generation: uint16(_generation),
-            name: string(_name),
+            petName: string(_petName),
             energy: uint8(_energy)
         });
 
