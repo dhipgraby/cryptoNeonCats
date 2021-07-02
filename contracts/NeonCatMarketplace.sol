@@ -1,4 +1,4 @@
-pragma solidity 0.8.4;
+pragma solidity 0.5.12;
 
 import "./Catcontract.sol";
 import "./Ownable.sol";
@@ -56,13 +56,9 @@ contract NeonCatMarketplace is Ownable, INeonCatMarketplace {
                return result;
             }            
     }     
-
-    function _ownsCat(address _address, uint256 _tokenId) internal view returns (bool) {
-        return(_catContract.ownerOf(_tokenId) == _address);
-    }  
-
+    
     function setOffer(uint256 _price, uint256 _tokenId) external {
-        require(_ownsCat(msg.sender, _tokenId), "your are not the owner of that Cat");
+        require(_catContract.ownerOf(_tokenId) == msg.sender, "your are not the owner of that Cat");
         // check if tokenId is already on offer and if so, throw an error
         require(tokenIdToOffer[_tokenId].active == false, "This cat is already on sale"); 
         // seller needs to have provided approval for specific tokenId or given operator approval for all Ids of this owner

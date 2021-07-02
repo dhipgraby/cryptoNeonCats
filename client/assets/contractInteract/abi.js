@@ -1,12 +1,6 @@
 var abi = {
   catContract: [
     {
-      "inputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
       "anonymous": false,
       "inputs": [
         {
@@ -334,6 +328,26 @@ var abi = {
       "type": "function"
     },
     {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_petName",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "catName",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "constant": true,
       "inputs": [
         {
@@ -457,6 +471,16 @@ var abi = {
           "internalType": "uint256",
           "name": "generation",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "energy",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "petName",
+          "type": "string"
         }
       ],
       "payable": false,

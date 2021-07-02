@@ -3,8 +3,8 @@ var web3 = new Web3(Web3.givenProvider);
 var contract;
 var marketplaceContract;
 var user;
-var contractAddress ="0x35d1D4E225c2d7CEff014bEf7c24434D027AA5ce";
-var marketplaceAddress = "0x64cB2e1aabAF75aC15Aa71D4047aa2e0E9AC787F";
+var contractAddress ="0x551AE62600d7a3A0a4DCFD7571880cF636a4D8Df";
+var marketplaceAddress = "0x90a4BAD60130B306d0b208b4870f56B9141da457";
 
 $(document).ready(function(){
     window.ethereum.enable().then(async function(accounts){
@@ -12,7 +12,6 @@ $(document).ready(function(){
         marketplaceContract = new web3.eth.Contract(abi.marketplace, marketplaceAddress, {from: accounts[0]})
         user = accounts[0];
         showUserInfo();
-        
         
         contract.events.Birth().on('data', function(event){
             let owner = event.returnValues.owner;

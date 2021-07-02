@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: SPDX-License
-
-pragma solidity 0.8.4;
+pragma solidity 0.5.12;
 
 import "./IERC721.sol";
 import "./Ownable.sol";
@@ -45,18 +44,14 @@ contract Catscontract is IERC721, Ownable {
 
     uint256 public gen0Counter;
 
-    constructor() {
-        _createNeonCat(0,0,0, uint256(-1), address(0));
-    }
-
     function breed(uint256 _dadId, uint256 _mumId) public returns (uint256){
         require(_owns(msg.sender, _dadId), "The user doesn't own the token"); // check ownership
         require(_owns(msg.sender, _mumId), "The user doesn't own the token"); // check ownership
         require ((_mumId != _dadId), "Cat IDs can't be the same"); // assure two different cats are chosen for breeding
         // you got the DNA
         // get DNA and generation from mum and dad
-        ( uint256 dadDna,,,,uint256 dadGen ) = getCat(_dadId);
-        ( uint256 mumDna,,,,uint256 mumGen ) = getCat(_mumId);
+        ( uint256 dadDna,,,,uint256 dadGen,, ) = getCat(_dadId);
+        ( uint256 mumDna,,,,uint256 mumGen,, ) = getCat(_mumId);
         
         uint256 newDna = _mixDna(dadDna, mumDna);
 
@@ -67,37 +62,19 @@ contract Catscontract is IERC721, Ownable {
         } else {
             kidGen = dadGen + 1;
         }
-            _createNeonCat( _mumId, _dadId, kidGen, newDna, msg.sender);
+            _createNeonCat( _mumId, _dadId, kidGen, newDna, msg.sender,50,'petname');
 
     }
     
     // let user create a petName for his (check) cat assuring min4/max20 character length
-    function _petName(string memory _petName, uint256 _tokenId) public {
-        require(_ownsCat(msg.sender, _tokenId), "only owner can name his/her cat");
+    function catName(string memory _petName, uint256 _tokenId) public catNameValidator(_petName) {
+        require(ownerOf(_tokenId) == msg.sender, "your are not the owner of that Cat");
     // get user input (string) from front-end
     // run checks: _utf8StringLength(), petNameValidator() (DONE)
     // commit/record petName to cat struct (DONE)
-        petNameValidator();
-    
         neoncats[_tokenId].petName = _petName;
 
     }
-
-    // validate string petName checking if min/max length is met
-    function petNameValidator(string memory str) {
-        
-        uint length = _utf8StringLength(str);
-        
-        require(length <= 20, "Petname too long, length is limited to 20 characters");
-        require(length >= 3, "Petname too short, please assure a minimum of 3 characters");
-        _;
-    }
-
-    // get string length of user-chosen cat name (front-end)
-    function _utf8StringLength(string memory str) private pure returns (uint) {
-        return bytes(str).length;
-    }
-    
     
     function _mixDna(uint256 _dadDna, uint256 _mumDna) internal returns (uint256) {
         
@@ -146,7 +123,7 @@ contract Catscontract is IERC721, Ownable {
         gen0Counter++;
         // catEnergy = 50;
 
-        return _createNeonCat(0, 0, 0, _genes, msg.sender);
+        return _createNeonCat(0, 0, 0, _genes, msg.sender,50,'petname');
      }
 
     function updateCat(uint256 _tokenId, uint256 _genesUpdated) public returns (uint256){
@@ -187,9 +164,9 @@ contract Catscontract is IERC721, Ownable {
         uint256 birthTime, 
         uint256 mumId, 
         uint256 dadId, 
-        uint256 generation
-        uint8 energy;
-        string petName;
+        uint256 generation,
+        uint8 energy,
+        string memory petName
     )
     {        
         return(
@@ -216,10 +193,10 @@ contract Catscontract is IERC721, Ownable {
             energy: uint8(_energy)
         });
 
-           if (neoncats.generation == 0){
-                _neoncats.energy = 50;
+           if (_generation == 0){
+                _neoncat.energy = 50;
             } else {
-                _neoncats.energy = 20;
+                _neoncat.energy = 20;
             }
 
         uint256 newCatId = neoncats.push(_neoncat) -1;
@@ -235,15 +212,15 @@ contract Catscontract is IERC721, Ownable {
     }
 
 
-    function balanceOf(address owner) external view returns (uint256 balance){
-        return ownershipTokenCount[owner];
+    function balanceOf(address _owner) external view returns (uint256 balance){
+        return ownershipTokenCount[_owner];
     }
 
     function totalSupply() public view returns (uint256) {
         return neoncats.length;
     }
   
-    function ownerOf(uint256 _tokenId) external view returns (address){
+    function ownerOf(uint256 _tokenId) public view returns (address){
         return catIndexToOwner[_tokenId];
     }
 
